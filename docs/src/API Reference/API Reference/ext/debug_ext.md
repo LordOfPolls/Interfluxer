@@ -1,1 +1,1 @@
-::: interactions.ext.debug_extension
+::: Interfluxer.ext.debug_extension

@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from flux import MaxConcurrency, Buckets, CooldownSystem, Cooldown
+from Interfluxer import MaxConcurrency, Buckets, CooldownSystem, Cooldown
 from tests.utils import generate_dummy_context
 
 __all__ = ()

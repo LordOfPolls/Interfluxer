@@ -1,1 +1,1 @@
-::: interactions.models.internal.extension
+::: Interfluxer.models.internal.extension

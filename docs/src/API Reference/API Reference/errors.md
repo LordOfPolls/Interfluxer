@@ -1,1 +1,1 @@
-::: interactions.client.errors
+::: Interfluxer.client.errors

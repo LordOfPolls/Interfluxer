@@ -5,22 +5,22 @@ search:
 
 # Creating Prefixed Commands
 
-Prefixed commands, called by Discord as "text commands" and sometimes called "message commands" (not to be confused with Context Menu Message Commands), are commands that are triggered when a user sends a normal message with a designated "prefix" in front of them.
+Prefixed commands, called by Fluxer as "text commands" and sometimes called "message commands" (not to be confused with Context Menu Message Commands), are commands that are triggered when a user sends a normal message with a designated "prefix" in front of them.
 
 ??? note "Naming"
-    While Discord themselves has used "text commands" to refer to these, we disagree with this naming. We think it is confusing, especially when referring to how Discord refers to slash commands (chat input commands). Thus, this library will use "prefixed commands", both in code and for its documentation.
+    While Fluxer themselves has used "text commands" to refer to these, we disagree with this naming. We think it is confusing, especially when referring to how Fluxer refers to slash commands (chat input commands). Thus, this library will use "prefixed commands", both in code and for its documentation.
 
-While slash commands have been released, and is typically the way you should be making commands these days, there are many cases where the "legacy" commands may want to be kept due to various reasons, like wanting to use types not well-supported by Discord or to allow for greater flexibility for permission handling.
+While slash commands have been released, and is typically the way you should be making commands these days, there are many cases where the "legacy" commands may want to be kept due to various reasons, like wanting to use types not well-supported by Fluxer or to allow for greater flexibility for permission handling.
 
-Whatever the reason is, `interactions.py` has an extensive yet familiar prefixed command architecture ready to be used via a built-in extension.
+Whatever the reason is, `Interfluxer` has an extensive yet familiar prefixed command architecture ready to be used via a built-in extension.
 
 ## Setup
 
 Because prefixed commands are in their own extension, some setup is required. It usually is as simple as putting something like this in your main bot file:
 
 ```python
-from flux import Client, Intents
-from flux.ext import prefixed_commands
+from Interfluxer import Client, Intents
+from Interfluxer.ext import prefixed_commands
 
 # guild messages are included in the default intents ipy uses
 # if you wish for the prefix to be anything but mentioning the bot,
@@ -37,10 +37,10 @@ If you wish to change this, you have two options in `setup`:
 
 ## Your First Prefixed Command
 
-To create a prefixed command, simply define an asynchronous function and use the `@prefixed_command()` (from `interactions.ext.prefixed_commands`) decorator above it.
+To create a prefixed command, simply define an asynchronous function and use the `@prefixed_command()` (from `Interfluxer.ext.prefixed_commands`) decorator above it.
 
 ```python
-from flux.ext.prefixed_commands import prefixed_command, PrefixedContext
+from Interfluxer.ext.prefixed_commands import prefixed_command, PrefixedContext
 
 
 @prefixed_command(name="my_command")
@@ -49,7 +49,7 @@ async def my_command_function(ctx: PrefixedContext):
 ```
 
 ???+ note "Command Name"
-    If `name` is not specified, `interactions.py` will automatically use the function's name as the command's name.
+    If `name` is not specified, `Interfluxer` will automatically use the function's name as the command's name.
 
 If the bot's prefix was set to `!`, then a user could invoke it like so:
 
@@ -140,7 +140,7 @@ If you simply wish to take in the rest of the user's input as an argument, you c
 
 === ":one: ConsumeRest Alias"
     ```python
-    from interactions import ConsumeRest
+    from Interfluxer import ConsumeRest
 
     @prefixed_command()
     async def test(ctx: PrefixedContext, arg: ConsumeRest[str]):
@@ -172,7 +172,7 @@ The result looks like this:
 
 Parameters, by default, are assumed to be strings, since `Message.content`, the content used for prefixed commands, is one. However, there are many times where you want to have a parameter be a more specific type, like an integer or boolean.
 
-`interactions.py` provides an easy syntax to do so:
+`Interfluxer` provides an easy syntax to do so:
 
 ```python
 @prefixed_command()
@@ -182,7 +182,7 @@ async def test(ctx: PrefixedContext, an_int: int, a_float: float):
 
 ![Basic Type Conversion](../images/PrefixedCommands/BasicTypeConversion.png "The above running with the arguments: 1 2.5")
 
-Words/arguments will automatically be converted to the specified type. If `interactions.py` is unable to convert it (a user could easily pass a letter into `an_int`), then it will raise a `BadArgument` error, which can be handled by an error handler. Error handling is handled similarly to how it is handled with [slash commands](../03 Creating Commands).
+Words/arguments will automatically be converted to the specified type. If `Interfluxer` is unable to convert it (a user could easily pass a letter into `an_int`), then it will raise a `BadArgument` error, which can be handled by an error handler. Error handling is handled similarly to how it is handled with [slash commands](../03 Creating Commands).
 
 You can even pass in a function for parameters:
 
@@ -200,7 +200,7 @@ async def test(ctx: PrefixedContext, uppered: to_upper):
 ??? note "Functions"
     If functions are used as arguments, they can either have one parameter (which is the passed argument as a string) or two parameters (which are the context and the argument).
     They can also be asynchronous or synchronous.
-    Also, your typechecker will likely complain about this. You can ignore it for `interactions.py`.
+    Also, your typechecker will likely complain about this. You can ignore it for `Interfluxer`.
 
 #### Booleans
 
@@ -219,12 +219,12 @@ Converters work much in the same way as they do for other commands; see [the gui
 
 There are a few specific converters that only work with prefixed commands due to their nature, however.
 
-#### Discord Converters
+#### Fluxer Converters
 
-Prefixed commands can be typehinted with some Discord models, like so:
+Prefixed commands can be typehinted with some Fluxer models, like so:
 
 ```python
-from flux import Member
+from Interfluxer import Member
 
 
 @prefixed_command()
@@ -234,19 +234,19 @@ async def poke(ctx: PrefixedContext, target: Member):
 
 The argument here will automatically be converted into a `Member` object:
 
-![Discord Model Conversion](../images/PrefixedCommands/DiscordModelConversion.png "The above running with a user passed in.")
+![Fluxer Model Conversion](../images/PrefixedCommands/FluxerModelConversion.png "The above running with a user passed in.")
 
-A table of supported objects and their converters can be found [here](../08 Converters#discord-model-converters). You may use the Discord model itself in your command for prefixed commands, just like the above, and their respective converter will be used under the hood.
+A table of supported objects and their converters can be found [here](../08 Converters#discord-model-converters). You may use the Fluxer model itself in your command for prefixed commands, just like the above, and their respective converter will be used under the hood.
 
 #### `typing.Union`
 
-`typing.Union` allows for a parameter/argument to be of multiple types instead of one. `interactions.py` will attempt to convert a given argument into each type specified (starting from the first one), going down the "list" until a valid match is found.
+`typing.Union` allows for a parameter/argument to be of multiple types instead of one. `Interfluxer` will attempt to convert a given argument into each type specified (starting from the first one), going down the "list" until a valid match is found.
 
 For example, the below will try to convert an argument to a `GuildText` first, then a `User` if it cannot do so.
 
 ```python
 from typing import Union
-from flux import GuildText, User
+from Interfluxer import GuildText, User
 
 
 @prefixed_command()
@@ -286,7 +286,7 @@ And if a user omits the `delete_message_days` parameter, it would act as so:
 
 #### `typing.Literal`
 
-`typing.Literal` specifies that a parameter *must* be one of the values in the list. `interactions.py` also forces that here (though this only works with values of basic types, like `str` or `int`):
+`typing.Literal` specifies that a parameter *must* be one of the values in the list. `Interfluxer` also forces that here (though this only works with values of basic types, like `str` or `int`):
 
 ```python
 from typing import Literal
@@ -300,10 +300,10 @@ async def one_or_two(ctx: PrefixedContext, num: Literal[1, 2]):
 
 #### `Greedy`
 
-The `Greedy` class, included in this library, specifies `interactions.py` to keep converting as many arguments as it can until it fails to do so. For example:
+The `Greedy` class, included in this library, specifies `Interfluxer` to keep converting as many arguments as it can until it fails to do so. For example:
 
 ```python
-from flux.ext.prefixed_commands import Greedy
+from Interfluxer.ext.prefixed_commands import Greedy
 
 
 @prefixed_command()
@@ -321,10 +321,10 @@ async def slap(ctx: PrefixedContext, members: Greedy[Member]):
 
 ## Help Command
 
-There is no automatically added help command in `interactions.py`. However, you can use `PrefixedHelpCommand` to create one with ease. Using it looks like so:
+There is no automatically added help command in `Interfluxer`. However, you can use `PrefixedHelpCommand` to create one with ease. Using it looks like so:
 
 ```python
-from flux.ext.prefixed_command.help import PrefixedHelpCommand
+from Interfluxer.ext.prefixed_command.help import PrefixedHelpCommand
 
 # There are a variety of options - adjust them to your liking!
 help_cmd = PrefixedHelpCommand(bot, ...)

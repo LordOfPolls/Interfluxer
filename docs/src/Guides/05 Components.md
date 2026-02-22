@@ -21,7 +21,7 @@ If you want to define the layout yourself, you have to put them in an `ActionRow
     Your list of components will be transformed into `ActionRow`s behind the scenes.
 
     ```python
-    from interactions import Button, ButtonStyle
+    from Interfluxer import Button, ButtonStyle
 
     components = Button(
         style=ButtonStyle.GREEN,
@@ -33,7 +33,7 @@ If you want to define the layout yourself, you have to put them in an `ActionRow
 
 === ":two: `ActionRow()`"
     ```python
-    from interactions import ActionRow, Button, ButtonStyle
+    from Interfluxer import ActionRow, Button, ButtonStyle
 
     components: list[ActionRow] = [
         ActionRow(
@@ -53,7 +53,7 @@ If you want to define the layout yourself, you have to put them in an `ActionRow
 
 === ":three: `spread_to_rows()`"
     ```python
-    from interactions import ActionRow, Button, ButtonStyle, spread_to_rows
+    from Interfluxer import ActionRow, Button, ButtonStyle, spread_to_rows
 
     components: list[ActionRow] = spread_to_rows(
         Button(
@@ -87,24 +87,24 @@ components = Button(
 await channel.send("Look a Button!", components=components)
 ```
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Discord/components/#interactions.models.external.components.Button).
+For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/models/Fluxer/components/#Interfluxer.models.external.components.Button).
 
 ### Button Styles
 
 There are a bunch of colours and styles you can choose from.
     <br>![Button Colours](../images/Components/buttons.png "Button Colours")
 
-The colours correspond to the styles found in `ButtonStyle`. Click [here](/interactions.py/API Reference/API Reference/models/Discord/enums/#interactions.models.external.enums.ButtonStyle) for more information.
+The colours correspond to the styles found in `ButtonStyle`. Click [here](/Interfluxer/API Reference/API Reference/models/Fluxer/enums/#Interfluxer.models.external.enums.ButtonStyle) for more information.
 
 If you use `ButtonStyle.URL`, you can pass a URL to the button with the `url` argument. Users who click the button will get redirected to your URL.
 
 ```python
-from flux import ButtonStyle
+from Interfluxer import ButtonStyle
 
 components = Button(
     style=ButtonStyle.URL,
     label="Click Me",
-    url="https://github.com/interactions-py/interactions.py",
+    url="https://github.com/Interfluxer/Interfluxer",
 )
 
 await channel.send("Look a Button!", components=components)
@@ -123,7 +123,7 @@ If you want to use string options, then you use the `StringSelectMenu`. Simply p
 You can also define how many options users can choose by setting `min_values` and `max_values`.
 
 ```python
-from flux import StringSelectMenu
+from Interfluxer import StringSelectMenu
 
 components = StringSelectMenu(
     "Pizza", "Pasta", "Burger", "Salad",
@@ -139,7 +139,7 @@ await channel.send("Look a Select!", components=components)
 
 Alternatively, you can use `RoleSelectMenu`, `UserSelectMenu` and `ChannelSelectMenu` to select roles, users and channels respectively. These select menus are very similar to `StringSelectMenu`, but they don't allow you to pass a list of options; it's all done behind the scenes.
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Discord/components/#interactions.models.external.components.Select).
+For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/models/Fluxer/components/#Interfluxer.models.external.components.Select).
 
 ## Responding
 
@@ -151,7 +151,7 @@ These have the downside that, for example, they won't work anymore after restart
 
 Otherwise, you are looking for a persistent callback. For that, you want to define a `custom_id` when creating your component.
 
-When responding to a component you need to satisfy Discord either by responding to the context with `ctx.send()` or by editing the component with `ctx.edit_origin()`.
+When responding to a component you need to satisfy Fluxer either by responding to the context with `ctx.send()` or by editing the component with `ctx.edit_origin()`.
 
 === ":one: `bot.wait_for_component()`"
     This function supports checks and timeouts.
@@ -159,8 +159,8 @@ When responding to a component you need to satisfy Discord either by responding 
     In this example, we are checking that the username starts with "a" and clicks the button within 30 seconds. If his username doesn't start with an "a", then we send it an ephemeral message to notify him. If the button times out, we edit the message so that the button is disabled and cannot be clicked anymore.
 
     ```python
-    from interactions import Button, ButtonStyle
-    from interactions.api.events import Component
+    from Interfluxer import Button, ButtonStyle
+    from Interfluxer.api.events import Component
 
     # defining and sending the button
     button = Button(
@@ -194,15 +194,15 @@ When responding to a component you need to satisfy Discord either by responding 
 
     You can also use this to check for a normal message instead of a component interaction.
 
-    For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/Client/#interactions.client.Client.wait_for_component).
+    For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/Client/#Interfluxer.client.Client.wait_for_component).
 
 
 === ":two: Persistent Callback: `@listen()`"
     You can listen to the `on_component()` event and then handle your callback. This works even after restarts!
 
     ```python
-    from interactions import Button, ButtonStyle
-    from interactions.api.events import Component
+    from Interfluxer import Button, ButtonStyle
+    from Interfluxer.api.events import Component
 
     # defining and sending the button
     button = Button(
@@ -229,7 +229,7 @@ When responding to a component you need to satisfy Discord either by responding 
     You have to pass your `custom_id` to `@component_callback(custom_id)` for the library to be able to register the callback function to the wanted component.
 
     ```python
-    from interactions import Button, ButtonStyle, ComponentContext, component_callback
+    from Interfluxer import Button, ButtonStyle, ComponentContext, component_callback
 
     # defining and sending the button
     button = Button(
@@ -252,7 +252,7 @@ When responding to a component you need to satisfy Discord either by responding 
 
     ```python
     import re
-    from interactions import Button, ButtonStyle, ComponentContext, SlashContext, component_callback, slash_command
+    from Interfluxer import Button, ButtonStyle, ComponentContext, SlashContext, component_callback, slash_command
 
     @slash_command(name="test")
     async def command(ctx: SlashContext):

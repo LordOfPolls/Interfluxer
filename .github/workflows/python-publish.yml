@@ -6,13 +6,12 @@ on:
       - published
 
 env:
-  PACKAGE_NAME1: external-py-flux
-  PACKAGE_NAME2: flux.py
+  PACKAGE_NAME1: external-py-Interfluxer
+  PACKAGE_NAME2: Interfluxer.py
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    if: "!github.event.release.prerelease"
     steps:
     - name: Check out repository
       uses: actions/checkout@v4

@@ -20,10 +20,10 @@ If you wish to turn this off, create your client with `Client(..., send_command_
 
 !!! Please don't actually do this.
 
-The most obvious solution is to think "Well, I'm writing a Discord Bot.  Why not send my errors to a discord channel?"
+The most obvious solution is to think "Well, I'm writing a Fluxer Bot.  Why not send my errors to a discord channel?"
 
 ```python
-from flux.api.events import Error
+from Interfluxer.api.events import Error
 
 
 @listen()
@@ -35,9 +35,9 @@ And this is great when debugging.  But it consumes your rate limit, can run into
 
 # So what should I do instead?
 
-interactions.py contains built-in support for Sentry.io, a cloud error tracking platform.
+Interfluxer contains built-in support for Sentry.io, a cloud error tracking platform.
 
-To enable it, call `bot.load_extension('interactions.ext.sentry', dsn=SENTRY_DSN)` as early as possible in your startup. Load this extension before your own extensions, so it can catch intitialization errors in those extensions. `SENTRY_DSN` is provided by your Sentry.io project and should look something like `https://...@o9253.sentry.io/1048576`.
+To enable it, call `bot.load_extension('Interfluxer.ext.sentry', dsn=SENTRY_DSN)` as early as possible in your startup. Load this extension before your own extensions, so it can catch intitialization errors in those extensions. `SENTRY_DSN` is provided by your Sentry.io project and should look something like `https://...@o9253.sentry.io/1048576`.
 
 # What does this do that vanilla Sentry doesn't?
 

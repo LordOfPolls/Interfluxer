@@ -1,1 +1,1 @@
-::: interactions.ext.prefixed_commands.help
+::: Interfluxer.ext.prefixed_commands.help

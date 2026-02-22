@@ -1,1 +1,1 @@
-::: interactions.ext.hybrid_commands.hybrid_slash
+::: Interfluxer.ext.hybrid_commands.hybrid_slash

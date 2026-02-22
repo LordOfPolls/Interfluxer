@@ -1,11 +1,11 @@
-import flux
+import Interfluxer
 
 # Now, let's create an instance of a bot.
-intents = flux.Intents.DEFAULT | flux.Intents.MESSAGE_CONTENT
-client = flux.Client(intents=intents)
+intents = Interfluxer.Intents.DEFAULT | Interfluxer.Intents.MESSAGE_CONTENT
+client = Interfluxer.Client(intents=intents)
 
 
-@flux.listen()
+@Interfluxer.listen()
 async def on_ready():
     # We can use the client "app" attribute to get information about the bot.
     print(f"We're online! We've logged in as {client.app.name}.")
@@ -14,9 +14,9 @@ async def on_ready():
     print(f"Our latency is {round(client.latency)} ms.")
 
 
-@flux.listen("on_message_create")
-async def on_message_create(message_create: flux.events.MessageCreate):
-    message: flux.Message = message_create.message
+@Interfluxer.listen("on_message_create")
+async def on_message_create(message_create: Interfluxer.events.MessageCreate):
+    message: Interfluxer.Message = message_create.message
     print(f"We've received a message from {message.author.username}. The message is: {message.content}.")
 
 

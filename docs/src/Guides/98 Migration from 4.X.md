@@ -5,16 +5,16 @@ search:
 
 # Migrating from 4.X
 
-Version 5.X (and beyond) is a major rewrite of interactions.py compared to 4.X, though there have been major improvements to compensate for the change. 5.X was designed to be more stable and flexible, solving many of the bugs and UX issues 4.X had while also adding additional features you may like.
+Version 5.X (and beyond) is a major rewrite of Interfluxer compared to 4.X, though there have been major improvements to compensate for the change. 5.X was designed to be more stable and flexible, solving many of the bugs and UX issues 4.X had while also adding additional features you may like.
 
-**You will need to do some updating and rewriting of your code,** but it's not as daunting as it may seem. We've provided this document as a starting point (*though it is not exhaustive*), and we have plenty of guides and documentation to help you learn the other parts of this library. Lastly, our support team is always here to help if you need it [in our Discord server](discord.gg/interactions).
+**You will need to do some updating and rewriting of your code,** but it's not as daunting as it may seem. We've provided this document as a starting point (*though it is not exhaustive*), and we have plenty of guides and documentation to help you learn the other parts of this library. Lastly, our support team is always here to help if you need it [in our Fluxer server](discord.gg/Interfluxer).
 
 Now, let's get started, shall we?
 
 ???+ note
-    In v5's documentation, you will often see imports using the format `from interactions import X`, unlike v4. You can still use `import interactions` and do `interactions.X` though.
+    In v5's documentation, you will often see imports using the format `from Interfluxer import X`, unlike v4. You can still use `import Interfluxer` and do `Interfluxer.X` though.
 
-    Events, errors, and utilities are under their own sub-namespace when using `import interactions`. For example, events are under `interactions.events.X`.
+    Events, errors, and utilities are under their own sub-namespace when using `import Interfluxer`. For example, events are under `Interfluxer.events.X`.
 
 ## Python Version Change
 
@@ -30,14 +30,14 @@ If you prefer not to use pyenv, there are many guides available that can help yo
 
 Slash commands function differently from v4's commands - it's worth taking a good look at the guide to see [how they work in the library now](../03 Creating Commands).
 
-Big changes include the fact that `@bot.command` (we'll get to extensions later) is now `@interactions.slash_command`, and `CommandContext` is now `SlashContext`. There may be some slight renamings elsewhere too in the decorators itself - it's suggested you look over the options for the new decorator and appropriately adapt your code.
+Big changes include the fact that `@bot.command` (we'll get to extensions later) is now `@Interfluxer.slash_command`, and `CommandContext` is now `SlashContext`. There may be some slight renamings elsewhere too in the decorators itself - it's suggested you look over the options for the new decorator and appropriately adapt your code.
 
 Arguably the biggest change involves how v5 handles slash options. v5's primary method relies heavily on decorators to do the heavy lifting, though there are other methods you may prefer - again, consult the guide, as that will tell you every method. A general rule of thumb is that if you did not use the "define options as a list right in the slash command decorator" choice, you will have to make some changes to adjust to the new codebase.
 Subcommands also cannot be defined as an option in a command. We encourage you to use a subcommand decorator instead, as seen in the guide.
 
 If you were using some of the more complex features of slash commands in v4, it's important to note: *v5 only runs the subcommand, not the base-command-then-subcommands that you could do with v4.* This was mostly due to the logic being too complex to maintain - it is encouraged that you use checks to either add onto base commands or the subcommands you want to add them to, as will be talked about in an upcoming section. `StopIteration` also doesn't exist in v5 due to this change.
 
-Autocomplete *is* different. v5 encourages you to tie autocompletes to specific commands in a different manner than v4 and uses a special context, [like seen in the guide](../03 Creating Commands/#i-need-more-than-25-choices). There is `interactions.global_autocomplete` too.
+Autocomplete *is* different. v5 encourages you to tie autocompletes to specific commands in a different manner than v4 and uses a special context, [like seen in the guide](../03 Creating Commands/#i-need-more-than-25-choices). There is `Interfluxer.global_autocomplete` too.
 
 Autodeferring is also pretty similar, although there's more control, with options to allow for global autodefers and extension-wide ones.
 
@@ -48,8 +48,8 @@ Similarly to Slash Commands, events have also been reworked in v5. Instead of `@
 An important note: events now dispatch an event object that contains every part about an event, instead of the object that directly corresponds to an event. For example, message creation now looks like this:
 
 ```python
-from flux import listen
-from flux.api.events import MessageCreate
+from Interfluxer import listen
+from Interfluxer.api.events import MessageCreate
 
 
 @listen()
@@ -60,7 +60,7 @@ async def on_message_create(event: MessageCreate):
 This is more notable with events that used to have two or more arguments. They *also* now only have one event object:
 
 ```python
-from flux.api.events import MemberUpdate
+from Interfluxer.api.events import MemberUpdate
 
 
 @listen()
@@ -71,7 +71,7 @@ async def on_member_update(event: MemberUpdate):
 
 ## Other Types of Interactions (Context Menus, Components, Modals)
 
-These should be a lot more familiar to you - many interactions in v5 that aren't slash commands are similar to v4, minus name changes (largely to the decorators and classes you use). They should still *function* similarly though, but it's never a bad idea to consult the various guides that are on the sidebar to gain a better picture of how they work.
+These should be a lot more familiar to you - many Interfluxer in v5 that aren't slash commands are similar to v4, minus name changes (largely to the decorators and classes you use). They should still *function* similarly though, but it's never a bad idea to consult the various guides that are on the sidebar to gain a better picture of how they work.
 
 [If you're using context menus](../04 Context Menus) (previously `@bot.user_command` or `@bot.message_command`), the decorators have changed to `@user_context_menu` and `@message_context_menu`, or you can also use the more general `@context_menu` decorator and specify the type of context menu through `context_type` - otherwise, it's mostly the same.
 
@@ -89,13 +89,13 @@ For example:
 [For components](../05 Components) and [modals](../06 Modals): you no longer need to use `ActionRow.new(...)` to make an ActionRow now - you can just use `ActionRow(...)` directly. You also send modals via `ctx.send_modal` now. Finally, text inputs in components (the options for string select menus, and the components for modals) are also `*args` now, instead of being a typical parameter:
 
 ```python
-import flux
+import Interfluxer
 
 # in v4:
 
-components = [flux.TextInput(...), flux.TextInput(...)]
+components = [Interfluxer.TextInput(...), Interfluxer.TextInput(...)]
 
-modal = flux.Modal(
+modal = Interfluxer.Modal(
     title="Application Form",
     custom_id="mod_app_form",
     components=components,
@@ -103,9 +103,9 @@ modal = flux.Modal(
 
 # in v5:
 
-components = [flux.InputText(...), flux.InputText(...)]
+components = [Interfluxer.InputText(...), Interfluxer.InputText(...)]
 
-modal = flux.Modal(
+modal = Interfluxer.Modal(
     *components,
     title="Application Form",
     custom_id="mod_app_form",
@@ -118,17 +118,17 @@ Otherwise, beyond renamings, components are largely the same.
 
 Extensions have not been changed too much. `await teardown(...)` is now just `drop(...)` (note how drop is *not* async), and you use `bot.load_extension`/`bot.unload_extension` instead of `bot.load`/`bot.unload`.
 
-There is one major difference though that isn't fully related to extensions themselves: *you use the same decorator for both commands/events in your main file and commands/events in extensions in v5.* Basically, instead of having `bot.command` and `interactions.extension_command`, you *just* have `interactions.slash_command` (and so on for context menus, events, etc.), which functions seemlessly in both contexts.
+There is one major difference though that isn't fully related to extensions themselves: *you use the same decorator for both commands/events in your main file and commands/events in extensions in v5.* Basically, instead of having `bot.command` and `Interfluxer.extension_command`, you *just* have `Interfluxer.slash_command` (and so on for context menus, events, etc.), which functions seemlessly in both contexts.
 
 Also, you no longer require a `setup` function. They can still be used, but if you have no need for them other than just loading the extension, you can get rid of them if you want.
 
-## Cache and interactions.get
+## Cache and Interfluxer.get
 
-Instead of the `await interactions.get` function in v4, v5 introduces the `await bot.fetch_X` and `bot.get_X` functions, where `X` will be the type of object that you would like to retrieve (user, guild, role...). You might ask, what is the difference between fetch and get?
+Instead of the `await Interfluxer.get` function in v4, v5 introduces the `await bot.fetch_X` and `bot.get_X` functions, where `X` will be the type of object that you would like to retrieve (user, guild, role...). You might ask, what is the difference between fetch and get?
 
 The answer is simple, `get` will look for an object that has been cached, and therefore is a synchronous function that can return None if this object has never been cached before.
 
-On the other hand, `fetch` is an asynchronous function that will request the Discord API to find that object if it has not been cached before. This will *fetch* the latest version of the object from Discord, provided that the IDs you inputted are valid.
+On the other hand, `fetch` is an asynchronous function that will request the Fluxer API to find that object if it has not been cached before. This will *fetch* the latest version of the object from Fluxer, provided that the IDs you inputted are valid.
 
 ## Library extensions
 
@@ -149,11 +149,11 @@ So what do you do? Simple - create the loop "yourself" and use `bot.astart()` in
 Before:
 
 ```python
-import flux
+import Interfluxer
 
 # if there's no loop detected, v4 would create the loop for you at this point
 # it also stores the loop in bot._loop
-bot = flux.Client(...)
+bot = Interfluxer.Client(...)
 
 bot._loop.create_task(some_func())
 bot.load("an_ext_that_uses_the_event_loop")
@@ -165,10 +165,10 @@ After:
 
 ```python
 import asyncio
-import flux
+import Interfluxer
 
 # no bot._loop, loop also does not exist yet
-bot = flux.Client(...)
+bot = Interfluxer.Client(...)
 
 
 async def main():

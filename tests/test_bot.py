@@ -9,8 +9,8 @@ from datetime import datetime, timedelta
 import pytest
 import pytest_asyncio
 
-import flux
-from flux import (
+import Interfluxer
+from Interfluxer import (
     GuildChannel,
     MessageableMixin,
     GuildNews,
@@ -34,13 +34,13 @@ from flux import (
     Poll,
     PollMedia,
 )
-from flux.models.external.asset import Asset
-from flux.models.external.emoji import process_emoji_req_format
-from flux.api.gateway.websocket import WebsocketClient
-from flux.api.http.route import Route
-from flux.api.voice.audio import AudioVolume
-from flux.client.errors import NotFound
-from flux.models.external.role import Role
+from Interfluxer.models.external.asset import Asset
+from Interfluxer.models.external.emoji import process_emoji_req_format
+from Interfluxer.api.gateway.websocket import WebsocketClient
+from Interfluxer.api.http.route import Route
+from Interfluxer.api.voice.audio import AudioVolume
+from Interfluxer.client.errors import NotFound
+from Interfluxer.models.external.role import Role
 
 __all__ = ()
 
@@ -58,7 +58,7 @@ if not TOKEN:
 if os.environ.get("GITHUB_ACTIONS") and not os.environ.get("RUN_TESTBOT"):
     pytest.skip(f"Skipping {os.path.basename(__file__)} - RUN_TESTBOT not set", allow_module_level=True)
 
-log = logging.getLogger("Interations-Integration-Tests")
+log = logging.getLogger("Interfluxer-Integration-Tests")
 
 
 @pytest.fixture(scope="module")
@@ -68,7 +68,7 @@ def event_loop() -> AbstractEventLoop:
 
 @pytest_asyncio.fixture(scope="module")
 async def bot(github_commit) -> Client:
-    bot = flux.Client(activity="Testing someones code")
+    bot = Interfluxer.Client(activity="Testing someones code")
     await bot.login(TOKEN)
     gw = asyncio.create_task(bot.start_gateway())
 
@@ -84,11 +84,11 @@ async def bot(github_commit) -> Client:
 
 @pytest_asyncio.fixture(scope="module")
 async def guild(bot: Client) -> Guild:
-    guild = next((g for g in bot.guilds if g.name in ["Interactions.py Test Suite", "NAFF Test Suite"]), None)
+    guild = next((g for g in bot.guilds if g.name in ["Interfluxer.py Test Suite", "NAFF Test Suite"]), None)
     if not guild:
         log.info("No guild found, creating one...")
 
-        guild: flux.Guild = await flux.Guild.create("Interactions.py Test Suite", bot)
+        guild: Interfluxer.Guild = await Interfluxer.Guild.create("Interfluxer.py Test Suite", bot)
         community_channel = await guild.create_text_channel("community_channel")
 
         await guild.edit(
@@ -271,7 +271,7 @@ async def test_messages(bot: Client, guild: Guild, channel: GuildText) -> None:
         await _m.delete()
 
     finally:
-        with suppress(flux.errors.NotFound):
+        with suppress(Interfluxer.errors.NotFound):
             await thread.delete()
 
 
@@ -280,7 +280,7 @@ async def test_roles(bot: Client, guild: Guild) -> None:
     roles: list[Role] = []
 
     try:
-        with suppress(flux.errors.Forbidden):
+        with suppress(Interfluxer.errors.Forbidden):
             roles.append(await guild.create_role("_test_role3"))
             # will fail if the test server has not enabled the feature
             roles.append(await guild.create_role("_test_role1", icon="💥"))
@@ -427,7 +427,7 @@ async def test_embeds(bot: Client, channel: GuildText) -> None:
 
         await thread.delete()
     finally:
-        with suppress(flux.errors.NotFound):
+        with suppress(Interfluxer.errors.NotFound):
             await thread.delete()
 
 
@@ -516,7 +516,7 @@ async def test_polls(bot: Client, channel: GuildText) -> None:
         ]
 
     finally:
-        with suppress(flux.errors.NotFound):
+        with suppress(Interfluxer.errors.NotFound):
             await thread.delete()
 
 

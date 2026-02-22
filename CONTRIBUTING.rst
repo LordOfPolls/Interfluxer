@@ -10,7 +10,7 @@ the library off of pip:
 
 .. code-block:: bash
 
-    pip install -U discord-py-interactions[dev]
+    pip install -U Interfluxer[dev]
 
 Once you have the library installed in Python, you are able to instantiate and run a basic bot
 with a logging level that is set for debugging purposes. This is recommend in order to make it easier
@@ -19,9 +19,9 @@ error may be produced:
 
 .. code-block:: python
 
-    import interactions
+    import flux
 
-    bot = interactions.Client(token="...", logging=True)
+    bot = flux.Client(token="...", logging=True)
     # ``True`` sets logging to DEBUG automatically but you can also set another logging level
 
     bot.start()
@@ -66,7 +66,7 @@ A pull request must additionally adhere to these following requirements:
 - Each git commit made on your fork must use `conventional commits`_.
 - The pull request must be up-to-date with ``unstable`` before requesting a review.
 - A ``pre-commit`` commit must exist and pass *all* checks before requesting a review.
-- A review must be requested from at least one developer. Please target ``@interactions-py/core`` for this.
+- A review must be requested from at least one developer. Please target ``@LordOfPolls`` for this.
 
 Recognizing contributors
 ------------------------

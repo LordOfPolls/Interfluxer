@@ -1,1 +1,1 @@
-::: interactions.client.auto_shard_client
+::: Interfluxer.client.auto_shard_client

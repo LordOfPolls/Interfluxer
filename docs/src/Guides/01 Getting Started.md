@@ -5,7 +5,7 @@ search:
 
 # Introduction
 
-Ready to get your Python on and create a Discord bot? This guide's got you covered with installation options and a basic bot code example.
+Ready to get your Python on and create a Fluxer bot? This guide's got you covered with installation options and a basic bot code example.
 
 ### Requirements
 
@@ -45,30 +45,30 @@ Now let's get the library installed.
 
 === ":material-linux: Linux"
     ```shell
-    python3 -m pip install discord-py-interactions --upgrade
+    python3 -m pip install Interfluxer
     ```
 
 === ":material-microsoft-windows: Windows"
     ```shell
-    py -3 -m pip install discord-py-interactions --upgrade
+    py -3 -m pip install Interfluxer
     ```
 
 ### Basic bot
 
 !!! note
-    This is a very basic bot. For a more detailed example/template bot that demonstrates many parts of interactions.py, see [the boilerplate repository.](https://github.com/interactions-py/boilerplate)
+    This is a very basic bot. For a more detailed example/template bot that demonstrates many parts of Interfluxer, see [the boilerplate repository.](https://github.com/Interfluxer/boilerplate)
 
 Now let's get a basic bot going, for your code, you'll want something like this:
 
 ```python
-from flux import Client, Intents, listen
+from Interfluxer import Client, Intents, listen
 
 bot = Client(intents=Intents.DEFAULT)
 
 
 # intents are what events we want to receive from external, `DEFAULT` is usually fine
 
-@listen()  # this decorator tells snek that it needs to listen for the corresponding event, and run this coroutine
+@listen()  # this decorator tells the client that it needs to listen for the corresponding event, and run this coroutine
 async def on_ready():
     # This event is called when the bot is ready to respond to commands
     print("Ready")
@@ -88,4 +88,4 @@ Congratulations! You now have a basic understanding of this library.
 If you have any questions check out our other guides, or join the
 --8<-- "discord_inv.md"
 
-For more examples, check out the [examples page](/interactions.py/Guides/90 Example)
+For more examples, check out the [examples page](/Interfluxer/Guides/90 Example)

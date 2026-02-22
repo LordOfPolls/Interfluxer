@@ -1,1 +1,1 @@
-::: interactions.models.internal.protocols
+::: Interfluxer.models.internal.protocols

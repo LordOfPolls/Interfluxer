@@ -2,7 +2,7 @@ import string
 
 import emoji
 
-from flux.models.external.emoji import PartialEmoji, process_emoji, process_emoji_req_format
+from Interfluxer.models.external.emoji import PartialEmoji, process_emoji, process_emoji_req_format
 
 __all__ = ()
 

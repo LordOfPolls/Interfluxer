@@ -15,14 +15,14 @@ Each component that you define in your modal must have its own `custom_id` so th
 
 ## Creating a Modal
 
-Modals are one of the ways you can respond to interactions. They are intended for when you need to query a lot of information from a user.
+Modals are one of the ways you can respond to Interfluxer. They are intended for when you need to query a lot of information from a user.
 
 Modals are valid responses to Slash Commands and Components.
 You **cannot** respond to a modal with a modal.
 Use `ctx.send_modal()` to send a modal.
 
 ```python
-from flux import Modal, ParagraphText, ShortText, SlashContext, slash_command
+from Interfluxer import Modal, ParagraphText, ShortText, SlashContext, slash_command
 
 
 @slash_command(name="my_modal_command", description="Playing with Modals")
@@ -43,7 +43,7 @@ This example leads to the following modal:
 Modal components are customisable in their appearance. You can set a placeholder, pre-fill them, restrict what users can input, or make them optional.
 
 ```python
-from flux import Modal, ShortText, SlashContext, slash_command
+from Interfluxer import Modal, ShortText, SlashContext, slash_command
 
 
 @slash_command(name="my_modal_command", description="Playing with Modals")
@@ -80,7 +80,7 @@ The data that the user has input can be found in `ctx.responses`, which is a dic
     As with `bot.wait_for_component()`, `bot.wait_for_modal()` supports timeouts. However, checks are not supported, since modals are not persistent like Components, and only visible to the interaction invoker.
 
     ```python
-    from interactions import Modal, ModalContext, ParagraphText, ShortText, SlashContext, slash_command
+    from Interfluxer import Modal, ModalContext, ParagraphText, ShortText, SlashContext, slash_command
 
     @slash_command(name="test")
     async def command(ctx: SlashContext):
@@ -107,7 +107,7 @@ The data that the user has input can be found in `ctx.responses`, which is a dic
     In the case of a persistent callback, your callback function must have the names of the custom IDs of your text inputs as its arguments, similar to how you define a callback for a slash command.
 
     ```python
-    from interactions import Modal, ModalContext, ParagraphText, ShortText, SlashContext, modal_callback, slash_command
+    from Interfluxer import Modal, ModalContext, ParagraphText, ShortText, SlashContext, modal_callback, slash_command
 
     @slash_command(name="test")
     async def command(ctx: SlashContext):

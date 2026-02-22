@@ -7,16 +7,16 @@ search:
 
 Oh damn, your bot is getting pretty big, huh? Well I guess its time we discuss sharding.
 
-Sharding, in the simplest sense, is splitting up the load on your bot. Discord requires sharding once you reach 2500 guilds, but your bot might be able to handle more than that with a single process.
-That's where the [AutoShardedClient](/interactions.py/API Reference/API Reference/AutoShardClient) comes in.
+Sharding, in the simplest sense, is splitting up the load on your bot. Fluxer requires sharding once you reach 2500 guilds, but your bot might be able to handle more than that with a single process.
+That's where the [AutoShardedClient](/Interfluxer/API Reference/API Reference/AutoShardClient) comes in.
 
-The AutoShardedClient is a subclass of the [Client](/interactions.py/API Reference/API Reference/Client) class, and it's basically the same as the Client class, except it's automatically sharding your bot under the hood.
-Simply start your bot with this client, and it will automatically shard based on Discord's requests. If you need to, you can also manually specify shards.
+The AutoShardedClient is a subclass of the [Client](/Interfluxer/API Reference/API Reference/Client) class, and it's basically the same as the Client class, except it's automatically sharding your bot under the hood.
+Simply start your bot with this client, and it will automatically shard based on Fluxer's requests. If you need to, you can also manually specify shards.
 
 How do you use it? Well that's the easy part, lets say this is your code
 
 ```python
-from flux import Client, listen
+from Interfluxer import Client, listen
 
 
 class Bot(Client):
@@ -31,7 +31,7 @@ class Bot(Client):
 To make it sharded we make one change:
 
 ```python
-from flux import AutoShardedClient, listen
+from Interfluxer import AutoShardedClient, listen
 
 
 class Bot(AutoShardedClient):

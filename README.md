@@ -1,6 +1,6 @@
 <div align="center">
 
-   # flux.py
+   # Interfluxer
    <br>
 
     [Fluxer Server](https://fluxer.gg/4plfWFhS)
@@ -14,16 +14,16 @@ A highly extensible, easy to use, and feature complete framework for Fluxer.
 This project started from the `interactions.py` codebase and was reworked to target Fluxer’s API and ecosystem, with anything Discord-specific removed.
 It is the culmination of years of experience with bot development.
 This framework has been built from the ground up with community feedback and suggestions in mind.
-Our framework provides a modern and intuitive set of language bindings for easy interaction with Discord.
+Our framework provides a modern and intuitive set of language bindings for easy interaction with Fluxer.
 
 ## Key Features
-interactions.py offers a wide range of features for building Python-powered Discord bots and web applications alike:
+Interfluxer offers a wide range of features for building Python-powered Fluxer bots and web applications alike:
 - ✅ Dynamic cache with TTL support
 - ✅ Modern and Pythonic API for easy interaction with Fluxer
 - ✅ Proper rate-limit handling
 - ✅ Feature parity with most other Fluxer API wrappers
 
-In addition to core functionality, `interactions.py` provides a range of optional extensions, allowing you to further customize your bot and add new features with ease.
+In addition to core functionality, `Interfluxer` provides a range of optional extensions, allowing you to further customize your bot and add new features with ease.
 
 ## Extensibility
 
@@ -54,15 +54,15 @@ Just type `bot.load_extension("extension")`
 
 ## Where do I start?
 
-Getting started with `flux.py` is easy! Simply install it via `pip` and start building your Discord application in Python:
+Getting started with `Interfluxer` is easy! Simply install it via `pip` and start building your Fluxer application in Python:
 
 ```python
-import flux
+import Interfluxer
 
-bot = flux.Client()
+bot = Interfluxer.Client()
 
 
-@flux.listen()
+@Interfluxer.listen()
 async def on_startup():
     print("Bot is ready!")
 
@@ -70,4 +70,4 @@ async def on_startup():
 bot.start("token")
 ```
 
-With `interactions.py`, you can quickly and easily build complex Fluxer applications with Python.
+With `Interfluxer`, you can quickly and easily build complex Fluxer applications with Python.

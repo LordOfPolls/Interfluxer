@@ -1,1 +1,1 @@
-::: interactions.ext.hybrid_commands.manager
+::: Interfluxer.ext.hybrid_commands.manager

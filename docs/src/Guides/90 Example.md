@@ -11,9 +11,9 @@ search:
 
 import logging
 
-from flux import Client, Intents, listen
-from flux.api.events import Component
-from flux.ext import prefixed_commands
+from Interfluxer import Client, Intents, listen
+from Interfluxer.api.events import Component
+from Interfluxer.ext import prefixed_commands
 
 # define your own logger with custom logging settings
 logging.basicConfig()
@@ -22,7 +22,7 @@ cls_log.setLevel(logging.DEBUG)
 
 bot = Client(
     intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT,
-    sync_interactions=True,
+    sync_Interfluxer=True,
     asyncio_debug=True,
     logger=cls_log
 )
@@ -62,8 +62,8 @@ bot.start("Token")
 
 ```python
 
-from flux import Button, ActionRow, ButtonStyle, Extension
-from flux.ext.prefixed_commands import prefixed_command
+from Interfluxer import Button, ActionRow, ButtonStyle, Extension
+from Interfluxer.ext.prefixed_commands import prefixed_command
 
 
 class ButtonExampleSkin(Extension):
@@ -104,7 +104,7 @@ def setup(bot):
 
 ```python
 
-from flux import slash_command, slash_option, SlashContext, context_menu, CommandType, Button, ActionRow,
+from Interfluxer import slash_command, slash_option, SlashContext, context_menu, CommandType, Button, ActionRow,
 
 ButtonStyle, Extension
 

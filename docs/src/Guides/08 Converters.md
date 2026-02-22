@@ -41,14 +41,14 @@ async def my_command_function(ctx: SlashContext, thing: DatabaseEntry):
     await ctx.reply(f"***{thing.name}***\n{thing.description}\nScore: {thing.score}/10")
 ```
 
-As you can see, a converter can transparently convert what Discord sends you (a string, a user, etc) into something more complex (a pokemon card, a scoresheet, etc).
+As you can see, a converter can transparently convert what Fluxer sends you (a string, a user, etc) into something more complex (a pokemon card, a scoresheet, etc).
 
 ## `Converter`
 
-You may also use the `Converter` class that `interactions.py` has as well.
+You may also use the `Converter` class that `Interfluxer` has as well.
 
 ```python
-from flux import Converter
+from Interfluxer import Converter
 
 
 class UpperConverter(Converter):
@@ -74,13 +74,13 @@ async def upper(ctx: PrefixedContext, to_upper: UpperConverter):
     await ctx.reply(to_upper)
 ```
 
-## Discord Model Converters
+## Fluxer Model Converters
 
-There are `Converter`s that represent some Discord models that you can subclass from. These are largely useful for prefixed commands, but you may find a use for them elsewhere.
+There are `Converter`s that represent some Fluxer models that you can subclass from. These are largely useful for prefixed commands, but you may find a use for them elsewhere.
 
 A table of objects and their respective converter is as follows:
 
-| Discord Model                          | Converter                     |
+| Fluxer Model                          | Converter                     |
 |----------------------------------------|-------------------------------|
 | `SnowflakeObject`                      | `SnowflakeConverter`          |
 | `BaseChannel`, `TYPE_ALL_CHANNEL`      | `BaseChannelConverter`        |
@@ -135,5 +135,5 @@ async def upper(ctx: PrefixedContext, to_upper: Annotated[str, UpperConverter]):
     await ctx.reply(to_upper)
 ```
 
-For slash commands, `interactions.py` will find the first argument in `Annotated` (besides for the first argument) that are like the converters in this guide and use that.
-For prefixed commands, `interactions.py` will always use the second parameter in `Annotated` as the actual converter/parameter to process.
+For slash commands, `Interfluxer` will find the first argument in `Annotated` (besides for the first argument) that are like the converters in this guide and use that.
+For prefixed commands, `Interfluxer` will always use the second parameter in `Annotated` as the actual converter/parameter to process.

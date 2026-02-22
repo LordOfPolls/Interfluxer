@@ -7,9 +7,9 @@ Let's be honest; reading API documentation is a bit of a pain.
 These guides are meant to help you get started with the library and offer a point of reference.
 
 ???+ note
-    As with many Python libraries, you may use `import interactions` and do `interactions.X` for your objects. The documentation leads more towards using `from interactions import X`, however.
+    As with many Python libraries, you may use `import Interfluxer` and do `Interfluxer.X` for your objects. The documentation leads more towards using `from Interfluxer import X`, however.
 
-    Events, errors, and utilities are under their own sub-namespace when using `import interactions`. For example, events are under `interactions.events.X`.
+    Events, errors, and utilities are under their own sub-namespace when using `import Interfluxer`. For example, events are under `Interfluxer.events.X`.
 
 <div class="grid cards" markdown>
 
@@ -17,7 +17,7 @@ These guides are meant to help you get started with the library and offer a poin
 
     ---
 
-    Ready to get your Python on and create a Discord bot? This guide's got you covered with installation options and a basic bot code example.
+    Ready to get your Python on and create a Fluxer bot? This guide's got you covered with installation options and a basic bot code example.
 
 -   [__:material-hammer-screwdriver: Creating Your Bot__](02 Creating Your Bot.md)
 
@@ -41,7 +41,7 @@ These guides are meant to help you get started with the library and offer a poin
 
     ---
 
-    While interactions are cool and all, they are still missing a vital component. Introducing components, aka Buttons, Selects, soon Text Input Fields
+    While Interfluxer are cool and all, they are still missing a vital component. Introducing components, aka Buttons, Selects, soon Text Input Fields
 
 -   [__:material-dock-window: Modals__](06 Modals.md)
 
@@ -90,7 +90,7 @@ These guides are meant to help you get started with the library and offer a poin
 
     ---
 
-    We've all hit that point where Discord won't let you send enough characters, at that point you can either flood the channel with multiple messages, or you can start paginating your messages.
+    We've all hit that point where Fluxer won't let you send enough characters, at that point you can either flood the channel with multiple messages, or you can start paginating your messages.
 
 -   [__:octicons-clock-24: Tasks__](40 Tasks.md)
 
@@ -108,13 +108,13 @@ These guides are meant to help you get started with the library and offer a poin
 
     ---
 
-    What's the difference between interactions.py and discord.py?
+    What's the difference between Interfluxer and discord.py?
 
 -   [__:material-package-up: Migration from v4__](98 Migration from 4.X.md)
 
     ---
 
-    How do I migrate from interactions.py v4 to v5?
+    How do I migrate from Interfluxer v4 to v5?
 
 -   [__:material-package-up: Migration from NAFF__](99 2.x Migration_NAFF.md)
 

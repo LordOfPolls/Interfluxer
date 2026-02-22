@@ -1,6 +1,6 @@
 include README.md
 include LICENSE
 include requirements.txt
-include interactions/py.typed
-recursive-include interactions *.pyi
-recursive-include interactions *.dll
+include Interfluxer/py.typed
+recursive-include flux *.pyi
+recursive-include flux *.dll

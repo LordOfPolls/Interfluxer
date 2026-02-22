@@ -1,10 +1,10 @@
-site_name: Interactions.py
-repo_url: https://github.com/interactions-py/interactions.py
-repo_name: flux-py/flux.py
+site_name: Interfluxer
+repo_url: https://github.com/LordOfPolls/Interfluxer
+repo_name: LordOfPolls/Interfluxer
 copyright: Copyright &copy; 2023 - Present LordOfPolls – <a href="#__consent">Change cookie settings</a>
 docs_dir: docs/src
 edit_uri: edit/stable/docs/src
-site_url: https://interactions-py.github.io/interactions.py/
+site_url: https://LordOfPolls.github.io/Interfluxer/
 
 theme:
   name: material
@@ -51,16 +51,16 @@ theme:
     code: Roboto Mono
 
 watch:
-  - flux
+  - Interfluxer
 
 
 extra:
   social:
     - icon: fontawesome/brands/external
-      link: https://discord.gg/interactions
-      name: Discord Server
+      link: https://fluxer.gg/4plfWFhS
+      name: Fluxer Server
     - icon: fontawesome/brands/github
-      link: https://github.com/interactions-py/interactions.py
+      link: https://github.com/LordOfPolls/Interfluxer
       name: Github Repository
   analytics:
     provider: google
@@ -77,8 +77,8 @@ extra:
           name: This page could be improved
           data: 0
           note: >-
-            Thanks for your feedback! Please <a href="https://github.com/interactions-py/interactions.py/issues/new?assignees=LordOfPolls&labels=documentation&template=doc_improvement_req.yml&title=docs:+{title}&page={title} : {url}">open an issue</a> so we can improve our documentation.
-    title: Cookie consent
+            Thanks for your feedback! Please <a href="https://github.com/LordOfPolls/Interfluxer/issues/new?assignees=LordOfPolls&labels=documentation&template=doc_improvement_req.yml&title=docs:+{title}&page={title} : {url}">open an issue</a> so we can improve our documentation.
+              title: Cookie consent
     description: >-
       We use cookies to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
@@ -101,7 +101,7 @@ plugins:
       fallback_to_build_date: true
       enable_creation_date: true
   - git-committers:
-      repository: flux-py/flux.py
+      repository: LordOfPolls/Interfluxer
       branch: stable
   - mkdocstrings:
       #    custom_templates: docs/templates

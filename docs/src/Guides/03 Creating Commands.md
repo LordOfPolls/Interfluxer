@@ -16,7 +16,7 @@ Interactions need to be responded to within 3 seconds. To do this, use `await ct
 If your code needs more time, don't worry. You can use `await ctx.defer()` to increase the time until you need to respond to the command to 15 minutes.
 
 ```python
-from flux import slash_command, SlashContext
+from Interfluxer import slash_command, SlashContext
 
 
 @slash_command(name="my_command", description="My first command :)")
@@ -47,7 +47,7 @@ async def my_command_function(ctx: SlashContext):
     await ctx.send("Hello World")
 ```
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Internal/application_commands/#interactions.models.internal.application_commands.slash_command).
+For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/models/Internal/application_commands/#Interfluxer.models.internal.application_commands.slash_command).
 
 ## Subcommands
 
@@ -101,7 +101,7 @@ There are more ways to add additional subcommands to the base/group from there:
 
 === ":three: Class Definition"
     ```python
-    from interactions import SlashCommand
+    from Interfluxer import SlashCommand
 
     base = SlashCommand(name="base", description="My command base")
     group = base.group(name="group", description="My command group")
@@ -120,7 +120,7 @@ All of these would create a subcommand called `/base group second_command`.
 
 ## Options
 
-Interactions can also have options. There are a bunch of different [types of options](/interactions.py/API Reference/API Reference/models/Internal/application_commands/#interactions.models.internal.application_commands.OptionType):
+Interactions can also have options. There are a bunch of different [types of options](/Interfluxer/API Reference/API Reference/models/Internal/application_commands/#Interfluxer.models.internal.application_commands.OptionType):
 
 | Option Type               | Return Type                                | Description                                                                                 |
 |---------------------------|--------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -139,7 +139,7 @@ Now that you know all the options you have for options, you can opt into adding 
 You do that by using the `@slash_option()` decorator and passing the option name as a function parameter:
 
 ```python
-from flux import OptionType, slash_option
+from Interfluxer import OptionType, slash_option
 
 
 @slash_command(name="my_command", ...)
@@ -160,7 +160,7 @@ async def my_command_function(ctx: SlashContext, integer_option: int):
 
 Options can either be required or not. If an option is not required, make sure to set a default value for them.
 
-Always make sure to define all required options first, this is a Discord requirement!
+Always make sure to define all required options first, this is a Fluxer requirement!
 ```python
 @slash_command(name="my_command", ...)
 @slash_option(
@@ -179,14 +179,14 @@ async def my_command_function(ctx: SlashContext, integer_option_1: int, integer_
     await ctx.send(f"Sum: {integer_option_1 + integer_option_2}")
 ```
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Internal/application_commands/#interactions.models.internal.application_commands.slash_option).
+For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/models/Internal/application_commands/#Interfluxer.models.internal.application_commands.slash_option).
 
 ### Restricting Options
 
 If you are using an `OptionType.CHANNEL` option, you can restrict the channel a user can choose by setting `channel_types`:
 
 ```python
-from flux import ChannelType, GuildText, OptionType, SlashContext, slash_command, slash_option
+from Interfluxer import ChannelType, GuildText, OptionType, SlashContext, slash_command, slash_option
 
 
 @slash_command(name="my_command")
@@ -239,10 +239,10 @@ async def my_command_function(ctx: SlashContext, string_option: str):
 If your users ~~are dumb~~ constantly misspell specific strings, it might be wise to set up choices.
 With choices, the user can no longer freely input whatever they want, instead, they must choose from a pre-defined list.
 
-To create a choice, simply fill `choices` in `@slash_option()`. An option can have up to 25 choices. The name of a choice is what will be shown in the Discord client of the user, while the value is what the bot will receive in its callback. Both can be the same.
+To create a choice, simply fill `choices` in `@slash_option()`. An option can have up to 25 choices. The name of a choice is what will be shown in the Fluxer client of the user, while the value is what the bot will receive in its callback. Both can be the same.
 
 ```python
-from flux import SlashCommandChoice
+from Interfluxer import SlashCommandChoice
 
 
 @slash_command(name="my_command", ...)
@@ -260,7 +260,7 @@ async def my_command_function(ctx: SlashContext, integer_option: int):
     await ctx.send(f"You input {integer_option} which is either 1 or 2")
 ```
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Internal/application_commands/#interactions.models.internal.application_commands.SlashCommandChoice).
+For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/models/Internal/application_commands/#Interfluxer.models.internal.application_commands.SlashCommandChoice).
 
 ## Autocomplete / More Than 25 Choices Needed
 
@@ -281,12 +281,12 @@ async def my_command_function(ctx: SlashContext, string_option: str):
     await ctx.send(f"You input {string_option}")
 ```
 
-Then you need to register the autocomplete callback, aka the function Discord calls when users fill in the option.
+Then you need to register the autocomplete callback, aka the function Fluxer calls when users fill in the option.
 
 In there, you have three seconds to return whatever choices you want to the user. In this example we will simply return their input with "a", "b" or "c" appended:
 
 ```python
-from flux import AutocompleteContext
+from Interfluxer import AutocompleteContext
 
 
 @my_command_function.autocomplete("string_option")
@@ -314,7 +314,7 @@ async def autocomplete(ctx: AutocompleteContext):
 ```
 
 ???+ note
-    Discord does not handle search narrowing for you when using autocomplete. You need to handle that yourself.
+    Fluxer does not handle search narrowing for you when using autocomplete. You need to handle that yourself.
 
 ## Other Methods of Defining Slash Commands
 
@@ -337,7 +337,7 @@ There are currently four different ways to define slash commands - one does not 
 === ":two: Single Decorator"
 
     ```python
-    from interactions import SlashCommandOption
+    from Interfluxer import SlashCommandOption
 
     @slash_command(
         name="my_command",
@@ -359,7 +359,7 @@ There are currently four different ways to define slash commands - one does not 
 
     ```python
     from typing import Annotation  # using Annotation is optional, but recommended
-    from interactions import slash_int_option
+    from Interfluxer import slash_int_option
 
     @slash_command(name="my_command", description="My first command :)")
     async def my_command_function(
@@ -372,7 +372,7 @@ There are currently four different ways to define slash commands - one does not 
 === ":four: Manual Registration"
 
     ```python
-    from interactions import SlashCommandOption
+    from Interfluxer import SlashCommandOption
 
     async def my_command_function(ctx: SlashContext, integer_option: int):
         await ctx.send(f"You input {integer_option}")
@@ -398,10 +398,10 @@ There are currently four different ways to define slash commands - one does not 
 
 It is possible to disable application commands (which include slash commands) for users that do not have a set of permissions.
 
-This functionality works for **permissions**, not to confuse with roles. If you want to restrict some command if the user does not have a certain role, this cannot be done on the bot side. However, it can be done on the Discord server side (in the Server Settings > Integrations page) or through [Checks][checks] as discussed below.
+This functionality works for **permissions**, not to confuse with roles. If you want to restrict some command if the user does not have a certain role, this cannot be done on the bot side. However, it can be done on the Fluxer server side (in the Server Settings > Integrations page) or through [Checks][checks] as discussed below.
 
 !!!warning Administrators
-    Remember that administrators of a Discord server have all permissions and therefore will always see the commands.
+    Remember that administrators of a Fluxer server have all permissions and therefore will always see the commands.
 
     If you do not want admins to be able to overwrite your permissions, or the permissions are not flexible enough for you, you should use [checks][checks].
 
@@ -411,7 +411,7 @@ There are two ways to define permissions.
 === ":one: Decorators"
 
     ```python
-    from interactions import Permissions, slash_default_member_permission
+    from Interfluxer import Permissions, slash_default_member_permission
 
     @slash_command(name="my_command")
     @slash_default_member_permission(Permissions.MANAGE_EVENTS | Permissions.MANAGE_THREADS)
@@ -422,7 +422,7 @@ There are two ways to define permissions.
 === ":two: Function Definition"
 
     ```python
-    from interactions import Permissions
+    from Interfluxer import Permissions
 
     @slash_command(
         name="my_command",
@@ -443,7 +443,7 @@ As with permissions, there are two ways to define the context.
 === ":one: Decorators"
 
     ```python
-    from interactions import contexts
+    from Interfluxer import contexts
 
     @slash_command(name="my_guild_only_command")
     @contexts(guild=True, bot_dm=False, private_channel=False)
@@ -454,7 +454,7 @@ As with permissions, there are two ways to define the context.
 === ":two: Function Definition"
 
     ```python
-    from interactions import ContextType
+    from Interfluxer import ContextType
 
     @slash_command(
         name="my_command",
@@ -477,7 +477,7 @@ There are two ways to define this:
 === ":one: Decorators"
 
     ```python
-    from interactions import integration_types
+    from Interfluxer import integration_types
 
     @slash_command(name="my_command")
     @integration_types(guild=True, user=True)
@@ -488,7 +488,7 @@ There are two ways to define this:
 === ":two: Function Definition"
 
     ```python
-    from interactions import IntegrationType
+    from Interfluxer import IntegrationType
 
     @slash_command(
         name="my_command",
@@ -508,7 +508,7 @@ There are a few pre-made checks for you to use, and you can simply create your o
     Check that the author is the owner of the bot:
 
     ```python
-    from interactions import check, is_owner
+    from Interfluxer import check, is_owner
 
     @slash_command(name="my_command")
     @check(is_owner())
@@ -520,7 +520,7 @@ There are a few pre-made checks for you to use, and you can simply create your o
     Check that the author's username starts with `a`:
 
     ```python
-    from interactions import check
+    from Interfluxer import check
 
     async def my_check(ctx: BaseContext):
         return ctx.author.username.startswith("a")
@@ -535,7 +535,7 @@ There are a few pre-made checks for you to use, and you can simply create your o
     While you can simply reuse checks by doing `@check(my_check)` for every command you wish to use the check with, you can also reuse them by making your own decorator wrapping the `@check()` decorator:
 
     ```python
-    from interactions import check
+    from Interfluxer import check
 
     def my_check():
         async def predicate(ctx: ipy.BaseContext):
@@ -595,7 +595,7 @@ The same principle can be used to reuse autocomplete options.
 
 ## Error Handling
 
-By default, if an error occurs in a command, interactions.py will send the error to its default error listener, which will either:
+By default, if an error occurs in a command, Interfluxer will send the error to its default error listener, which will either:
 
 - Send an appropriate error message to the user, if the error is meant to be shown to the user (IE cooldown or check errors).
 - Log the error and, if `send_command_tracebacks` is enabled in your Client (which it is by default), send the error as a response to the command.
@@ -622,7 +622,7 @@ In this example, we are logging the error and responding to the interaction if n
 
 ```python
 import traceback
-from flux.api.events import CommandError
+from Interfluxer.api.events import CommandError
 
 
 @listen(CommandError, disable_default_listeners=True)
@@ -635,7 +635,7 @@ async def on_command_error(event: CommandError):
 !!! warning
     If you override the default error listener, you will need to handle all errors yourself. This *includes* errors typically shown to the user, such as cooldowns and check errors.
 
-There also is `CommandCompletion` which you can listen into too. That fires on every interactions usage.
+There also is `CommandCompletion` which you can listen into too. That fires on every Interfluxer usage.
 
 ## Custom Parameter Type
 
@@ -646,20 +646,20 @@ To do this, you'll want to use a string option, and define a converter. Informat
 ## Hybrid Commands
 
 !!! note
-    Prefixed commands, called by Discord as "text commands" and sometimes called "message commands" (not to be confused with Context Menu Message Commands), are commands that are triggered when a user sends a normal message with a designated "prefix" in front of them (ie `!my_command`).
+    Prefixed commands, called by Fluxer as "text commands" and sometimes called "message commands" (not to be confused with Context Menu Message Commands), are commands that are triggered when a user sends a normal message with a designated "prefix" in front of them (ie `!my_command`).
 
-    interactions.py contains an extension for making these commands, which you can [read about here](/interactions.py/Guides/26 Prefixed Commands).
+    Interfluxer contains an extension for making these commands, which you can [read about here](/Interfluxer/Guides/26 Prefixed Commands).
 
-Hybrid commands are are slash commands that also get converted to an equivalent prefixed command under the hood. They are their own extension, and require [prefixed commands to be set up beforehand](/interactions.py/Guides/26 Prefixed Commands). After that, use the `setup` function in the `hybrid_commands` extension in your main bot file.
+Hybrid commands are are slash commands that also get converted to an equivalent prefixed command under the hood. They are their own extension, and require [prefixed commands to be set up beforehand](/Interfluxer/Guides/26 Prefixed Commands). After that, use the `setup` function in the `hybrid_commands` extension in your main bot file.
 
 Your setup should look similar to this:
 
 ```python
-import flux
-from flux.ext import prefixed_commands as prefixed
-from flux.ext import hybrid_commands as hybrid
+import Interfluxer
+from Interfluxer.ext import prefixed_commands as prefixed
+from Interfluxer.ext import hybrid_commands as hybrid
 
-bot = flux.Client(...)  # may want to enable the message content intent
+bot = Interfluxer.Client(...)  # may want to enable the message content intent
 prefixed.setup(bot)  # normal step for prefixed commands
 hybrid.setup(bot)  # note its usage AFTER prefixed commands have been set up
 ```
@@ -667,7 +667,7 @@ hybrid.setup(bot)  # note its usage AFTER prefixed commands have been set up
 To actually make slash commands, simply replace `@slash_command` with `@hybrid_slash_command`, and `SlashContext` with `HybridContext`, like so:
 
 ```python
-from flux.ext.hybrid_commands import hybrid_slash_command, HybridContext
+from Interfluxer.ext.hybrid_commands import hybrid_slash_command, HybridContext
 
 
 @hybrid_slash_command(name="my_command", description="My hybrid command!")

@@ -15,34 +15,34 @@ this means the same command will have different names and descriptions depending
 Let's take this nice and simple `hello` command
 
 ```python
-import flux
+import Interfluxer
 
 
-@flux.slash_command(name="hello")
-async def hello_cmd(ctx: flux.SlashContext):
+@Interfluxer.slash_command(name="hello")
+async def hello_cmd(ctx: Interfluxer.SlashContext):
     await ctx.send(f"Hello {ctx.author.display_name}")
 ```
 This command was immensely popular, and now we have some 🇫🇷 French users. Wouldn't it be nice if we could speak their language.
 
 ```python
-import flux
-from flux import LocalisedName
+import Interfluxer
+from Interfluxer import LocalisedName
 
 
-@flux.slash_command(name=LocalisedName(english_us="hello", french="salut"))
-async def hello_cmd(ctx: flux.SlashContext):
+@Interfluxer.slash_command(name=LocalisedName(english_us="hello", french="salut"))
+async def hello_cmd(ctx: Interfluxer.SlashContext):
     await ctx.send(f"Hello {ctx.author.display_name}")
 ```
-All we need to do is set the field to a `Localised` object, and interactions.py and discord wil handle the rest for you.
+All we need to do is set the field to a `Localised` object, and Interfluxer and discord wil handle the rest for you.
 For extra flavour lets make this command more dynamic.
 
 ```python
-import flux
-from flux import LocalisedName
+import Interfluxer
+from Interfluxer import LocalisedName
 
 
-@flux.slash_command(name=LocalisedName(english_us="hello", french="salut"))
-async def hello_cmd(ctx: flux.SlashContext):
+@Interfluxer.slash_command(name=LocalisedName(english_us="hello", french="salut"))
+async def hello_cmd(ctx: Interfluxer.SlashContext):
     await ctx.send(f"{ctx.invoked_name} {ctx.author.display_name}")
 ```
 Simply by changing `"hello"` to `ctx.invoked_name` the command will always use whatever the user typed to greet them.

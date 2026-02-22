@@ -38,7 +38,7 @@ body:
     id: accept
     attributes:
       label: Code of Conduct
-      description: By submitting this Issue, you agree to follow our [contribution requirements.](https://github.com/flux-py/library/blob/unstable/CONTRIBUTING.rst)
+      description: By submitting this Issue, you agree to follow our [contribution requirements.](https://github.com/Interfluxer-py/library/blob/unstable/CONTRIBUTING.rst)
       options:
         - label: I agree to follow the contribution requirements.
           required: true

@@ -5,100 +5,100 @@ search:
 # Mono-Doc
 This file holds the entire API reference in a single page; should that be your preference.
 
-[//]: # (":::: interactions" - while this would be an option, the order sucks)
+[//]: # (":::: Interfluxer" - while this would be an option, the order sucks)
 
 ---
 ## Clients
-::: interactions.client.client
-::: interactions.client.auto_shard_client
-::: interactions.models.internal.active_voice_state
+::: Interfluxer.client.client
+::: Interfluxer.client.auto_shard_client
+::: Interfluxer.models.internal.active_voice_state
 
 ---
 ## User
-::: interactions.models.external.user
-::: interactions.models.external.voice_state
+::: Interfluxer.models.external.user
+::: Interfluxer.models.external.voice_state
 
 ---
 ## Guild
-::: interactions.models.external.guild
-::: interactions.models.external.scheduled_event
-::: interactions.models.external.sticker
-::: interactions.models.external.webhooks
-::: interactions.models.external.channel
-::: interactions.models.external.invite
-::: interactions.models.external.role
-::: interactions.models.external.emoji
+::: Interfluxer.models.external.guild
+::: Interfluxer.models.external.scheduled_event
+::: Interfluxer.models.external.sticker
+::: Interfluxer.models.external.webhooks
+::: Interfluxer.models.external.channel
+::: Interfluxer.models.external.invite
+::: Interfluxer.models.external.role
+::: Interfluxer.models.external.emoji
 
 ---
 ## Message
-::: interactions.models.external.message
-::: interactions.models.external.reaction
+::: Interfluxer.models.external.message
+::: Interfluxer.models.external.reaction
 
 ---
 ## UX.
-::: interactions.models.external.embed
-::: interactions.models.external.asset
-::: interactions.models.external.color
-::: interactions.models.external.file
+::: Interfluxer.models.external.embed
+::: Interfluxer.models.external.asset
+::: Interfluxer.models.external.color
+::: Interfluxer.models.external.file
 
 ---
 ## Commands
-::: interactions.models.internal.command
+::: Interfluxer.models.internal.command
 
 ---
 ## Application Commands
 
-::: interactions.models.external.components
-::: interactions.models.external.modal
-::: interactions.models.internal.application_commands
+::: Interfluxer.models.external.components
+::: Interfluxer.models.external.modal
+::: Interfluxer.models.internal.application_commands
 
 ---
 ## Context
-::: interactions.models.internal.context
+::: Interfluxer.models.internal.context
 
 ---
 ## Presence
-::: interactions.models.external.activity
+::: Interfluxer.models.external.activity
 
 ---
 ## Data
-::: interactions.models.external.application
-::: interactions.models.external.team
-::: interactions.models.external.enums
-::: interactions.models.external.timestamp
+::: Interfluxer.models.external.application
+::: Interfluxer.models.external.team
+::: Interfluxer.models.external.enums
+::: Interfluxer.models.external.timestamp
 
 ---
 ## Internal Models
-::: interactions.models.internal.extension
-::: interactions.models.internal.cooldowns
-::: interactions.models.internal.checks
-::: interactions.models.internal.auto_defer
-::: interactions.models.internal.annotations
-::: interactions.models.internal.converters
-::: interactions.models.internal.listener
-::: interactions.models.internal.localisation
-::: interactions.models.internal.tasks
-::: interactions.models.internal.wait
-::: interactions.models.misc.iterator
+::: Interfluxer.models.internal.extension
+::: Interfluxer.models.internal.cooldowns
+::: Interfluxer.models.internal.checks
+::: Interfluxer.models.internal.auto_defer
+::: Interfluxer.models.internal.annotations
+::: Interfluxer.models.internal.converters
+::: Interfluxer.models.internal.listener
+::: Interfluxer.models.internal.localisation
+::: Interfluxer.models.internal.tasks
+::: Interfluxer.models.internal.wait
+::: Interfluxer.models.misc.iterator
 
 ---
 ## API
-::: interactions.api.gateway.state
-::: interactions.api.gateway.gateway
-::: interactions.api.voice.voice_gateway
-::: interactions.api.http.http_client
+::: Interfluxer.api.gateway.state
+::: Interfluxer.api.gateway.gateway
+::: Interfluxer.api.voice.voice_gateway
+::: Interfluxer.api.http.http_client
 
 ---
 ## Voice
-::: interactions.api.voice.audio
-::: interactions.api.voice.player
+::: Interfluxer.api.voice.audio
+::: Interfluxer.api.voice.player
 
 
 ---
 ## Errors
-::: interactions.client.errors
+::: Interfluxer.client.errors
 
 ---
 ## Events
-::: interactions.api.events.discord
-::: interactions.api.events.internal
+::: Interfluxer.api.events.fluxer
+::: Interfluxer.api.events.internal

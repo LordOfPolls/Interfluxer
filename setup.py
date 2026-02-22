@@ -35,20 +35,20 @@ extras_require["tests"] = [
 extras_require["dev"] = extras_require["tests"] + extras_require["docs"] + ["pre-commit"]
 
 setup(
-    name="flux.py",
+    name="Interfluxer",
     description=pyproject["tool"]["poetry"]["description"],
     long_description=(Path(__file__).parent / "README.md").read_text(),
     long_description_content_type="text/markdown",
     author="LordOfPolls",
     author_email="dev@lordofpolls.com",
-    url="https://github.com/interactions-py/interactions.py",
+    url="https://github.com/LordOfPolls/Interfluxer",
     version=pyproject["tool"]["poetry"]["version"],
     packages=find_packages(),
     include_package_data=True,
     python_requires=">=3.10",
     install_requires=(Path(__file__).parent / "requirements.txt").read_text().splitlines(),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 3 - Alpha",
         "Framework :: AsyncIO",
         "Framework :: aiohttp",
         "Intended Audience :: Developers",
@@ -63,8 +63,8 @@ setup(
         "Typing :: Typed",
     ],
     project_urls={
-        "Discord": "https://discord.gg/KkgMBVuEkx",
-        "Documentation": "https://interactions-py.github.io/interactions.py/",
+        "Fluxer": "https://fluxer.gg/4plfWFhS",
+        "Documentation": "https://LordOfPolls.github.io/Interfluxer/",
     },
     extras_require=extras_require,
 )

@@ -1,1 +1,1 @@
-::: interactions.api.http.http_client
+::: Interfluxer.api.http.http_client

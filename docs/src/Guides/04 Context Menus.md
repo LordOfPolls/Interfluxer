@@ -5,12 +5,12 @@ search:
 
 # Context Menus
 
-Context menus are interactions under the hood. Defining them is very similar.
+Context menus are Interfluxer under the hood. Defining them is very similar.
 Context menus work off `ctx.target` which contains the object the user interacted with.
 
-You can also define `scopes` and `permissions` for them, just like with interactions.
+You can also define `scopes` and `permissions` for them, just like with Interfluxer.
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Internal/application_commands/#interactions.models.internal.application_commands.context_menu).
+For more information, please visit the API reference [here](/Interfluxer/API Reference/API Reference/models/Internal/application_commands/#Interfluxer.models.internal.application_commands.context_menu).
 
 ## Message Context Menus
 
@@ -19,7 +19,7 @@ These open up if you right-click a message and choose `Apps`.
 This example repeats the selected message:
 
 ```python
-from flux import ContextMenuContext, Message, message_context_menu
+from Interfluxer import ContextMenuContext, Message, message_context_menu
 
 
 @message_context_menu(name="repeat")
@@ -35,7 +35,7 @@ These open up if you right-click a user and choose `Apps`.
 This example pings the user:
 
 ```python
-from flux import user_context_menu, Member
+from Interfluxer import user_context_menu, Member
 
 
 @user_context_menu(name="ping")

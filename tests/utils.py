@@ -1,6 +1,6 @@
-from flux import Snowflake_Type, Client, Message
+from Interfluxer import Snowflake_Type, Client, Message
 from tests.consts import SAMPLE_MESSAGE_DATA
-from flux import PrefixedContext
+from Interfluxer import PrefixedContext
 
 __all__ = ("generate_dummy_context",)
 

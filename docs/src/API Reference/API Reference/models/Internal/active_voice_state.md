@@ -1,7 +1,7 @@
 ??? Hint "Example Usage:"
     ```python
-    from interactions import slash_command, slash_option, OptionType, SlashContext
-    from interactions.api.voice.audio import AudioVolume
+    from Interfluxer import slash_command, slash_option, OptionType, SlashContext
+    from Interfluxer.api.voice.audio import AudioVolume
 
 
     @slash_command("play")
@@ -18,6 +18,6 @@
     { .annotate }
 
     1.  This connects the bot to the author's voice channel if we are not already connected
-    2.  Check out the [Voice Support Guide](interactions.py/Guides/23 Voice/) for more info on audio playback
+    2.  Check out the [Voice Support Guide](Interfluxer/Guides/23 Voice/) for more info on audio playback
 
-::: interactions.models.internal.active_voice_state
+::: Interfluxer.models.internal.active_voice_state

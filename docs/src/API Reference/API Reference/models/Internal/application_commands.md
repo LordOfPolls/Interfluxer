@@ -1,1 +1,1 @@
-::: interactions.models.internal.application_commands
+::: Interfluxer.models.internal.application_commands

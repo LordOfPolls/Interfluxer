@@ -5,10 +5,10 @@ search:
 
 # Models
 
-Within these pages, you will find a list of all available models within interactions.py.
+Within these pages, you will find a list of all available models within Interfluxer.
 
-- [Discord](Discord)
-    - Models representing Discord objects
+- [Fluxer](Fluxer)
+    - Models representing Fluxer objects
 
 - [Client](Internal)
     - Models for library constructs

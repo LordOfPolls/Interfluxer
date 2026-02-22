@@ -1,1 +1,1 @@
-::: interactions.models.internal.wait
+::: Interfluxer.models.internal.wait

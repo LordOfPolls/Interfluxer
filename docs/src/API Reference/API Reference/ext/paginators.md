@@ -1,1 +1,1 @@
-::: interactions.ext.paginators
+::: Interfluxer.ext.paginators

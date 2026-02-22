@@ -1,1 +1,1 @@
-::: interactions.models.internal.auto_defer
+::: Interfluxer.models.internal.auto_defer

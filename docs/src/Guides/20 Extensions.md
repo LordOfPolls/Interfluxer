@@ -18,8 +18,8 @@ For example, you can see the difference of a bot with and without extensions:
 ??? Hint "Examples:"
     === "Without Extensions"
         ```python
-        from interactions import ActionRow, Button, ButtonStyle, Client, Intents, listen, slash_command
-        from interactions.api.events import Component, GuildJoin, MessageCreate, Startup
+        from Interfluxer import ActionRow, Button, ButtonStyle, Client, Intents, listen, slash_command
+        from Interfluxer.api.events import Component, GuildJoin, MessageCreate, Startup
 
         bot = Client(intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT)
 
@@ -84,8 +84,8 @@ For example, you can see the difference of a bot with and without extensions:
     === "With Extensions"
         ```python
         # File: `main.py`
-        from interactions import Client, Intents, listen
-        from interactions.api.events import Component, GuildJoin, MessageCreate, Startup
+        from Interfluxer import Client, Intents, listen
+        from Interfluxer.api.events import Component, GuildJoin, MessageCreate, Startup
 
         bot = Client(intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT)
 
@@ -118,7 +118,7 @@ For example, you can see the difference of a bot with and without extensions:
 
         # File: `test_components.py`
 
-        from interactions import ActionRow, Button, ButtonStyle, Extension, slash_command
+        from Interfluxer import ActionRow, Button, ButtonStyle, Extension, slash_command
 
 
         class ButtonExampleSkin(Extension):
@@ -167,22 +167,22 @@ inside this extension.
 For example, this is a valid extension file:
 
 ```python
-from flux import Extension
+from Interfluxer import Extension
 
 
 class MyExtension(Extension):
     pass
 ```
 
-??? note "Differences from Other Python Discord Libraries"
-    If you come from another Python Discord library, you might have seen that there's no `__init__` and `setup` function in this example.
-    They still do exist as functions you *can* use (as discussed later), but interactions.py will do the appropriate logic to handle extensions
+??? note "Differences from Other Python Fluxer Libraries"
+    If you come from another Python Fluxer library, you might have seen that there's no `__init__` and `setup` function in this example.
+    They still do exist as functions you *can* use (as discussed later), but Interfluxer will do the appropriate logic to handle extensions
     without either of the two.
 
     For example, the following does the exact same thing as the above extension file:
 
     ```python
-    from interactions import Extension
+    from Interfluxer import Extension
 
     class MyExtension(Extension):
         def __init__(self, bot):
@@ -199,7 +199,7 @@ You probably want extensions to do a little bit more than just exist though. Mos
 in here. Thankfully, they're relatively simple to do. Expanding on the example a bit, a slash command looks like this:
 
 ```python
-from flux import Extension, slash_command, SlashContext
+from Interfluxer import Extension, slash_command, SlashContext
 
 
 class MyExtension(Extension):
@@ -212,7 +212,7 @@ As you can see, they're almost identical to how you declare slash commands in yo
 The only difference is the `self` variable - this is the instance of the extension that the command is being called in, and is
 standard for functions inside of classes. Events follow a similar principal.
 
-interactions.py will automatically add all commands and events to the bot when you load the extension (discussed later),
+Interfluxer will automatically add all commands and events to the bot when you load the extension (discussed later),
 so you don't need to worry about that.
 
 #### Accessing the Bot
@@ -231,7 +231,7 @@ This also allows you to share data between extensions and the main bot itself. `
 so you can do something like this:
 
 ```python
-from flux import Client
+from Interfluxer import Client
 
 # main.py
 bot = Client(...)
@@ -252,7 +252,7 @@ Now that you've got your extension, you need to load it.
 Let's pretend the extension is in a file called `extension.py`, and it looks like the command example:
 
 ```python
-from flux import Extension, slash_command, SlashContext
+from Interfluxer import Extension, slash_command, SlashContext
 
 
 class MyExtension(Extension):
@@ -280,7 +280,7 @@ And that's it! Your extension is now loaded and ready to go.
 
 #### "Import Style"
 
-In the example above, the filename is passed to `load_extension` without the `.py` extension. This is because interactions.py actually does an
+In the example above, the filename is passed to `load_extension` without the `.py` extension. This is because Interfluxer actually does an
 *import* when loading the extension, so whatever string you give it needs to be a valid Python import path. This means that if you have a file structure like this:
 
 ```
@@ -331,7 +331,7 @@ If you're okay with only doing the asynchronous logic as the bot is starting up 
 
 === "`Startup` Event"
     ```python
-    from interactions.api.events import Startup
+    from Interfluxer.api.events import Startup
 
     class MyExtension(Extension):
         @event(Startup)
@@ -442,7 +442,7 @@ On Windows, you may need to replace the slashes with backslashes instead.
 
 ### The `setup`/`teardown` Function
 
-You may have noticed that the `Extension` in the extension file is simply just a class, with no way of loading it. interactions.py is smart enough to detect `Extension` subclasses
+You may have noticed that the `Extension` in the extension file is simply just a class, with no way of loading it. Interfluxer is smart enough to detect `Extension` subclasses
 and use them when loading from a file, but if you want more customization when loading an extension, you'll need to use the `setup` function.
 
 The `setup` function should be *outside* of any `Extension` subclass, and takes in the bot instance, like so:
@@ -469,7 +469,7 @@ def teardown():
     pass
 ```
 
-You usually do not need to worry about unloading the specific extensions themselves, as interactions.py will do that for you.
+You usually do not need to worry about unloading the specific extensions themselves, as Interfluxer will do that for you.
 
 ### Passing Arguments to Extensions
 
@@ -538,7 +538,7 @@ class MyExtension(CustomExtension):
 Pre- and post-run events are similar to checks. They run before and after a command is invoked, respectively:
 
 ```python
-from flux import BaseContext
+from Interfluxer import BaseContext
 
 
 class MyExtension(Extension):

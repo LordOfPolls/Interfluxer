@@ -1,1 +1,1 @@
-::: interactions.models.internal.annotations
+::: Interfluxer.models.internal.annotations

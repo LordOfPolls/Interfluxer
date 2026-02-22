@@ -1,1 +1,1 @@
-[:fontawesome-brands-discord:Discord Server](https://discord.gg/interactions)
+[:fontawesome-brands-discord:Fluxer Server](https://discord.gg/Interfluxer)

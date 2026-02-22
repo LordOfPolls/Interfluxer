@@ -5,9 +5,9 @@ search:
 
 # Creating Your Bot
 
-To make a bot on Discord, you must first create an application on Discord. Thankfully, Discord has made this process very simple:
+To make a bot on Fluxer, you must first create an application on Fluxer. Thankfully, Fluxer has made this process very simple:
 
-1. Login to the [:fontawesome-brands-discord:Discord website](https://discord.com/)
+1. Login to the [:fontawesome-brands-discord:Fluxer website](https://discord.com/)
 
 2. Navigate to the [Developer Application page](https://discord.com/developers/applications)
 
