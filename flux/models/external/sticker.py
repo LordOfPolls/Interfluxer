@@ -5,14 +5,14 @@ import attrs
 from flux.client.const import MISSING, Absent
 from flux.client.utils.attr_converters import optional
 from flux.client.utils.serializer import dict_filter_none
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.snowflake import to_snowflake
 from .base import DiscordObject
-from flux.models.discord.enums import StickerTypes, StickerFormatType
+from flux.models.external.enums import StickerTypes, StickerFormatType
 
 if TYPE_CHECKING:
-    from flux.models.discord.guild import Guild
-    from flux.models.discord.user import User
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.guild import Guild
+    from flux.models.external.user import User
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("Sticker", "StickerItem", "StickerPack")
 

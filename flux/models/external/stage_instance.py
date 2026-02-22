@@ -3,8 +3,8 @@ from typing import TYPE_CHECKING, Optional
 import attrs
 
 from flux.client.const import MISSING, Absent
-from flux.models.discord.enums import StagePrivacyLevel
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.enums import StagePrivacyLevel
+from flux.models.external.snowflake import to_snowflake
 from .base import DiscordObject
 
 if TYPE_CHECKING:

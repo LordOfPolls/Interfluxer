@@ -5,14 +5,14 @@ from aiohttp import FormData
 
 from flux.api.http.route import Route
 from flux.client.const import MISSING, Absent
-from flux.models.discord.enums import ChannelType
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.enums import ChannelType
+from flux.models.external.timestamp import Timestamp
 
 __all__ = ("ThreadRequests",)
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
     from flux import UPLOADABLE_TYPE
 
 

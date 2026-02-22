@@ -16,7 +16,7 @@ __all__ = ("Asset",)
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class Asset:
     """
-    Represents a discord asset.
+    Represents a external asset.
 
     Attributes:
         BASE str: The `cdn` address for assets

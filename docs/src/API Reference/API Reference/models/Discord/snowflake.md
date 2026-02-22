@@ -1,1 +1,1 @@
-::: interactions.models.discord.snowflake
+::: interactions.models.external.snowflake

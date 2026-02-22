@@ -6,12 +6,12 @@ import attrs
 import flux.models as models
 from flux.client.const import MISSING, AsyncCallable
 from flux.client.utils.attr_utils import docs
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.snowflake import to_snowflake
 
 if TYPE_CHECKING:
     from flux.client.client import Client
-    from flux.models.discord.snowflake import Snowflake_Type
-    from flux.models.discord.guild import Guild
+    from flux.models.external.snowflake import Snowflake_Type
+    from flux.models.external.guild import Guild
 
 __all__ = ("BaseEvent", "GuildEvent", "RawGatewayEvent")
 

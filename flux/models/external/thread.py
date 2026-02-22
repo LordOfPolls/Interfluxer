@@ -8,18 +8,18 @@ from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.mixins.send import SendMixin
 from flux.client.utils.attr_converters import optional
 from flux.client.utils.attr_converters import timestamp_converter
-from flux.models.discord.emoji import PartialEmoji, process_emoji
-from flux.models.discord.snowflake import to_snowflake
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.emoji import PartialEmoji, process_emoji
+from flux.models.external.snowflake import to_snowflake
+from flux.models.external.timestamp import Timestamp
 from .base import DiscordObject, ClientObject
 
 if TYPE_CHECKING:
     from aiohttp import FormData
 
     from flux.client import Client
-    from flux.models.discord.user import User
-    from flux.models.discord.channel import TYPE_THREAD_CHANNEL
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.user import User
+    from flux.models.external.channel import TYPE_THREAD_CHANNEL
+    from flux.models.external.snowflake import Snowflake_Type
     from flux import UPLOADABLE_TYPE, GuildForum
 
 __all__ = (

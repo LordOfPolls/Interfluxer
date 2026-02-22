@@ -1,1 +1,1 @@
-::: interactions.models.discord.modal
+::: interactions.models.external.modal

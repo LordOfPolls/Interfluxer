@@ -19,7 +19,7 @@ try:
     )
 except ModuleNotFoundError:
     get_logger().error(
-        "jurigged not installed, cannot enable jurigged integration.  Install with `pip install discord-py-flux[jurigged]`"
+        "jurigged not installed, cannot enable jurigged integration.  Install with `pip install external-py-flux[jurigged]`"
     )
     raise
 

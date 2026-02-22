@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING, Any, List
 import discord_typings
 
 from flux.client.const import MISSING, Absent
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.snowflake import to_snowflake
 from ..route import Route
 
 __all__ = ("ReactionRequests",)
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
 
 
 class ReactionRequests:

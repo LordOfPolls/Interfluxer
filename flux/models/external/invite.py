@@ -5,19 +5,19 @@ import attrs
 from flux.client.const import MISSING, Absent
 from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.attr_converters import timestamp_converter
-from flux.models.discord.application import Application
-from flux.models.discord.enums import InviteTargetType
-from flux.models.discord.guild import GuildPreview
-from flux.models.discord.snowflake import to_snowflake
-from flux.models.discord.stage_instance import StageInstance
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.application import Application
+from flux.models.external.enums import InviteTargetType
+from flux.models.external.guild import GuildPreview
+from flux.models.external.snowflake import to_snowflake
+from flux.models.external.stage_instance import StageInstance
+from flux.models.external.timestamp import Timestamp
 from .base import ClientObject
 
 if TYPE_CHECKING:
     from flux.client import Client
     from flux.models import TYPE_GUILD_CHANNEL, Guild
-    from flux.models.discord.user import User
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.user import User
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("Invite",)
 

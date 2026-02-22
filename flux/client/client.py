@@ -68,12 +68,12 @@ from flux.models import (
     VoiceRegion,
 )
 from flux.models import Wait
-from flux.models.discord.entitlement import Entitlement
-from flux.models.discord.enums import (
+from flux.models.external.entitlement import Entitlement
+from flux.models.external.enums import (
     Intents,
     Status,
 )
-from flux.models.discord.file import UPLOADABLE_TYPE
+from flux.models.external.file import UPLOADABLE_TYPE
 from flux.client.mixins.prefixed import PrefixedCommandsMixin
 from flux.models.internal.active_voice_state import ActiveVoiceState
 from flux.models.internal.callback import CallbackObject
@@ -83,7 +83,7 @@ from flux.models.internal.tasks import Task
 
 if TYPE_CHECKING:
     from flux.models import Snowflake_Type, TYPE_ALL_CHANNEL
-    from flux.models.discord.message import Message
+    from flux.models.external.message import Message
 
 EventT = TypeVar("EventT", bound=BaseEvent)
 
@@ -292,7 +292,7 @@ class Client(
         self.http: HTTPClient = HTTPClient(
             logger=self.logger, show_ratelimit_tracebacks=show_ratelimit_tracebacks, proxy=proxy
         )
-        """The HTTP client to use when interacting with discord endpoints"""
+        """The HTTP client to use when interacting with external endpoints"""
 
         self.token: str | None = token
 
@@ -587,7 +587,7 @@ class Client(
                 try:  # wait to let guilds cache
                     await asyncio.wait_for(self._guild_event.wait(), self.guild_event_timeout)
                 except asyncio.TimeoutError:
-                    # this will *mostly* occur when a guild has been shadow deleted by discord T&S.
+                    # this will *mostly* occur when a guild has been shadow deleted by external T&S.
                     # there is no way to check for this, so we just need to wait for this to time out.
                     # We still log it though, just in case.
                     self.logger.debug("Timeout waiting for guilds cache")
@@ -628,7 +628,7 @@ class Client(
 
     async def login(self, token: str | None = None) -> None:
         """
-        Login to discord via http.
+        Login to external via http.
 
         !!! note
             You will need to run Client.start_gateway() before you start receiving gateway events.
@@ -1170,7 +1170,7 @@ class Client(
         Fetch a guild.
 
         !!! note
-            This method is an alias for the cache which will either return a cached object, or query discord for the object
+            This method is an alias for the cache which will either return a cached object, or query external for the object
             if its not already cached.
 
         Args:
@@ -1236,7 +1236,7 @@ class Client(
         Fetch a channel.
 
         !!! note
-            This method is an alias for the cache which will either return a cached object, or query discord for the object
+            This method is an alias for the cache which will either return a cached object, or query external for the object
             if its not already cached.
 
         Args:
@@ -1273,7 +1273,7 @@ class Client(
         Fetch a user.
 
         !!! note
-            This method is an alias for the cache which will either return a cached object, or query discord for the object
+            This method is an alias for the cache which will either return a cached object, or query external for the object
             if its not already cached.
 
         Args:
@@ -1312,7 +1312,7 @@ class Client(
         Fetch a member from a guild.
 
         !!! note
-            This method is an alias for the cache which will either return a cached object, or query discord for the object
+            This method is an alias for the cache which will either return a cached object, or query external for the object
             if its not already cached.
 
         Args:

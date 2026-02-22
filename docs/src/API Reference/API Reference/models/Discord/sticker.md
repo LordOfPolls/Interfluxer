@@ -1,1 +1,1 @@
-::: interactions.models.discord.sticker
+::: interactions.models.external.sticker

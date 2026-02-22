@@ -26,32 +26,32 @@ __all__ = (
 
 
 def bold(text: str) -> str:
-    """Formats text for discord message as bold"""
+    """Formats text for external message as bold"""
     return f"**{text}**"
 
 
 def italic(text: str) -> str:
-    """Formats text for discord message as italic"""
+    """Formats text for external message as italic"""
     return f"*{text}*"
 
 
 def underline(text: str) -> str:
-    """Formats text for discord message as underlined"""
+    """Formats text for external message as underlined"""
     return f"__{text}__"
 
 
 def strikethrough(text: str) -> str:
-    """Formats text for discord message as strikethrough"""
+    """Formats text for external message as strikethrough"""
     return f"~~{text}~~"
 
 
 def spoiler(text: str) -> str:
-    """Formats text for discord message as spoiler"""
+    """Formats text for external message as spoiler"""
     return f"||{text}||"
 
 
 def no_embed_link(url: str) -> str:
-    """Makes link in discord message display without embedded website preview"""
+    """Makes link in external message display without embedded website preview"""
     return f"<{url}>"
 
 
@@ -61,22 +61,22 @@ def link_in_embed(text: str, url: str) -> str:
 
 
 def quote_line(line: str) -> str:
-    """Formats a text line for discord message as quote"""
+    """Formats a text line for external message as quote"""
     return f"> {line}"
 
 
 def inline_code(text: str) -> str:
-    """Formats text for discord message as inline code"""
+    """Formats text for external message as inline code"""
     return f"`{text}`"
 
 
 def code_block(text: str, language: Optional[str]) -> str:
-    """Formats text for discord message as code block"""
+    """Formats text for external message as code block"""
     return f"```{language or ''}\n{text}```"
 
 
 def ansi_block(text: str) -> str:
-    """Formats text for discord message as code block that allows for arbitrary coloring and formatting"""
+    """Formats text for external message as code block that allows for arbitrary coloring and formatting"""
     return code_block(text, "ansi")
 
 

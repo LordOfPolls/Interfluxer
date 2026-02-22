@@ -1,1 +1,1 @@
-::: interactions.models.discord.activity
+::: interactions.models.external.activity

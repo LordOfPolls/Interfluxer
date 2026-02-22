@@ -2,16 +2,16 @@ from typing import Optional, TYPE_CHECKING
 
 import attrs
 
-from flux.models.discord.timestamp import Timestamp
-from flux.models.discord.enums import EntitlementType
-from flux.models.discord.base import DiscordObject
+from flux.models.external.timestamp import Timestamp
+from flux.models.external.enums import EntitlementType
+from flux.models.external.base import DiscordObject
 from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.attr_converters import timestamp_converter
-from flux.models.discord.snowflake import to_snowflake, to_optional_snowflake, Snowflake_Type
+from flux.models.external.snowflake import to_snowflake, to_optional_snowflake, Snowflake_Type
 
 if TYPE_CHECKING:
-    from flux.models.discord.guild import Guild
-    from flux.models.discord.user import User
+    from flux.models.external.guild import Guild
+    from flux.models.external.user import User
 
 __all__ = ("Entitlement",)
 

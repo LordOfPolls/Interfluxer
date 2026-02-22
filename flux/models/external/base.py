@@ -5,7 +5,7 @@ import attrs
 from flux.client.const import T
 from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.serializer import no_export_meta
-from flux.models.discord.snowflake import SnowflakeObject
+from flux.models.external.snowflake import SnowflakeObject
 
 if TYPE_CHECKING:
     from flux.client import Client

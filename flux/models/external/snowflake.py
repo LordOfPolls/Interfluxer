@@ -87,7 +87,7 @@ class Snowflake(int):
 
         Args:
             dt: The datetime object to create the snowflake from.
-            high: Set to True if you're creating a snowflake in the discord future.
+            high: Set to True if you're creating a snowflake in the external future.
 
         """
         timestamp = dt.timestamp()
@@ -98,7 +98,7 @@ class Snowflake(int):
     @property
     def created_at(self) -> "models.Timestamp":
         """
-        Returns a timestamp representing the date-time this discord object was created.
+        Returns a timestamp representing the date-time this external object was created.
 
         :Returns:
         """
@@ -162,7 +162,7 @@ class SnowflakeObject:
     @property
     def created_at(self) -> "models.Timestamp":
         """
-        Returns a timestamp representing the date-time this discord object was created.
+        Returns a timestamp representing the date-time this external object was created.
 
         :Returns:
 

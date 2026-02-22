@@ -1,1 +1,1 @@
-::: interactions.models.discord.invite
+::: interactions.models.external.invite

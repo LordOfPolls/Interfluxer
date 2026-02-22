@@ -1,1 +1,1 @@
-::: interactions.models.discord.color
+::: interactions.models.external.color

@@ -5,7 +5,7 @@ import discord_typings
 
 from flux.client.const import Missing, MISSING
 from flux.client.utils.serializer import dict_filter_none
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.timestamp import Timestamp
 from flux.models.internal.protocols import CanRequest
 from ..route import Route, PAYLOAD_TYPE
 
@@ -13,7 +13,7 @@ __all__ = ("MemberRequests",)
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
 
 
 class MemberRequests(CanRequest):

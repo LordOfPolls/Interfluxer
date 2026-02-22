@@ -11,8 +11,8 @@ import flux
 from flux.api import events
 from flux.client.const import Absent, MISSING, get_logger
 from flux.client.errors import LibraryException, WebSocketClosed
-from flux.models.discord.activity import Activity
-from flux.models.discord.enums import Intents, Status, ActivityType
+from flux.models.external.activity import Activity
+from flux.models.external.enums import Intents, Status, ActivityType
 from .gateway import GatewayClient
 
 if TYPE_CHECKING:

@@ -2,14 +2,14 @@ from typing import TYPE_CHECKING, List, Optional, Dict, Any, Union
 
 import attrs
 
-from flux.models.discord.asset import Asset
-from flux.models.discord.enums import TeamMembershipState
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.asset import Asset
+from flux.models.external.enums import TeamMembershipState
+from flux.models.external.snowflake import to_snowflake
 from .base import DiscordObject
 
 if TYPE_CHECKING:
-    from flux.models.discord.user import User
-    from flux.models.discord.snowflake import Snowflake_Type, SnowflakeObject
+    from flux.models.external.user import User
+    from flux.models.external.snowflake import Snowflake_Type, SnowflakeObject
     from flux.client import Client
 
 __all__ = ("Team", "TeamMember")
@@ -19,7 +19,7 @@ __all__ = ("Team", "TeamMember")
 class TeamMember(DiscordObject):
     membership_state: TeamMembershipState = attrs.field(repr=False, converter=TeamMembershipState)
     """Rhe user's membership state on the team"""
-    # permissions: List[str] = attrs.field(repr=False, default=["*"])  # disabled until discord adds more team roles
+    # permissions: List[str] = attrs.field(repr=False, default=["*"])  # disabled until external adds more team roles
     team_id: "Snowflake_Type" = attrs.field(repr=True)
     """Rhe id of the parent team of which they are a member"""
     user: "User" = attrs.field(

@@ -14,16 +14,16 @@ from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.attr_converters import timestamp_converter
 from flux.client.utils.misc_utils import get
 from flux.client.utils.serializer import to_dict, to_image_data
-from flux.models.discord.base import DiscordObject
-from flux.models.discord.emoji import PartialEmoji
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.snowflake import (
+from flux.models.external.base import DiscordObject
+from flux.models.external.emoji import PartialEmoji
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.snowflake import (
     Snowflake_Type,
     to_snowflake,
     to_optional_snowflake,
     SnowflakeObject,
 )
-from flux.models.discord.thread import DefaultReaction, ThreadTag
+from flux.models.external.thread import DefaultReaction, ThreadTag
 from flux.models.misc.context_manager import Typing
 from flux.models.misc.iterator import AsyncIterator
 from .enums import (
@@ -802,7 +802,7 @@ class BaseChannel(DiscordObject):
             channel_class = BaseChannel
 
         if channel_class == GuildPublicThread:
-            # attempt to determine if this thread is a forum post (thanks discord)
+            # attempt to determine if this thread is a forum post (thanks external)
             parent_channel = client.cache.get_channel(data["parent_id"])
             if parent_channel and parent_channel.type == ChannelType.GUILD_FORUM:
                 channel_class = GuildForumPost
@@ -2494,7 +2494,7 @@ class GuildForum(GuildChannel, InvitableMixin, WebhookMixin):
 
             applied_tags = processed
 
-        message_payload = models.discord.message.process_message_payload(
+        message_payload = models.external.message.process_message_payload(
             content=content,
             embeds=embeds or embed,
             components=components,
@@ -2686,7 +2686,7 @@ def process_permission_overwrites(
     overwrites: Union[dict, PermissionOverwrite, List[Union[dict, PermissionOverwrite]]],
 ) -> List[dict]:
     """
-    Processes a permission overwrite lists into format for sending to discord.
+    Processes a permission overwrite lists into format for sending to external.
 
     Args:
         overwrites: The permission overwrites to process

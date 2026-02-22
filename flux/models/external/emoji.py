@@ -10,15 +10,15 @@ from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.attr_converters import list_converter
 from flux.client.utils.attr_converters import optional
 from flux.client.utils.serializer import dict_filter_none, no_export_meta
-from flux.models.discord.base import ClientObject
-from flux.models.discord.snowflake import SnowflakeObject, to_snowflake, to_snowflake_list
+from flux.models.external.base import ClientObject
+from flux.models.external.snowflake import SnowflakeObject, to_snowflake, to_snowflake_list
 
 if TYPE_CHECKING:
     from flux.client import Client
-    from flux.models.discord.guild import Guild
-    from flux.models.discord.user import User, Member
-    from flux.models.discord.role import Role
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.guild import Guild
+    from flux.models.external.user import User, Member
+    from flux.models.external.role import Role
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("CustomEmoji", "PartialEmoji", "process_emoji", "process_emoji_req_format")
 
@@ -28,7 +28,7 @@ unicode_emoji_reg = re.compile(r"[^\w\s,’‘“”…–—•◦‣⁃⁎⁏�
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class PartialEmoji(SnowflakeObject, DictSerializationMixin):
-    """Represent a basic ("partial") emoji used in discord."""
+    """Represent a basic ("partial") emoji used in external."""
 
     id: Optional["Snowflake_Type"] = attrs.field(
         repr=True, default=None, converter=optional(to_snowflake)
@@ -44,7 +44,7 @@ class PartialEmoji(SnowflakeObject, DictSerializationMixin):
     @classmethod
     def from_str(cls, emoji_str: str, *, language: str = "alias") -> Optional["PartialEmoji"]:
         """
-        Generate a PartialEmoji from a discord Emoji string representation, or unicode emoji.
+        Generate a PartialEmoji from a external Emoji string representation, or unicode emoji.
 
         Handles:
             <:emoji_name:emoji_id>
@@ -237,7 +237,7 @@ def process_emoji_req_format(emoji: Optional[Union[PartialEmoji, dict, str]]) ->
         emoji: The emoji to process.
 
     Returns:
-        formatted string for discord
+        formatted string for external
 
     """
     if not emoji:
@@ -263,7 +263,7 @@ def process_emoji(emoji: Optional[Union[PartialEmoji, dict, str]]) -> Optional[d
         emoji: The emoji to process.
 
     Returns:
-        formatted dictionary for discord
+        formatted dictionary for external
 
     """
     if not emoji:

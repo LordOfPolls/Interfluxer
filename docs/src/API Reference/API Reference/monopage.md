@@ -15,31 +15,31 @@ This file holds the entire API reference in a single page; should that be your p
 
 ---
 ## User
-::: interactions.models.discord.user
-::: interactions.models.discord.voice_state
+::: interactions.models.external.user
+::: interactions.models.external.voice_state
 
 ---
 ## Guild
-::: interactions.models.discord.guild
-::: interactions.models.discord.scheduled_event
-::: interactions.models.discord.sticker
-::: interactions.models.discord.webhooks
-::: interactions.models.discord.channel
-::: interactions.models.discord.invite
-::: interactions.models.discord.role
-::: interactions.models.discord.emoji
+::: interactions.models.external.guild
+::: interactions.models.external.scheduled_event
+::: interactions.models.external.sticker
+::: interactions.models.external.webhooks
+::: interactions.models.external.channel
+::: interactions.models.external.invite
+::: interactions.models.external.role
+::: interactions.models.external.emoji
 
 ---
 ## Message
-::: interactions.models.discord.message
-::: interactions.models.discord.reaction
+::: interactions.models.external.message
+::: interactions.models.external.reaction
 
 ---
 ## UX.
-::: interactions.models.discord.embed
-::: interactions.models.discord.asset
-::: interactions.models.discord.color
-::: interactions.models.discord.file
+::: interactions.models.external.embed
+::: interactions.models.external.asset
+::: interactions.models.external.color
+::: interactions.models.external.file
 
 ---
 ## Commands
@@ -48,8 +48,8 @@ This file holds the entire API reference in a single page; should that be your p
 ---
 ## Application Commands
 
-::: interactions.models.discord.components
-::: interactions.models.discord.modal
+::: interactions.models.external.components
+::: interactions.models.external.modal
 ::: interactions.models.internal.application_commands
 
 ---
@@ -58,14 +58,14 @@ This file holds the entire API reference in a single page; should that be your p
 
 ---
 ## Presence
-::: interactions.models.discord.activity
+::: interactions.models.external.activity
 
 ---
 ## Data
-::: interactions.models.discord.application
-::: interactions.models.discord.team
-::: interactions.models.discord.enums
-::: interactions.models.discord.timestamp
+::: interactions.models.external.application
+::: interactions.models.external.team
+::: interactions.models.external.enums
+::: interactions.models.external.timestamp
 
 ---
 ## Internal Models

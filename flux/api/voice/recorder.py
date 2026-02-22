@@ -18,7 +18,7 @@ from flux.api.voice.encryption import Decryption
 from flux.api.voice.opus import Decoder
 from flux.client.const import logger_name, Missing
 from flux.client.utils.input_utils import unpack_helper
-from flux.models.discord.snowflake import Snowflake_Type, to_snowflake_list
+from flux.models.external.snowflake import Snowflake_Type, to_snowflake_list
 
 if TYPE_CHECKING:
     from flux.models.internal.active_voice_state import ActiveVoiceState

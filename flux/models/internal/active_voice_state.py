@@ -11,9 +11,9 @@ from flux.api.voice.voice_gateway import VoiceGateway
 from flux.client.const import MISSING, Missing
 from flux.client.errors import VoiceAlreadyConnected, VoiceConnectionTimeout
 from flux.client.utils import optional
-from flux.models.discord.enums import Intents
-from flux.models.discord.snowflake import Snowflake_Type, to_snowflake
-from flux.models.discord.voice_state import VoiceState
+from flux.models.external.enums import Intents
+from flux.models.external.snowflake import Snowflake_Type, to_snowflake
+from flux.models.external.voice_state import VoiceState
 
 if TYPE_CHECKING:
     from flux.api.voice.audio import BaseAudio
@@ -27,9 +27,9 @@ class ActiveVoiceState(VoiceState):
     ws: Optional[VoiceGateway] = attrs.field(repr=False, default=None)
     """The websocket for this voice state"""
     player: Optional[Player] = attrs.field(repr=False, default=None)
-    """The playback task that broadcasts audio data to discord"""
+    """The playback task that broadcasts audio data to external"""
     recorder: Optional[Recorder] = attrs.field(default=None)
-    """A recorder task to capture audio from discord"""
+    """A recorder task to capture audio from external"""
     _volume: float = attrs.field(repr=False, default=0.5)
 
     # standard voice states expect this data, this voice state lacks it initially; so we make them optional
@@ -126,7 +126,7 @@ class ActiveVoiceState(VoiceState):
         Establish the voice connection.
 
         Args:
-            timeout: How long to wait for state and server information from discord
+            timeout: How long to wait for state and server information from external
 
         Raises:
             VoiceAlreadyConnected: if the voice state is already connected to the voice channel
@@ -170,7 +170,7 @@ class ActiveVoiceState(VoiceState):
 
         Args:
             channel: The channel to move to
-            timeout: How long to wait for state and server information from discord
+            timeout: How long to wait for state and server information from external
 
         """
         target_channel = to_snowflake(channel)

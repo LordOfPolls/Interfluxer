@@ -5,12 +5,12 @@ import attrs
 from flux.client.const import MISSING
 from flux.client.utils.attr_converters import optional
 from flux.client.utils.serializer import to_image_data
-from flux.models.discord.asset import Asset
-from flux.models.discord.emoji import CustomEmoji
-from flux.models.discord.enums import ApplicationFlags
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.snowflake import Snowflake_Type, to_snowflake
-from flux.models.discord.team import Team
+from flux.models.external.asset import Asset
+from flux.models.external.emoji import CustomEmoji
+from flux.models.external.enums import ApplicationFlags
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.snowflake import Snowflake_Type, to_snowflake
+from flux.models.external.team import Team
 from .base import DiscordObject
 
 if TYPE_CHECKING:
@@ -22,7 +22,7 @@ __all__ = ("Application",)
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class Application(DiscordObject):
-    """Represents a discord application."""
+    """Represents a external application."""
 
     name: str = attrs.field(repr=True)
     """The name of the application"""

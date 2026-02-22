@@ -1,17 +1,17 @@
 from typing import TYPE_CHECKING, Any, Iterable, Optional, Union
 
 import flux.models as models
-import flux.models.discord
-from flux.models.discord.enums import MessageFlags
+import flux.models.external
+from flux.models.external.enums import MessageFlags
 
 if TYPE_CHECKING:
     from flux.client import Client
-    from flux.models.discord.file import UPLOADABLE_TYPE
-    from flux.models.discord.embed import Embed
-    from flux.models.discord.message import AllowedMentions, Message, MessageReference
-    from flux.models.discord.poll import Poll
-    from flux.models.discord.sticker import Sticker
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.file import UPLOADABLE_TYPE
+    from flux.models.external.embed import Embed
+    from flux.models.external.message import AllowedMentions, Message, MessageReference
+    from flux.models.external.poll import Poll
+    from flux.models.external.sticker import Sticker
+    from flux.models.external.snowflake import Snowflake_Type
 
 
 __all__ = ("SendMixin",)
@@ -86,9 +86,9 @@ class SendMixin:
             files
             and (
                 isinstance(files, Iterable)
-                and any(isinstance(file, flux.models.discord.message.Attachment) for file in files)
+                and any(isinstance(file, flux.models.external.message.Attachment) for file in files)
             )
-        ) or isinstance(files, flux.models.discord.message.Attachment):
+        ) or isinstance(files, flux.models.external.message.Attachment):
             raise ValueError(
                 "Attachments are not files. Attachments only contain metadata about the file, not the file itself - to send an attachment, you need to download it first. Check Attachment.url"
             )
@@ -96,7 +96,7 @@ class SendMixin:
         if enforce_nonce and not nonce:
             raise ValueError("You must provide a nonce to use enforce_nonce.")
 
-        message_payload = models.discord.message.process_message_payload(
+        message_payload = models.external.message.process_message_payload(
             content=content,
             embeds=embeds or embed,
             stickers=stickers,

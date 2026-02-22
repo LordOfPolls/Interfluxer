@@ -1,1 +1,1 @@
-::: interactions.models.discord.timestamp
+::: interactions.models.external.timestamp

@@ -1,1 +1,1 @@
-::: interactions.models.discord.guild
+::: interactions.models.external.guild

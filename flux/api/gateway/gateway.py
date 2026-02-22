@@ -13,15 +13,15 @@ from flux.api import events
 from flux.client.const import MISSING, __api_version__
 from flux.client.utils.input_utils import FastJson
 from flux.client.utils.serializer import dict_filter_none
-from flux.models.discord.enums import Status
-from flux.models.discord.enums import WebSocketOPCode as OPCODE
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.enums import Status
+from flux.models.external.enums import WebSocketOPCode as OPCODE
+from flux.models.external.snowflake import to_snowflake
 from flux.models.internal.cooldowns import CooldownSystem
 from .websocket import WebsocketClient
 
 if TYPE_CHECKING:
     from .state import ConnectionState
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("GatewayClient",)
 

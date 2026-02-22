@@ -1,1 +1,1 @@
-::: interactions.models.discord.components
+::: interactions.models.external.components

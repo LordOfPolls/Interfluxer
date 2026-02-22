@@ -34,13 +34,13 @@ from flux import (
     Poll,
     PollMedia,
 )
-from flux.models.discord.asset import Asset
-from flux.models.discord.emoji import process_emoji_req_format
+from flux.models.external.asset import Asset
+from flux.models.external.emoji import process_emoji_req_format
 from flux.api.gateway.websocket import WebsocketClient
 from flux.api.http.route import Route
 from flux.api.voice.audio import AudioVolume
 from flux.client.errors import NotFound
-from flux.models.discord.role import Role
+from flux.models.external.role import Role
 
 __all__ = ()
 

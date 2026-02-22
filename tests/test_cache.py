@@ -2,8 +2,8 @@ import discord_typings
 import pytest
 
 from flux.client.client import Client
-from flux.models.discord.channel import DM, GuildText
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.channel import DM, GuildText
+from flux.models.external.snowflake import to_snowflake
 from tests.consts import SAMPLE_DM_DATA, SAMPLE_GUILD_DATA, SAMPLE_USER_DATA
 
 __all__ = ("bot", "test_dm_channel", "test_get_user_from_dm", "test_guild_channel", "test_update_guild")

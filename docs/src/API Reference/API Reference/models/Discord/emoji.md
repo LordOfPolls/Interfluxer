@@ -1,1 +1,1 @@
-::: interactions.models.discord.emoji
+::: interactions.models.external.emoji

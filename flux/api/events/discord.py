@@ -28,7 +28,7 @@ import flux.models
 from flux.api.events.base import BaseEvent, GuildEvent
 from flux.client.const import Absent
 from flux.client.utils.attr_utils import docs
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.snowflake import to_snowflake
 
 __all__ = (
     "AutoModCreated",
@@ -103,27 +103,27 @@ __all__ = (
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.activity import Activity
-    from flux.models.discord.auto_mod import AutoModerationAction, AutoModRule
-    from flux.models.discord.channel import (
+    from flux.models.external.activity import Activity
+    from flux.models.external.auto_mod import AutoModerationAction, AutoModRule
+    from flux.models.external.channel import (
         TYPE_ALL_CHANNEL,
         TYPE_THREAD_CHANNEL,
         VoiceChannel,
     )
-    from flux.models.discord.emoji import CustomEmoji, PartialEmoji
-    from flux.models.discord.entitlement import Entitlement
-    from flux.models.discord.guild import Guild, GuildIntegration
-    from flux.models.discord.message import Message
-    from flux.models.discord.poll import Poll
-    from flux.models.discord.reaction import Reaction
-    from flux.models.discord.role import Role
-    from flux.models.discord.scheduled_event import ScheduledEvent
-    from flux.models.discord.snowflake import Snowflake_Type
-    from flux.models.discord.stage_instance import StageInstance
-    from flux.models.discord.sticker import Sticker
-    from flux.models.discord.timestamp import Timestamp
-    from flux.models.discord.user import BaseUser, Member, User
-    from flux.models.discord.voice_state import VoiceState
+    from flux.models.external.emoji import CustomEmoji, PartialEmoji
+    from flux.models.external.entitlement import Entitlement
+    from flux.models.external.guild import Guild, GuildIntegration
+    from flux.models.external.message import Message
+    from flux.models.external.poll import Poll
+    from flux.models.external.reaction import Reaction
+    from flux.models.external.role import Role
+    from flux.models.external.scheduled_event import ScheduledEvent
+    from flux.models.external.snowflake import Snowflake_Type
+    from flux.models.external.stage_instance import StageInstance
+    from flux.models.external.sticker import Sticker
+    from flux.models.external.timestamp import Timestamp
+    from flux.models.external.user import BaseUser, Member, User
+    from flux.models.external.voice_state import VoiceState
 
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)

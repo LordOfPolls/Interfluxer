@@ -1,1 +1,1 @@
-::: interactions.models.discord.reaction
+::: interactions.models.external.reaction

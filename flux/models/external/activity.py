@@ -5,10 +5,10 @@ import attrs
 from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.attr_converters import timestamp_converter, optional
 from flux.client.utils.serializer import dict_filter_none
-from flux.models.discord.emoji import PartialEmoji
-from flux.models.discord.enums import ActivityType, ActivityFlag
-from flux.models.discord.snowflake import Snowflake_Type
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.emoji import PartialEmoji
+from flux.models.external.enums import ActivityType, ActivityFlag
+from flux.models.external.snowflake import Snowflake_Type
+from flux.models.external.timestamp import Timestamp
 
 __all__ = (
     "Activity",
@@ -22,9 +22,9 @@ __all__ = (
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class ActivityTimestamps(DictSerializationMixin):
     start: Optional[Timestamp] = attrs.field(repr=False, default=None, converter=optional(timestamp_converter))
-    """The start time of the activity. Shows "elapsed" timer on discord client."""
+    """The start time of the activity. Shows "elapsed" timer on external client."""
     end: Optional[Timestamp] = attrs.field(repr=False, default=None, converter=optional(timestamp_converter))
-    """The end time of the activity. Shows "remaining" timer on discord client."""
+    """The end time of the activity. Shows "remaining" timer on external client."""
 
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
@@ -38,11 +38,11 @@ class ActivityParty(DictSerializationMixin):
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class ActivityAssets(DictSerializationMixin):
     large_image: Optional[str] = attrs.field(repr=False, default=None)
-    """The large image for this activity. Uses discord's asset image url format."""
+    """The large image for this activity. Uses external's asset image url format."""
     large_text: Optional[str] = attrs.field(repr=False, default=None)
     """Hover text for the large image"""
     small_image: Optional[str] = attrs.field(repr=False, default=None)
-    """The large image for this activity. Uses discord's asset image url format."""
+    """The large image for this activity. Uses external's asset image url format."""
     small_text: Optional[str] = attrs.field(repr=False, default=None)
     """Hover text for the small image"""
 
@@ -59,7 +59,7 @@ class ActivitySecrets(DictSerializationMixin):
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class Activity(DictSerializationMixin):
-    """Represents a discord activity object use for rich presence in discord."""
+    """Represents a external activity object use for rich presence in external."""
 
     name: str = attrs.field(repr=True)
     """The activity's name"""

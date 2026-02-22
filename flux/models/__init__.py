@@ -1,4 +1,4 @@
-from .discord import (
+from .external import (
     Activity,
     ActivityAssets,
     ActivityFlag,

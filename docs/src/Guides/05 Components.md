@@ -87,14 +87,14 @@ components = Button(
 await channel.send("Look a Button!", components=components)
 ```
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Discord/components/#interactions.models.discord.components.Button).
+For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Discord/components/#interactions.models.external.components.Button).
 
 ### Button Styles
 
 There are a bunch of colours and styles you can choose from.
     <br>![Button Colours](../images/Components/buttons.png "Button Colours")
 
-The colours correspond to the styles found in `ButtonStyle`. Click [here](/interactions.py/API Reference/API Reference/models/Discord/enums/#interactions.models.discord.enums.ButtonStyle) for more information.
+The colours correspond to the styles found in `ButtonStyle`. Click [here](/interactions.py/API Reference/API Reference/models/Discord/enums/#interactions.models.external.enums.ButtonStyle) for more information.
 
 If you use `ButtonStyle.URL`, you can pass a URL to the button with the `url` argument. Users who click the button will get redirected to your URL.
 
@@ -139,7 +139,7 @@ await channel.send("Look a Select!", components=components)
 
 Alternatively, you can use `RoleSelectMenu`, `UserSelectMenu` and `ChannelSelectMenu` to select roles, users and channels respectively. These select menus are very similar to `StringSelectMenu`, but they don't allow you to pass a list of options; it's all done behind the scenes.
 
-For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Discord/components/#interactions.models.discord.components.Select).
+For more information, please visit the API reference [here](/interactions.py/API Reference/API Reference/models/Discord/components/#interactions.models.external.components.Select).
 
 ## Responding
 

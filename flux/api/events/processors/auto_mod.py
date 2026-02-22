@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from flux.models.discord.auto_mod import AutoModerationAction, AutoModRule
+from flux.models.external.auto_mod import AutoModerationAction, AutoModRule
 
 from ... import events
 from ._template import EventMixinTemplate, Processor

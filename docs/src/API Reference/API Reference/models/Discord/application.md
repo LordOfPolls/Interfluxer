@@ -1,1 +1,1 @@
-::: interactions.models.discord.application
+::: interactions.models.external.application

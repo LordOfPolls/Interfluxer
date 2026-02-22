@@ -3,7 +3,7 @@ import typing
 from typing_extensions import Self
 
 from flux.client.const import MISSING, ClientT
-from flux.models.discord.snowflake import Snowflake
+from flux.models.external.snowflake import Snowflake
 from flux.models.internal.command import BaseCommand
 
 if typing.TYPE_CHECKING:

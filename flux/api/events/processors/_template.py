@@ -5,7 +5,7 @@ import logging
 from typing import TYPE_CHECKING, Callable, Coroutine
 
 from flux.client.const import Absent, MISSING, AsyncCallable
-from flux.models.discord.user import ClientUser
+from flux.models.external.user import ClientUser
 
 if TYPE_CHECKING:
     from flux.client.smart_cache import GlobalCache

@@ -49,7 +49,7 @@ from flux.client.errors import (
 from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.input_utils import response_decode, FastJson
 from flux.client.utils.serializer import dict_filter, get_file_mimetype
-from flux.models.discord.file import UPLOADABLE_TYPE
+from flux.models.external.file import UPLOADABLE_TYPE
 from .route import Route
 
 __all__ = ("HTTPClient",)
@@ -280,7 +280,7 @@ class HTTPClient(
 
     def ingest_ratelimit(self, route: Route, header: CIMultiDictProxy, bucket_lock: BucketLock) -> None:
         """
-        Ingests a ratelimit header from discord to determine ratelimit.
+        Ingests a ratelimit header from external to determine ratelimit.
 
         Args:
             route: The route we're ingesting ratelimit for
@@ -301,7 +301,7 @@ class HTTPClient(
         payload: dict | list[dict] | None, files: UPLOADABLE_TYPE | list[UPLOADABLE_TYPE] | None
     ) -> dict | list[dict] | FormData | None:
         """
-        Processes a payload into a format safe for discord. Converts the payload into FormData where required
+        Processes a payload into a format safe for external. Converts the payload into FormData where required
 
         Args:
             payload: The payload of the request
@@ -376,7 +376,7 @@ class HTTPClient(
         **kwargs: dict,
     ) -> str | dict[str, Any] | None:
         """
-        Make a request to discord.
+        Make a request to external.
 
         Args:
             route: The route to take

@@ -1,1 +1,1 @@
-::: interactions.models.discord.file
+::: interactions.models.external.file

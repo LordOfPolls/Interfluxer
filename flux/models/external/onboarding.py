@@ -5,10 +5,10 @@ import attrs
 from flux.client.const import MISSING, Absent
 from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.attr_converters import optional
-from flux.models.discord.base import ClientObject
-from flux.models.discord.emoji import PartialEmoji, process_emoji
-from flux.models.discord.enums import OnboardingMode, OnboardingPromptType
-from flux.models.discord.snowflake import (
+from flux.models.external.base import ClientObject
+from flux.models.external.emoji import PartialEmoji, process_emoji
+from flux.models.external.enums import OnboardingMode, OnboardingPromptType
+from flux.models.external.snowflake import (
     Snowflake,
     Snowflake_Type,
     SnowflakeObject,

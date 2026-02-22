@@ -1,7 +1,7 @@
 import flux
 from flux.client.client import Client
-from flux.models.discord.application import Application
-from flux.models.discord.guild import Guild
+from flux.models.external.application import Application
+from flux.models.external.guild import Guild
 from tests.consts import SAMPLE_APPLICATION_DATA, SAMPLE_CHANNEL_DATA, SAMPLE_GUILD_DATA, SAMPLE_USER_DATA
 from tests.utils import generate_dummy_context
 

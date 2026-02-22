@@ -1,1 +1,1 @@
-::: interactions.models.discord.voice_state
+::: interactions.models.external.voice_state

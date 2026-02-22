@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, Callable, Any, Coroutine
 
 if TYPE_CHECKING:
     from flux.client.client import Client
-    from flux.models.discord.message import Message
+    from flux.models.external.message import Message
 
 __all__ = ("when_mentioned", "when_mentioned_or")
 

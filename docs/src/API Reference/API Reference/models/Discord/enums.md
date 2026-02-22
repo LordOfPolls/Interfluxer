@@ -1,1 +1,1 @@
-::: interactions.models.discord.enums
+::: interactions.models.external.enums

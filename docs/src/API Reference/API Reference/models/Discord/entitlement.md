@@ -1,1 +1,1 @@
-::: interactions.models.discord.entitlement
+::: interactions.models.external.entitlement

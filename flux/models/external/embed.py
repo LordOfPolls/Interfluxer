@@ -16,9 +16,9 @@ from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.attr_converters import optional as c_optional, list_converter
 from flux.client.utils.attr_converters import timestamp_converter
 from flux.client.utils.serializer import no_export_meta, export_converter
-from flux.models.discord.color import Color, process_color
-from flux.models.discord.enums import EmbedType
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.color import Color, process_color
+from flux.models.external.enums import EmbedType
+from flux.models.external.timestamp import Timestamp
 
 __all__ = (
     "Embed",
@@ -176,7 +176,7 @@ class EmbedProvider(DictSerializationMixin):
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class Embed(DictSerializationMixin):
-    """Represents a discord embed object."""
+    """Represents a external embed object."""
 
     title: Optional[str] = attrs.field(default=None, repr=True)
     """The title of the embed"""
@@ -196,7 +196,7 @@ class Embed(DictSerializationMixin):
     )
     """Timestamp of embed content"""
     fields: List[EmbedField] = attrs.field(factory=list, converter=EmbedField.from_list, repr=True)
-    """A list of [fields][flux.models.discord.embed.EmbedField] to go in the embed"""
+    """A list of [fields][flux.models.external.embed.EmbedField] to go in the embed"""
     author: Optional[EmbedAuthor] = attrs.field(repr=False, default=None, converter=c_optional(EmbedAuthor.from_dict))
     """The author of the embed"""
     thumbnail: Optional[EmbedAttachment] = attrs.field(
@@ -466,13 +466,13 @@ class Embed(DictSerializationMixin):
 
 def process_embeds(embeds: Optional[Union[List[Union[Embed, Dict]], Union[Embed, Dict]]]) -> Optional[List[dict]]:
     """
-    Process the passed embeds into a format discord will understand.
+    Process the passed embeds into a format external will understand.
 
     Args:
         embeds: List of dict / embeds to process
 
     Returns:
-        formatted list for discord
+        formatted list for external
 
     """
     if embeds is None:
@@ -480,12 +480,12 @@ def process_embeds(embeds: Optional[Union[List[Union[Embed, Dict]], Union[Embed,
         return embeds
 
     if isinstance(embeds, Embed):
-        # Single embed, convert it to dict and wrap it into a list for discord.
+        # Single embed, convert it to dict and wrap it into a list for external.
         out = embeds.to_dict()
         return out if isinstance(out, list) else [out]
     if isinstance(embeds, dict):
-        # We assume the dict correctly represents a single discord embed and just send it blindly
-        # after wrapping it in a list for discord
+        # We assume the dict correctly represents a single external embed and just send it blindly
+        # after wrapping it in a list for external
         return [embeds]
 
     if isinstance(embeds, list):

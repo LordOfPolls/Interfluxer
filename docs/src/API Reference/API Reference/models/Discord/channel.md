@@ -1,1 +1,1 @@
-::: interactions.models.discord.channel
+::: interactions.models.external.channel

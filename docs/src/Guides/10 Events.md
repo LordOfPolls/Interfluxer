@@ -40,7 +40,7 @@ Then, you can specify it in your bot just like the other intents. If you encount
 !!! danger
     `Intents.ALL` is a shortcut provided by interactions.py to enable *every single intent, including privileged intents.* This is very useful while testing bots, **but this shortcut is an incredibly bad idea to use when actually running your bots for use.** As well as adding more strain on the bot (as discussed earlier with normal intents), this is just a bad idea privacy wise: your bot likely does not need to know that much data.
 
-For more information, please visit the API reference about Intents [at this page](/interactions.py/API Reference/API Reference/models/Discord/enums/#interactions.models.discord.enums.Intents).
+For more information, please visit the API reference about Intents [at this page](/interactions.py/API Reference/API Reference/models/Discord/enums/#interactions.models.external.enums.Intents).
 
 ## Subscribing to Events
 

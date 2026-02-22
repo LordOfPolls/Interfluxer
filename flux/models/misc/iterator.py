@@ -5,7 +5,7 @@ from collections.abc import AsyncIterator as _AsyncIterator
 from typing import List, Any
 
 from flux.client.const import MISSING, Absent
-from flux.models.discord import snowflake
+from flux.models.external import snowflake
 
 __all__ = ("AsyncIterator",)
 

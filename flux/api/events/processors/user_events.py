@@ -2,7 +2,7 @@ from typing import Union, TYPE_CHECKING
 
 import flux.api.events as events
 from flux.models import User, Member, BaseChannel, Timestamp, to_snowflake, Activity
-from flux.models.discord.enums import Status
+from flux.models.external.enums import Status
 from ._template import EventMixinTemplate, Processor
 
 if TYPE_CHECKING:

@@ -12,23 +12,23 @@ from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.attr_converters import timestamp_converter
 from flux.client.utils.attr_utils import docs
 from flux.client.utils.serializer import to_image_data
-from flux.models.discord.activity import Activity
-from flux.models.discord.asset import Asset
-from flux.models.discord.color import Color
-from flux.models.discord.enums import Permissions, PremiumType, UserFlags, Status, MemberFlags
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.role import Role
-from flux.models.discord.snowflake import Snowflake_Type
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.activity import Activity
+from flux.models.external.asset import Asset
+from flux.models.external.color import Color
+from flux.models.external.enums import Permissions, PremiumType, UserFlags, Status, MemberFlags
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.role import Role
+from flux.models.external.snowflake import Snowflake_Type
+from flux.models.external.snowflake import to_snowflake
 from .base import DiscordObject
 
 if TYPE_CHECKING:
     from aiohttp import FormData
-    from flux.models.discord.guild import Guild
+    from flux.models.external.guild import Guild
     from flux.client import Client
-    from flux.models.discord.timestamp import Timestamp
-    from flux.models.discord.channel import DM, TYPE_GUILD_CHANNEL
-    from flux.models.discord.voice_state import VoiceState
+    from flux.models.external.timestamp import Timestamp
+    from flux.models.external.channel import DM, TYPE_GUILD_CHANNEL
+    from flux.models.external.voice_state import VoiceState
 
 __all__ = ("BaseUser", "ClientUser", "Member", "User")
 
@@ -45,14 +45,14 @@ class _SendDMMixin(SendMixin):
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class BaseUser(DiscordObject, _SendDMMixin):
-    """Base class for User, essentially partial user discord model."""
+    """Base class for User, essentially partial user external model."""
 
     username: str = attrs.field(repr=True, metadata=docs("The user's username, not unique across the platform"))
     global_name: str | None = attrs.field(
         repr=True, metadata=docs("The user's chosen display name, platform-wide"), default=None
     )
     discriminator: str = attrs.field(
-        repr=True, metadata=docs("The user's 4-digit discord-tag"), default="0"
+        repr=True, metadata=docs("The user's 4-digit external-tag"), default="0"
     )  # will likely be removed in future api version
     avatar: "Asset" = attrs.field(repr=False, metadata=docs("The user's default avatar"))
 

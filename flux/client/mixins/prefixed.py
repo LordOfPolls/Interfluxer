@@ -13,8 +13,8 @@ from flux.api.events.internal import (
     ExtensionUnload,
 )
 from flux.client.utils.input_utils import get_args, get_first_word
-from flux.models.discord.enums import Intents
-from flux.models.discord.message import Message
+from flux.models.external.enums import Intents
+from flux.models.external.message import Message
 from flux.models.internal.prefixed.command import PrefixedCommand
 from flux.models.internal.prefixed.context import PrefixedContext
 from flux.models.internal.prefixed.utils import when_mentioned

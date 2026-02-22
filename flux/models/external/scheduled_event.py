@@ -7,19 +7,19 @@ from flux.client.errors import EventLocationNotProvided
 from flux.client.utils import to_image_data
 from flux.client.utils.attr_converters import optional
 from flux.client.utils.attr_converters import timestamp_converter
-from flux.models.discord.asset import Asset
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.snowflake import Snowflake_Type, to_snowflake
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.asset import Asset
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.snowflake import Snowflake_Type, to_snowflake
+from flux.models.external.timestamp import Timestamp
 from .base import DiscordObject
 from .enums import ScheduledEventPrivacyLevel, ScheduledEventType, ScheduledEventStatus
 
 if TYPE_CHECKING:
     from flux.client.client import Client
-    from flux.models.discord.channel import GuildStageVoice, GuildVoice
-    from flux.models.discord.guild import Guild
-    from flux.models.discord.user import Member
-    from flux.models.discord.user import User
+    from flux.models.external.channel import GuildStageVoice, GuildVoice
+    from flux.models.external.guild import Guild
+    from flux.models.external.user import Member
+    from flux.models.external.user import User
 
 __all__ = ("ScheduledEvent",)
 

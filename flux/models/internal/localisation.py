@@ -123,7 +123,7 @@ class LocalisedField:
                     data[attr.metadata["locale-code"]] = val
 
         if not data:
-            data = None  # handle discord being stupid
+            data = None  # handle external being stupid
         return data
 
 

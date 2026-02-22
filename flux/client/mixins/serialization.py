@@ -38,10 +38,10 @@ class DictSerializationMixin:
     @classmethod
     def _process_dict(cls, data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Process dictionary data received from discord api. Does cleanup and other checks to data.
+        Process dictionary data received from external api. Does cleanup and other checks to data.
 
         Args:
-            data: The dictionary data received from discord api.
+            data: The dictionary data received from external api.
 
         Returns:
             The processed dictionary. Ready to be converted into object class.
@@ -52,10 +52,10 @@ class DictSerializationMixin:
     @classmethod
     def from_dict(cls: Type[const.T], data: Dict[str, Any]) -> const.T:
         """
-        Process and converts dictionary data received from discord api to object class instance.
+        Process and converts dictionary data received from external api to object class instance.
 
         Args:
-            data: The json data received from discord api.
+            data: The json data received from external api.
 
         Returns:
             The object class instance.
@@ -69,10 +69,10 @@ class DictSerializationMixin:
     @classmethod
     def from_list(cls: Type[const.T], datas: List[Dict[str, Any]]) -> List[const.T]:
         """
-        Process and converts list data received from discord api to object class instances.
+        Process and converts list data received from external api to object class instances.
 
         Args:
-            datas: The json data received from discord api.
+            datas: The json data received from external api.
 
         Returns:
             List of object class instances.
@@ -82,10 +82,10 @@ class DictSerializationMixin:
 
     def update_from_dict(self: Type[const.T], data: Dict[str, Any]) -> const.T:
         """
-        Updates object attribute(s) with new json data received from discord api.
+        Updates object attribute(s) with new json data received from external api.
 
         Args:
-            data: The json data received from discord api.
+            data: The json data received from external api.
 
         Returns:
             The updated object class instance.
@@ -98,11 +98,11 @@ class DictSerializationMixin:
         return self
 
     def _check_object(self) -> None:
-        """Logic to check object properties just before export to json data for sending to discord api."""
+        """Logic to check object properties just before export to json data for sending to external api."""
 
     def to_dict(self) -> Dict[str, Any]:
         """
-        Exports object into dictionary representation, ready to be sent to discord api.
+        Exports object into dictionary representation, ready to be sent to external api.
 
         Returns:
             The exported dictionary.

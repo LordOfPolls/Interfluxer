@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING, Optional, Sequence, cast, overload
 import discord_typings
 
 from flux.models.internal.protocols import CanRequest
-from flux.models.discord.enums import (
+from flux.models.external.enums import (
     ChannelType,
     StagePrivacyLevel,
     Permissions,
@@ -17,8 +17,8 @@ __all__ = ("ChannelRequests",)
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.channel import PermissionOverwrite
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.channel import PermissionOverwrite
+    from flux.models.external.snowflake import Snowflake_Type
 
 
 class ChannelRequests(CanRequest):

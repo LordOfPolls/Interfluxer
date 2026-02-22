@@ -4,10 +4,10 @@ from typing_extensions import Self
 
 from flux.client.const import ClientT
 from flux.client.mixins.send import SendMixin
-from flux.models.discord.channel import TYPE_MESSAGEABLE_CHANNEL
-from flux.models.discord.embed import Embed
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.message import Message, MessageReference
+from flux.models.external.channel import TYPE_MESSAGEABLE_CHANNEL
+from flux.models.external.embed import Embed
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.message import Message, MessageReference
 from flux.models.internal.context import BaseContext
 from flux.models.misc.context_manager import Typing
 

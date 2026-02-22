@@ -1,1 +1,1 @@
-::: interactions.models.discord.message
+::: interactions.models.external.message

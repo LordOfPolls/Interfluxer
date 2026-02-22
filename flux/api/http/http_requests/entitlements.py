@@ -2,11 +2,11 @@ from typing import TYPE_CHECKING, Optional
 
 from ..route import Route, PAYLOAD_TYPE
 from flux.models.internal.protocols import CanRequest
-from flux.models.discord.snowflake import to_optional_snowflake, to_snowflake
+from flux.models.external.snowflake import to_optional_snowflake, to_snowflake
 from flux.client.utils.serializer import dict_filter_none
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("EntitlementRequests",)
 

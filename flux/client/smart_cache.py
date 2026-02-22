@@ -9,14 +9,14 @@ from flux.client.const import Absent, MISSING, get_logger
 from flux.client.errors import NotFound, Forbidden
 from flux.client.utils.cache import TTLCache, NullCache
 from flux.models import VoiceState
-from flux.models.discord.channel import BaseChannel, GuildChannel, ThreadChannel
-from flux.models.discord.emoji import CustomEmoji
-from flux.models.discord.guild import Guild
-from flux.models.discord.message import Message
-from flux.models.discord.role import Role
-from flux.models.discord.snowflake import to_snowflake, to_optional_snowflake
-from flux.models.discord.user import Member, User
-from flux.models.discord.scheduled_event import ScheduledEvent
+from flux.models.external.channel import BaseChannel, GuildChannel, ThreadChannel
+from flux.models.external.emoji import CustomEmoji
+from flux.models.external.guild import Guild
+from flux.models.external.message import Message
+from flux.models.external.role import Role
+from flux.models.external.snowflake import to_snowflake, to_optional_snowflake
+from flux.models.external.user import Member, User
+from flux.models.external.scheduled_event import ScheduledEvent
 from flux.models.internal.active_voice_state import ActiveVoiceState
 
 __all__ = ("GlobalCache", "create_cache")
@@ -24,8 +24,8 @@ __all__ = ("GlobalCache", "create_cache")
 
 if TYPE_CHECKING:
     from flux.client import Client
-    from flux.models.discord.channel import DM, TYPE_ALL_CHANNEL
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.channel import DM, TYPE_ALL_CHANNEL
+    from flux.models.external.snowflake import Snowflake_Type
 
 
 def create_cache(
@@ -66,14 +66,14 @@ class GlobalCache:
         repr=False,
     )
 
-    # Non expiring discord objects cache
+    # Non expiring external objects cache
     user_cache: dict = attrs.field(repr=False, factory=dict)  # key: user_id
     member_cache: dict = attrs.field(repr=False, factory=dict)  # key: (guild_id, user_id)
     channel_cache: dict = attrs.field(repr=False, factory=dict)  # key: channel_id
     guild_cache: dict = attrs.field(repr=False, factory=dict)  # key: guild_id
     scheduled_events_cache: dict = attrs.field(repr=False, factory=dict)  # key: guild_scheduled_event_id
 
-    # Expiring discord objects cache
+    # Expiring external objects cache
     message_cache: TTLCache = attrs.field(repr=False, factory=TTLCache)  # key: (channel_id, message_id)
     role_cache: TTLCache = attrs.field(repr=False, factory=dict)  # key: role_id
     voice_state_cache: TTLCache = attrs.field(repr=False, factory=dict)  # key: user_id
@@ -928,7 +928,7 @@ class GlobalCache:
 
         """
         with suppress(KeyError):
-            del data["guild_id"]  # discord sometimes packages a guild_id - this will cause an exception
+            del data["guild_id"]  # external sometimes packages a guild_id - this will cause an exception
 
         emoji = CustomEmoji.from_dict(data, self._client, to_optional_snowflake(guild_id))
         if self.emoji_cache is not None:

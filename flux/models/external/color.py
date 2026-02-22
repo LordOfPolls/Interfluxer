@@ -302,7 +302,7 @@ class RoleColors(Color, Enum):
 
 def process_color(color: Color | dict | COLOR_TYPES | None) -> int | None:
     """
-    Process color to a format that can be used by discord.
+    Process color to a format that can be used by external.
 
     Args:
         color: The color to process.

@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Callable, Union, Any
 
 from flux.client.const import MISSING
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.timestamp import Timestamp
 
 __all__ = ("list_converter", "optional", "timestamp_converter")
 

@@ -5,15 +5,15 @@ from typing import TYPE_CHECKING, List, Optional
 import attrs
 
 from flux.client.const import MISSING
-from flux.models.discord.emoji import PartialEmoji
-from flux.models.discord.snowflake import to_snowflake
+from flux.models.external.emoji import PartialEmoji
+from flux.models.external.snowflake import to_snowflake
 from flux.models.misc.iterator import AsyncIterator
 from .base import ClientObject
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
     from flux.models import Message, TYPE_ALL_CHANNEL
-    from flux.models.discord.user import User
+    from flux.models.external.user import User
 
 __all__ = ("Reaction", "ReactionUsers")
 
@@ -37,7 +37,7 @@ class ReactionUsers(AsyncIterator):
 
     async def fetch(self) -> List["User"]:
         """
-        Gets all the users who reacted to the message. Requests user data from discord API if not cached.
+        Gets all the users who reacted to the message. Requests user data from external API if not cached.
 
         Returns:
             A list of users who reacted to the message.

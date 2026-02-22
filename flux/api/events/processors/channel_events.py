@@ -3,8 +3,8 @@ from typing import TYPE_CHECKING
 
 import flux.api.events as events
 from flux.client.const import MISSING
-from flux.models.discord.channel import BaseChannel
-from flux.models.discord.invite import Invite
+from flux.models.external.channel import BaseChannel
+from flux.models.external.invite import Invite
 from ._template import EventMixinTemplate, Processor
 
 if TYPE_CHECKING:

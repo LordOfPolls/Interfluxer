@@ -1,1 +1,1 @@
-::: interactions.models.discord.webhooks
+::: interactions.models.external.webhooks

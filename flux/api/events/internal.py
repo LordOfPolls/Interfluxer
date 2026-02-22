@@ -67,12 +67,12 @@ class Login(BaseEvent):
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class Connect(BaseEvent):
-    """The bot is now connected to the discord Gateway."""
+    """The bot is now connected to the external Gateway."""
 
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class Resume(BaseEvent):
-    """The bot has resumed its connection to the discord Gateway."""
+    """The bot has resumed its connection to the external Gateway."""
 
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
@@ -82,7 +82,7 @@ class Disconnect(BaseEvent):
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=False)
 class ShardConnect(Connect):
-    """A shard just connected to the discord Gateway."""
+    """A shard just connected to the external Gateway."""
 
     shard_id: int = attrs.field(repr=False, metadata=docs("The ID of the shard"))
 

@@ -1,1 +1,1 @@
-::: interactions.models.discord.asset
+::: interactions.models.external.asset

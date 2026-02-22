@@ -1,1 +1,1 @@
-::: interactions.models.discord.team
+::: interactions.models.external.team

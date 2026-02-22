@@ -1,1 +1,1 @@
-::: interactions.models.discord.role
+::: interactions.models.external.role

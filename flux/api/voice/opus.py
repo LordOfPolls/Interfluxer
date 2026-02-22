@@ -335,7 +335,7 @@ class Decoder(OpusConfig):
 
     def decode(self, data: bytes, fec: bool = False) -> bytes:
         """
-        Decode an opus payload from discord.
+        Decode an opus payload from external.
 
         Args:
             data: The data to decode

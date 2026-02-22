@@ -6,18 +6,18 @@ from flux.client.const import MISSING, T, Missing
 from flux.client.utils import nulled_boolean_get
 from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.serializer import dict_filter, to_image_data
-from flux.models.discord.asset import Asset
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.color import COLOR_TYPES, Color, process_color
-from flux.models.discord.emoji import PartialEmoji
-from flux.models.discord.enums import Permissions
+from flux.models.external.asset import Asset
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.color import COLOR_TYPES, Color, process_color
+from flux.models.external.emoji import PartialEmoji
+from flux.models.external.enums import Permissions
 from .base import DiscordObject
 
 if TYPE_CHECKING:
     from flux.client import Client
-    from flux.models.discord.guild import Guild
-    from flux.models.discord.user import Member
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.guild import Guild
+    from flux.models.external.user import Member
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("Role",)
 

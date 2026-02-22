@@ -1,1 +1,1 @@
-::: interactions.models.discord.poll
+::: interactions.models.external.poll

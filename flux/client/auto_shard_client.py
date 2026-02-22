@@ -13,7 +13,7 @@ from flux.models import (
     Guild,
     to_snowflake,
 )
-from flux.models.discord import Status, Activity
+from flux.models.external import Status, Activity
 from flux.models.internal.listener import Listener
 
 if TYPE_CHECKING:
@@ -215,7 +215,7 @@ class AutoShardedClient(Client):
                 tasks.append(asyncio.create_task(shard.start()))
 
                 if self.max_start_concurrency == 1:
-                    # connection ratelimiting when discord has asked for one connection concurrently
+                    # connection ratelimiting when external has asked for one connection concurrently
                     # noinspection PyProtectedMember
                     await shard._shard_ready.wait()
                     await asyncio.sleep(5.1 - (time.perf_counter() - start))
@@ -231,7 +231,7 @@ class AutoShardedClient(Client):
 
     async def login(self, token: str | None = None) -> None:
         """
-        Login to discord via http.
+        Login to external via http.
 
         !!! note
             You will need to run Client.start_gateway() before you start receiving gateway events.

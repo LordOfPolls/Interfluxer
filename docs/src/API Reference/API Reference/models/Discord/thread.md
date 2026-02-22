@@ -1,1 +1,1 @@
-::: interactions.models.discord.thread
+::: interactions.models.external.thread

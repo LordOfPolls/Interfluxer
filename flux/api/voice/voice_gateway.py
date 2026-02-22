@@ -279,7 +279,7 @@ class VoiceGateway(WebsocketClient):
                 while not writable:
                     _, writable, _ = select.select([], [self.socket], [], 0)
 
-                # discord will never respond to this, but it helps maintain the hole punch
+                # external will never respond to this, but it helps maintain the hole punch
                 self.socket.sendto(keep_alive, (self.voice_ip, self.voice_port))
                 time.sleep(5)
             except socket.error as e:
@@ -292,7 +292,7 @@ class VoiceGateway(WebsocketClient):
         self.logger.debug("Ending UDP Keep Alive")
 
     async def establish_voice_socket(self) -> None:
-        """Establish the socket connection to discord"""
+        """Establish the socket connection to external"""
         self.logger.debug("IP Discovery in progress...")
 
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

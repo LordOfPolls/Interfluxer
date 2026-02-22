@@ -1,1 +1,1 @@
-::: interactions.models.discord.base
+::: interactions.models.external.base

@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from flux.models.discord.entitlement import Entitlement
+from flux.models.external.entitlement import Entitlement
 import flux.api.events as events
 from ._template import EventMixinTemplate, Processor
 

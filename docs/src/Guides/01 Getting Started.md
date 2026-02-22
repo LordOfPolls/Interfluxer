@@ -66,7 +66,7 @@ from flux import Client, Intents, listen
 bot = Client(intents=Intents.DEFAULT)
 
 
-# intents are what events we want to receive from discord, `DEFAULT` is usually fine
+# intents are what events we want to receive from external, `DEFAULT` is usually fine
 
 @listen()  # this decorator tells snek that it needs to listen for the corresponding event, and run this coroutine
 async def on_ready():

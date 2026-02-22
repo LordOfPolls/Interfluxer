@@ -25,11 +25,11 @@ from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.attr_converters import timestamp_converter
 from flux.client.utils.serializer import dict_filter_none
 from flux.client.utils.text_utils import mentions
-from flux.models.discord.channel import BaseChannel, GuildChannel
-from flux.models.discord.embed import process_embeds
-from flux.models.discord.emoji import process_emoji_req_format
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.poll import Poll
+from flux.models.external.channel import BaseChannel, GuildChannel
+from flux.models.external.embed import process_embeds
+from flux.models.external.emoji import process_emoji_req_format
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.poll import Poll
 from flux.models.misc.iterator import AsyncIterator
 
 from .base import DiscordObject
@@ -583,7 +583,7 @@ class Message(BaseMessage):
     @property
     def proto_url(self) -> str:
         """A URL like `jump_url` that uses protocols."""
-        return f"discord://-/channels/{self._guild_id or '@me'}/{self._channel_id}/{self.id}"
+        return f"external://-/channels/{self._guild_id or '@me'}/{self._channel_id}/{self.id}"
 
     def answer_voters(
         self, answer_id: int, limit: int = 0, before: Snowflake_Type | None = None
@@ -907,7 +907,7 @@ def process_message_payload(
     **kwargs,
 ) -> dict:
     """
-    Format message content for it to be ready to send discord.
+    Format message content for it to be ready to send external.
 
     Args:
         content: Message text content.

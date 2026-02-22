@@ -1,1 +1,1 @@
-::: interactions.models.discord.embed
+::: interactions.models.external.embed

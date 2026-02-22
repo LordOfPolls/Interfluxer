@@ -1,1 +1,1 @@
-::: interactions.models.discord.user
+::: interactions.models.external.user

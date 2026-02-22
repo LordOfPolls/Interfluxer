@@ -10,7 +10,7 @@ __all__ = ("MessageRequests",)
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
     from flux import UPLOADABLE_TYPE
 
 

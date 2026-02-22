@@ -17,7 +17,7 @@ try:
     import sentry_sdk
 except ModuleNotFoundError:
     get_logger().error(
-        "sentry-sdk not installed, cannot enable sentry integration.  Install with `pip install discord-py-flux[sentry]`"
+        "sentry-sdk not installed, cannot enable sentry integration.  Install with `pip install external-py-flux[sentry]`"
     )
     raise
 

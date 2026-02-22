@@ -2,7 +2,7 @@ import inspect
 import re
 import typing
 from enum import IntFlag
-from flux.models.discord.snowflake import Snowflake
+from flux.models.external.snowflake import Snowflake
 from typing import Any, Dict, Union, Optional
 
 import aiohttp  # type: ignore

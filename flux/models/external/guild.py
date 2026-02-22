@@ -19,9 +19,9 @@ from flux.client.utils.attr_converters import (
 )
 from flux.client.utils.attr_utils import docs
 from flux.client.utils.serializer import no_export_meta, to_image_data
-from flux.models.discord.auto_mod import AutoModRule, BaseAction, BaseTrigger
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.onboarding import Onboarding
+from flux.models.external.auto_mod import AutoModRule, BaseAction, BaseTrigger
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.onboarding import Onboarding
 from flux.models.misc.iterator import AsyncIterator
 
 from .base import ClientObject, DiscordObject
@@ -495,7 +495,7 @@ class Guild(BaseGuild):
 
     async def fetch_member(self, member_id: Snowflake_Type, *, force: bool = False) -> Optional["models.Member"]:
         """
-        Return the Member with the given discord ID, fetching from the API if necessary.
+        Return the Member with the given external ID, fetching from the API if necessary.
 
         Args:
             member_id: The ID of the member.
@@ -512,7 +512,7 @@ class Guild(BaseGuild):
 
     def get_member(self, member_id: Snowflake_Type) -> Optional["models.Member"]:
         """
-        Return the Member with the given discord ID.
+        Return the Member with the given external ID.
 
         Args:
             member_id: The ID of the member
@@ -642,7 +642,7 @@ class Guild(BaseGuild):
         Receive and either cache or process the chunks of members from gateway.
 
         Args:
-            chunk: A member chunk from discord
+            chunk: A member chunk from external
 
         """
         if self.chunked.is_set():
@@ -791,8 +791,8 @@ class Guild(BaseGuild):
             system_channel: The text channel where new system messages should appear. This includes boosts and welcome messages.
             system_channel_flags: The new settings for the system channel.
             rules_channel: The text channel where your rules and community guidelines are displayed.
-            public_updates_channel: The text channel where updates from discord should appear.
-            safety_alerts_channel: The text channel where safety alerts from discord should appear.
+            public_updates_channel: The text channel where updates from external should appear.
+            safety_alerts_channel: The text channel where safety alerts from external should appear.
             preferred_locale: The new preferred locale of the guild. Must be an ISO 639 code.
             premium_progress_bar_enabled: The status of the Nitro boost bar.
             features: The enabled guild features
@@ -1504,7 +1504,7 @@ class Guild(BaseGuild):
             permissions: The permissions the role should have. `Default: @everyone permissions`
             colour: The colour of the role. Can be either `Color` or an RGB integer. `Default: BrandColors.BLACK`
             color: Alias for `colour`
-            icon: Can be either a bytes like object or a path to an image, or a unicode emoji which is supported by discord.
+            icon: Can be either a bytes like object or a path to an image, or a unicode emoji which is supported by external.
             hoist: Whether the role is shown separately in the members list. `Default: False`
             mentionable: Whether the role can be mentioned. `Default: False`
             reason: An optional reason for the audit log.
@@ -2225,7 +2225,7 @@ class GuildIntegration(DiscordObject):
     name: str = attrs.field(repr=True)
     """The name of the integration"""
     type: str = attrs.field(repr=True)
-    """integration type (twitch, youtube, or discord)"""
+    """integration type (twitch, youtube, or external)"""
     enabled: bool = attrs.field(repr=True)
     """is this integration enabled"""
     account: dict = attrs.field(
@@ -2233,7 +2233,7 @@ class GuildIntegration(DiscordObject):
     )
     """integration account information"""
     application: Optional["models.Application"] = attrs.field(repr=False, default=None)
-    """The bot/OAuth2 application for discord integrations"""
+    """The bot/OAuth2 application for external integrations"""
     _guild_id: Snowflake_Type = attrs.field(
         repr=False,
     )
@@ -2448,7 +2448,7 @@ class AuditLogHistory(AsyncIterator):
 
     async def fetch(self) -> List["AuditLog"]:
         """
-        Retrieves the audit log entries from discord API.
+        Retrieves the audit log entries from external API.
 
         Returns:
             The list of audit log entries.

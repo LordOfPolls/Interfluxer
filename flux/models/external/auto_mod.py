@@ -6,14 +6,14 @@ from flux.client.const import MISSING, Absent, get_logger
 from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils import list_converter, optional
 from flux.client.utils.attr_utils import docs
-from flux.models.discord.base import ClientObject, DiscordObject
-from flux.models.discord.enums import (
+from flux.models.external.base import ClientObject, DiscordObject
+from flux.models.external.enums import (
     AutoModAction,
     AutoModEvent,
     AutoModLanuguageType,
     AutoModTriggerType,
 )
-from flux.models.discord.snowflake import to_snowflake, to_snowflake_list
+from flux.models.external.snowflake import to_snowflake, to_snowflake_list
 
 if TYPE_CHECKING:
     from flux import (

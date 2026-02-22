@@ -7,7 +7,7 @@ from typing import Optional
 from attr import fields, has
 
 from flux.client.const import MISSING, T
-from flux.models.discord.file import UPLOADABLE_TYPE, File
+from flux.models.external.file import UPLOADABLE_TYPE, File
 
 __all__ = (
     "dict_filter",
@@ -128,7 +128,7 @@ def dict_filter(data: dict) -> dict:
 
 def to_image_data(imagefile: Optional["UPLOADABLE_TYPE"]) -> Optional[str]:
     """
-    Converts an image file to base64 encoded image data for discord api.
+    Converts an image file to base64 encoded image data for external api.
 
     Args:
         imagefile: The target image file to encode.

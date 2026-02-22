@@ -5,7 +5,7 @@ from typing import Any, Optional, List, Annotated
 from flux.client.const import T, T_co, Sentinel
 from flux.client.errors import BadArgument
 from flux.client.errors import Forbidden, HTTPException
-from flux.models.discord.channel import (
+from flux.models.external.channel import (
     BaseChannel,
     DMChannel,
     DM,
@@ -28,12 +28,12 @@ from flux.models.discord.channel import (
     TYPE_VOICE_CHANNEL,
     TYPE_MESSAGEABLE_CHANNEL,
 )
-from flux.models.discord.emoji import PartialEmoji, CustomEmoji
-from flux.models.discord.guild import Guild
-from flux.models.discord.message import Message
-from flux.models.discord.role import Role
-from flux.models.discord.snowflake import SnowflakeObject
-from flux.models.discord.user import User, Member
+from flux.models.external.emoji import PartialEmoji, CustomEmoji
+from flux.models.external.guild import Guild
+from flux.models.external.message import Message
+from flux.models.external.role import Role
+from flux.models.external.snowflake import SnowflakeObject
+from flux.models.external.user import User, Member
 from flux.models.internal.context import BaseContext
 from flux.models.internal.protocols import Converter
 
@@ -381,7 +381,7 @@ class MessageConverter(Converter[Message]):
     _ID_REGEX = re.compile(r"(?:(?P<channel_id>[0-9]{15,})-)?(?P<message_id>[0-9]{15,})")
     # of course, having a way to get it from a link is nice
     _MESSAGE_LINK_REGEX = re.compile(
-        r"https?://[\S]*?discord(?:app)?\.com/channels/(?P<guild_id>[0-9]{15,}|@me)/(?P<channel_id>[0-9]{15,})/(?P<message_id>[0-9]{15,})\/?$"
+        r"https?://[\S]*?external(?:app)?\.com/channels/(?P<guild_id>[0-9]{15,}|@me)/(?P<channel_id>[0-9]{15,})/(?P<message_id>[0-9]{15,})\/?$"
     )
 
     async def convert(self, ctx: BaseContext, argument: str) -> Message:

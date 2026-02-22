@@ -7,15 +7,15 @@ from flux.client.const import MISSING
 from flux.client.mixins.serialization import DictSerializationMixin
 from flux.client.utils.attr_converters import optional as optional_c
 from flux.client.utils.attr_converters import timestamp_converter
-from flux.models.discord.snowflake import to_snowflake
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.snowflake import to_snowflake
+from flux.models.external.timestamp import Timestamp
 from .base import ClientObject
 
 if TYPE_CHECKING:
     from flux.client import Client
     from flux.models import Guild, TYPE_VOICE_CHANNEL
-    from flux.models.discord.user import Member
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.user import Member
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("VoiceRegion", "VoiceState")
 

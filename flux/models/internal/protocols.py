@@ -3,7 +3,7 @@ from typing import Protocol, Any, TYPE_CHECKING
 
 from flux.api.http.route import Route
 from flux.client.const import T_co
-from flux.models.discord.file import UPLOADABLE_TYPE
+from flux.models.external.file import UPLOADABLE_TYPE
 
 if TYPE_CHECKING:
     from flux.models.internal.context import BaseContext

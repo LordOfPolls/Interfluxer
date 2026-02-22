@@ -7,17 +7,17 @@ import attrs
 from flux.client import Client
 from flux.client.const import Absent
 from flux.client.mixins.send import SendMixin
-from flux.models.discord.activity import Activity
-from flux.models.discord.asset import Asset
-from flux.models.discord.channel import DM, TYPE_GUILD_CHANNEL
-from flux.models.discord.color import Color
-from flux.models.discord.enums import MemberFlags, Permissions, PremiumType, Status, UserFlags
-from flux.models.discord.file import UPLOADABLE_TYPE
-from flux.models.discord.guild import Guild
-from flux.models.discord.role import Role
-from flux.models.discord.snowflake import Snowflake_Type
-from flux.models.discord.timestamp import Timestamp
-from flux.models.discord.voice_state import VoiceState
+from flux.models.external.activity import Activity
+from flux.models.external.asset import Asset
+from flux.models.external.channel import DM, TYPE_GUILD_CHANNEL
+from flux.models.external.color import Color
+from flux.models.external.enums import MemberFlags, Permissions, PremiumType, Status, UserFlags
+from flux.models.external.file import UPLOADABLE_TYPE
+from flux.models.external.guild import Guild
+from flux.models.external.role import Role
+from flux.models.external.snowflake import Snowflake_Type
+from flux.models.external.timestamp import Timestamp
+from flux.models.external.voice_state import VoiceState
 from typing import Any, Dict, Iterable, List, Optional, Set, Union
 
 class _SendDMMixin(SendMixin):

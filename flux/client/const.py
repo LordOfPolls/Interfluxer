@@ -74,7 +74,7 @@ __all__ = (
 
 _ver_info = sys.version_info
 
-repo_names = ("flux.py", "discord-py-flux")
+repo_names = ("flux.py", "external-py-flux")
 for repo_name in repo_names:
     try:
         __version__ = _v(repo_name)

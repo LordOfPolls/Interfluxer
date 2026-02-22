@@ -11,8 +11,8 @@ __all__ = ("GuildRequests",)
 
 
 if TYPE_CHECKING:
-    from flux.models.discord.enums import AuditLogEventType
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.enums import AuditLogEventType
+    from flux.models.external.snowflake import Snowflake_Type
 
 
 class GuildRequests(CanRequest):

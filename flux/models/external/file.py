@@ -12,14 +12,14 @@ class File:
     """
     Representation of a file.
 
-    Used for sending files to discord.
+    Used for sending files to external.
 
     """
 
     file: Union["IOBase", BinaryIO, "Path", str] = attrs.field(repr=True)
     """Location of file to send or the bytes."""
     file_name: Optional[str] = attrs.field(repr=True, default=None)
-    """Set a filename that will be displayed when uploaded to discord. If you leave this empty, the file will be called `file` by default"""
+    """Set a filename that will be displayed when uploaded to external. If you leave this empty, the file will be called `file` by default"""
     description: Optional[str] = attrs.field(repr=True, default=None)
     """Optional description (ALT text) for the file."""
     content_type: Optional[str] = attrs.field(repr=True, default=None)

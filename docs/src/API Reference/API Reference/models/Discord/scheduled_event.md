@@ -1,1 +1,1 @@
-::: interactions.models.discord.scheduled_event
+::: interactions.models.external.scheduled_event

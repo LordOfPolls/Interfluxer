@@ -5,7 +5,7 @@ from enum import Enum
 from typing import TYPE_CHECKING, Optional, Union
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type, Snowflake
+    from flux.models.external.snowflake import Snowflake_Type, Snowflake
 
 __all__ = ("Timestamp", "TimestampStyles")
 
@@ -150,7 +150,7 @@ class Timestamp(datetime):
 
     def format(self, style: Optional[Union[TimestampStyles, str]] = None) -> str:
         """
-        Format the timestamp for discord client to display.
+        Format the timestamp for external client to display.
 
         Args:
             style: The style to format the timestamp with.

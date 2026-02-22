@@ -5,8 +5,8 @@ from typing import TYPE_CHECKING
 import attrs
 
 from flux.client.const import get_logger
-from flux.models.discord.color import BrandColors, Color
-from flux.models.discord.embed import Embed
+from flux.models.external.color import BrandColors, Color
+from flux.models.external.embed import Embed
 from .command import prefixed_command, PrefixedCommand
 from .context import PrefixedContext
 

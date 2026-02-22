@@ -704,7 +704,7 @@ class SeparatorSpacingSize(CursedIntEnum):
 
 
 class IntegrationType(CursedIntEnum):
-    """The types of installation contexts supported by discord."""
+    """The types of installation contexts supported by external."""
 
     GUILD_INSTALL = 0
     USER_INSTALL = 1
@@ -721,7 +721,7 @@ class ContextType(CursedIntEnum):
 class ButtonStyle(CursedIntEnum):
     """The styles of buttons supported."""
 
-    # Based on discord api
+    # Based on external api
     PRIMARY = 1
     """blurple"""
     SECONDARY = 2

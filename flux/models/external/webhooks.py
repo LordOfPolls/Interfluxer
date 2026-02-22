@@ -9,26 +9,26 @@ from flux.client.const import MISSING, Absent
 from flux.client.errors import ForeignWebhookException, EmptyMessageException, NotFound
 from flux.client.mixins.send import SendMixin
 from flux.client.utils.serializer import to_image_data
-from flux.models.discord.message import process_message_payload
-from flux.models.discord.snowflake import to_snowflake, to_optional_snowflake
+from flux.models.external.message import process_message_payload
+from flux.models.external.snowflake import to_snowflake, to_optional_snowflake
 from .base import DiscordObject
 
 if TYPE_CHECKING:
-    from flux.models.discord.file import UPLOADABLE_TYPE
+    from flux.models.external.file import UPLOADABLE_TYPE
     from flux.client import Client
-    from flux.models.discord.enums import MessageFlags
-    from flux.models.discord.snowflake import Snowflake_Type
-    from flux.models.discord.channel import TYPE_MESSAGEABLE_CHANNEL
-    from flux.models.discord.components import BaseComponent
-    from flux.models.discord.embed import Embed
+    from flux.models.external.enums import MessageFlags
+    from flux.models.external.snowflake import Snowflake_Type
+    from flux.models.external.channel import TYPE_MESSAGEABLE_CHANNEL
+    from flux.models.external.components import BaseComponent
+    from flux.models.external.embed import Embed
 
-    from flux.models.discord.message import (
+    from flux.models.external.message import (
         AllowedMentions,
         Message,
         MessageReference,
     )
-    from flux.models.discord.poll import Poll
-    from flux.models.discord.sticker import Sticker
+    from flux.models.external.poll import Poll
+    from flux.models.external.sticker import Sticker
 
 __all__ = ("Webhook", "WebhookTypes")
 
@@ -86,7 +86,7 @@ class Webhook(DiscordObject, SendMixin):
             A Webhook object.
 
         """
-        match = re.search(r"discord(?:app)?\.com/api/webhooks/(?P<id>[0-9]{17,})/(?P<token>[\w\-.]{60,68})", url)
+        match = re.search(r"external(?:app)?\.com/api/webhooks/(?P<id>[0-9]{17,})/(?P<token>[\w\-.]{60,68})", url)
         if match is None:
             raise ValueError("Invalid webhook URL given.")
 

@@ -56,7 +56,7 @@ class GatewayNotFound(LibraryException):
     """An exception that is raised when the gateway for Discord could not be found."""
 
     def __init__(self) -> None:
-        super().__init__("Unable to find discord gateway!")
+        super().__init__("Unable to find external gateway!")
 
 
 class LoginError(BotException):
@@ -71,7 +71,7 @@ class HTTPException(LibraryException):
         response aiohttp.ClientResponse: The response of the HTTP request
         text str: The text of the exception, could be None
         status int: The HTTP status code
-        code int: The discord error code, if one is provided
+        code int: The external error code, if one is provided
         route Route: The HTTP route that was used
 
     """
@@ -168,7 +168,7 @@ class HTTPException(LibraryException):
 
 
 class DiscordError(HTTPException):
-    """A discord-side error."""
+    """A external-side error."""
 
 
 class BadRequest(HTTPException):

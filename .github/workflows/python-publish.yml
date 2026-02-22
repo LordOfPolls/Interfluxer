@@ -6,7 +6,7 @@ on:
       - published
 
 env:
-  PACKAGE_NAME1: discord-py-flux
+  PACKAGE_NAME1: external-py-flux
   PACKAGE_NAME2: flux.py
 
 jobs:

@@ -1,1 +1,1 @@
-::: interactions.models.discord.stage_instance
+::: interactions.models.external.stage_instance

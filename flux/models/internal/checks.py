@@ -1,8 +1,8 @@
 from typing import Awaitable, Callable
 
-from flux.models.discord.role import Role
-from flux.models.discord.snowflake import Snowflake_Type, to_snowflake
-from flux.models.discord.user import Member
+from flux.models.external.role import Role
+from flux.models.external.snowflake import Snowflake_Type, to_snowflake
+from flux.models.external.user import Member
 from flux.models.internal.context import BaseContext
 
 __all__ = ("dm_only", "guild_only", "has_any_role", "has_id", "has_role", "is_owner")

@@ -9,9 +9,9 @@ from flux.client.utils.attr_converters import (
     timestamp_converter,
 )
 from flux.client.mixins.serialization import DictSerializationMixin
-from flux.models.discord.emoji import PartialEmoji, process_emoji
-from flux.models.discord.enums import PollLayoutType
-from flux.models.discord.timestamp import Timestamp
+from flux.models.external.emoji import PartialEmoji, process_emoji
+from flux.models.external.enums import PollLayoutType
+from flux.models.external.timestamp import Timestamp
 
 __all__ = (
     "Poll",

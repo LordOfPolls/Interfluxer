@@ -4,7 +4,7 @@ from urllib.parse import quote as _uriquote
 from flux.client.const import __api_version__
 
 if TYPE_CHECKING:
-    from flux.models.discord.snowflake import Snowflake_Type
+    from flux.models.external.snowflake import Snowflake_Type
 
 __all__ = ("PAYLOAD_TYPE", "Route")
 
