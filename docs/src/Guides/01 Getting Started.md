@@ -61,9 +61,11 @@ Now let's get the library installed.
 Now let's get a basic bot going, for your code, you'll want something like this:
 
 ```python
-from interactions import Client, Intents, listen
+from flux import Client, Intents, listen
 
 bot = Client(intents=Intents.DEFAULT)
+
+
 # intents are what events we want to receive from discord, `DEFAULT` is usually fine
 
 @listen()  # this decorator tells snek that it needs to listen for the corresponding event, and run this coroutine

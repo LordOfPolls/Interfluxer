@@ -47,8 +47,9 @@ For more information, please visit the API reference about Intents [at this page
 After your intents have been properly configured, you can start to listen to events. Say, if you wanted to listen to channels being created in a guild the bot can see, then all you would have to do is this:
 
 ```python
-from interactions import listen
-from interactions.api.events import ChannelCreate
+from flux import listen
+from flux.api.events import ChannelCreate
+
 
 @listen(ChannelCreate)
 async def an_event_handler(event: ChannelCreate):
@@ -104,7 +105,8 @@ Some events may have no information to pass - the information is the event itsel
 Whenever this happens, you can specify the event to simply not pass anything into the function, as can be seen with the startup event:
 
 ```python
-from interactions.api.events import Startup
+from flux.api.events import Startup
+
 
 @listen(Startup)
 async def startup_func():
@@ -118,7 +120,8 @@ If you forget, the library will just pass an empty object to avoid errors.
 Some internal events, like `ModalCompletion`, have default listeners that perform niceties like logging the command/interaction logged. You may not want this, however, and may want to completely override this behavior without subclassing `Client`. If so, you can achieve it through `disable_default_listeners`:
 
 ```python
-from interactions.api.events import ModalCompletion
+from flux.api.events import ModalCompletion
+
 
 @listen(ModalCompletion, disable_default_listeners=True)
 async def my_modal_completion(event: ModalCompletion):

@@ -11,9 +11,9 @@ search:
 
 import logging
 
-from interactions import Client, Intents, listen
-from interactions.api.events import Component
-from interactions.ext import prefixed_commands
+from flux import Client, Intents, listen
+from flux.api.events import Component
+from flux.ext import prefixed_commands
 
 # define your own logger with custom logging settings
 logging.basicConfig()
@@ -62,8 +62,8 @@ bot.start("Token")
 
 ```python
 
-from interactions import Button, ActionRow, ButtonStyle, Extension
-from interactions.ext.prefixed_commands import prefixed_command
+from flux import Button, ActionRow, ButtonStyle, Extension
+from flux.ext.prefixed_commands import prefixed_command
 
 
 class ButtonExampleSkin(Extension):
@@ -104,8 +104,9 @@ def setup(bot):
 
 ```python
 
-from interactions import slash_command, slash_option, SlashContext, context_menu, CommandType, Button, ActionRow,
-    ButtonStyle, Extension
+from flux import slash_command, slash_option, SlashContext, context_menu, CommandType, Button, ActionRow,
+
+ButtonStyle, Extension
 
 
 class CommandsExampleSkin(Extension):

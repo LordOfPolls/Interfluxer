@@ -23,7 +23,8 @@ If you wish to turn this off, create your client with `Client(..., send_command_
 The most obvious solution is to think "Well, I'm writing a Discord Bot.  Why not send my errors to a discord channel?"
 
 ```python
-from interactions.api.events import Error
+from flux.api.events import Error
+
 
 @listen()
 async def on_error(error: Error):

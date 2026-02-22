@@ -6,8 +6,8 @@ on:
       - published
 
 env:
-  PACKAGE_NAME1: discord-py-interactions
-  PACKAGE_NAME2: interactions.py
+  PACKAGE_NAME1: discord-py-flux
+  PACKAGE_NAME2: flux.py
 
 jobs:
   build-and-publish:

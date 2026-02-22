@@ -48,11 +48,13 @@ As you can see, a converter can transparently convert what Discord sends you (a 
 You may also use the `Converter` class that `interactions.py` has as well.
 
 ```python
-from interactions import Converter
+from flux import Converter
+
 
 class UpperConverter(Converter):
     async def convert(ctx: BaseContext, argument: str):
         return argument.upper()
+
 
 # Slash Command:
 @slash_command(name="upper", description="Sends back the input in all caps.")
@@ -64,6 +66,7 @@ class UpperConverter(Converter):
 )
 async def upper(ctx: SlashContext, to_upper: UpperConverter):
     await ctx.send(to_upper)
+
 
 # Prefixed Command:
 @prefixed_command()

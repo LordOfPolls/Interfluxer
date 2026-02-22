@@ -10,7 +10,7 @@ interactions.py has a few built-in extensions that add some features, primarily 
 ## How to enable
 
 ```py
-bot.load_extension("interactions.ext.jurigged")
+bot.load_extension("flux.ext.jurigged")
 ```
 
 That's it! The extension will handle all of the leg work, and all you'll notice is that you have more messages in your logs (depending on the log level).
@@ -29,5 +29,5 @@ To make `jurigged` work inside Docker container, you need to mount the directory
 Additionally, you need to initialize the `jurigged` extension with the `poll` keyword argument set to `True`:
 
 ```py
-bot.load_extension("interactions.ext.jurigged", poll=True)
+bot.load_extension("flux.ext.jurigged", poll=True)
 ```

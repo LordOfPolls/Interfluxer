@@ -47,13 +47,13 @@ So you want to start playing some 🎵tunes🎶 in voice channels? Well let's ge
     Now you've got those; let's make a simple play command to get you started.
 
 ```python
-import interactions
-from interactions.api.voice.audio import AudioVolume
+import flux
+from flux.api.voice.audio import AudioVolume
 
 
-@interactions.slash_command("play", "play a song!")
-@interactions.slash_option("song", "The song to play", 3, True)
-async def play(self, ctx: interactions.SlashContext, song: str):
+@flux.slash_command("play", "play a song!")
+@flux.slash_option("song", "The song to play", 3, True)
+async def play(self, ctx: flux.SlashContext, song: str):
     if not ctx.voice_state:
         # if we haven't already joined a voice channel
         # join the authors vc
@@ -78,12 +78,12 @@ If you want to play your own files, you can do that too! Create an `AudioVolume`
     If your audio is already encoded, use the standard `Audio` object instead. You'll lose volume manipulation, however.
 
 ```python
-import interactions
-from interactions.api.voice.audio import AudioVolume
+import flux
+from flux.api.voice.audio import AudioVolume
 
 
-@interactions.slash_command("play", "play a song!")
-async def play_file(ctx: interactions.SlashContext):
+@flux.slash_command("play", "play a song!")
+async def play_file(ctx: flux.SlashContext):
     audio = AudioVolume("some_file.wav")
     await ctx.voice_state.play(audio)
 ```
@@ -98,17 +98,19 @@ Let's start with a simple example:
 
 ```python
 import asyncio
-import interactions
+import flux
 
-@interactions.slash_command("record", "record some audio")
-async def record(ctx: interactions.SlashContext):
+
+@flux.slash_command("record", "record some audio")
+async def record(ctx: flux.SlashContext):
     voice_state = await ctx.author.voice.channel.connect()
 
     # Start recording
     await voice_state.start_recording()
     await asyncio.sleep(10)
     await voice_state.stop_recording()
-    await ctx.send(files=[interactions.File(file, file_name="user_id.mp3") for user_id, file in voice_state.recorder.output.items()])
+    await ctx.send(
+        files=[flux.File(file, file_name="user_id.mp3") for user_id, file in voice_state.recorder.output.items()])
 ```
 This code will connect to the author's voice channel, start recording, wait 10 seconds, stop recording, and send a file for each user that was recorded.
 

@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from interactions import MaxConcurrency, Buckets, CooldownSystem, Cooldown
+from flux import MaxConcurrency, Buckets, CooldownSystem, Cooldown
 from tests.utils import generate_dummy_context
 
 __all__ = ()

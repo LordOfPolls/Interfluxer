@@ -16,7 +16,8 @@ Simply start your bot with this client, and it will automatically shard based on
 How do you use it? Well that's the easy part, lets say this is your code
 
 ```python
-from interactions import Client, listen
+from flux import Client, listen
+
 
 class Bot(Client):
     async def on_ready(self):
@@ -28,8 +29,10 @@ class Bot(Client):
         print(f"message received: {event.message.content}")
 ```
 To make it sharded we make one change:
+
 ```python
-from interactions import AutoShardedClient, listen
+from flux import AutoShardedClient, listen
+
 
 class Bot(AutoShardedClient):
     async def on_ready(self):

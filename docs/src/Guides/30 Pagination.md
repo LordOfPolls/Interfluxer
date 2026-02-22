@@ -16,7 +16,7 @@ interactions.py comes builtin with a pagination utility that splits your message
 To use it, you only need 3 lines.
 
 ```python
-from interactions.ext.paginators import Paginator
+from flux.ext.paginators import Paginator
 
 paginator = Paginator.create_from_string(bot, your_content, page_size=1000)
 await paginator.send(ctx)

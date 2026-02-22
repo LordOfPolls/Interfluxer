@@ -22,7 +22,8 @@ You **cannot** respond to a modal with a modal.
 Use `ctx.send_modal()` to send a modal.
 
 ```python
-from interactions import Modal, ParagraphText, ShortText, SlashContext, slash_command
+from flux import Modal, ParagraphText, ShortText, SlashContext, slash_command
+
 
 @slash_command(name="my_modal_command", description="Playing with Modals")
 async def my_command_function(ctx: SlashContext):
@@ -42,7 +43,8 @@ This example leads to the following modal:
 Modal components are customisable in their appearance. You can set a placeholder, pre-fill them, restrict what users can input, or make them optional.
 
 ```python
-from interactions import Modal, ShortText, SlashContext, slash_command
+from flux import Modal, ShortText, SlashContext, slash_command
+
 
 @slash_command(name="my_modal_command", description="Playing with Modals")
 async def my_command_function(ctx: SlashContext):

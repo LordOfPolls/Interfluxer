@@ -46,9 +46,11 @@ Autodeferring is also pretty similar, although there's more control, with option
 Similarly to Slash Commands, events have also been reworked in v5. Instead of `@bot.event` and `@extension_listener`, the way to listen to events is now `@listen`. There are multiple ways to subscribe to events, whether it is using the function name or the argument of the `@listen` decorator. You can find more information on handling events using v5 [on its own guide page](../10 Events).
 
 An important note: events now dispatch an event object that contains every part about an event, instead of the object that directly corresponds to an event. For example, message creation now looks like this:
+
 ```python
-from interactions import listen
-from interactions.api.events import MessageCreate
+from flux import listen
+from flux.api.events import MessageCreate
+
 
 @listen()
 async def on_message_create(event: MessageCreate):
@@ -56,8 +58,10 @@ async def on_message_create(event: MessageCreate):
 ```
 
 This is more notable with events that used to have two or more arguments. They *also* now only have one event object:
+
 ```python
-from interactions.api.events import MemberUpdate
+from flux.api.events import MemberUpdate
+
 
 @listen()
 async def on_member_update(event: MemberUpdate):
@@ -83,14 +87,15 @@ For example:
 ```
 
 [For components](../05 Components) and [modals](../06 Modals): you no longer need to use `ActionRow.new(...)` to make an ActionRow now - you can just use `ActionRow(...)` directly. You also send modals via `ctx.send_modal` now. Finally, text inputs in components (the options for string select menus, and the components for modals) are also `*args` now, instead of being a typical parameter:
+
 ```python
-import interactions
+import flux
 
 # in v4:
 
-components = [interactions.TextInput(...), interactions.TextInput(...)]
+components = [flux.TextInput(...), flux.TextInput(...)]
 
-modal = interactions.Modal(
+modal = flux.Modal(
     title="Application Form",
     custom_id="mod_app_form",
     components=components,
@@ -98,9 +103,9 @@ modal = interactions.Modal(
 
 # in v5:
 
-components = [interactions.InputText(...), interactions.InputText(...)]
+components = [flux.InputText(...), flux.InputText(...)]
 
-modal = interactions.Modal(
+modal = flux.Modal(
     *components,
     title="Application Form",
     custom_id="mod_app_form",
@@ -142,12 +147,13 @@ However, as for the second point... it shouldn't impact most users, but this may
 So what do you do? Simple - create the loop "yourself" and use `bot.astart()` instead!
 
 Before:
+
 ```python
-import interactions
+import flux
 
 # if there's no loop detected, v4 would create the loop for you at this point
 # it also stores the loop in bot._loop
-bot = interactions.Client(...)
+bot = flux.Client(...)
 
 bot._loop.create_task(some_func())
 bot.load("an_ext_that_uses_the_event_loop")
@@ -156,18 +162,21 @@ bot.start()
 ```
 
 After:
+
 ```python
 import asyncio
-import interactions
+import flux
 
 # no bot._loop, loop also does not exist yet
-bot = interactions.Client(...)
+bot = flux.Client(...)
+
 
 async def main():
     # loop now exists, woo!
     asyncio.create_task(some_func())
     bot.load_extension("an_ext_that_uses_the_event_loop")
     await bot.astart()
+
 
 # a function in asyncio that creates the loop for you and runs
 # the function within

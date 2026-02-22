@@ -19,8 +19,8 @@ Whatever the reason is, `interactions.py` has an extensive yet familiar prefixed
 Because prefixed commands are in their own extension, some setup is required. It usually is as simple as putting something like this in your main bot file:
 
 ```python
-from interactions import Client, Intents
-from interactions.ext import prefixed_commands
+from flux import Client, Intents
+from flux.ext import prefixed_commands
 
 # guild messages are included in the default intents ipy uses
 # if you wish for the prefix to be anything but mentioning the bot,
@@ -40,7 +40,8 @@ If you wish to change this, you have two options in `setup`:
 To create a prefixed command, simply define an asynchronous function and use the `@prefixed_command()` (from `interactions.ext.prefixed_commands`) decorator above it.
 
 ```python
-from interactions.ext.prefixed_commands import prefixed_command, PrefixedContext
+from flux.ext.prefixed_commands import prefixed_command, PrefixedContext
+
 
 @prefixed_command(name="my_command")
 async def my_command_function(ctx: PrefixedContext):
@@ -223,7 +224,8 @@ There are a few specific converters that only work with prefixed commands due to
 Prefixed commands can be typehinted with some Discord models, like so:
 
 ```python
-from interactions import Member
+from flux import Member
+
 
 @prefixed_command()
 async def poke(ctx: PrefixedContext, target: Member):
@@ -244,7 +246,8 @@ For example, the below will try to convert an argument to a `GuildText` first, t
 
 ```python
 from typing import Union
-from interactions import GuildText, User
+from flux import GuildText, User
+
 
 @prefixed_command()
 async def union(ctx: PrefixedContext, param: Union[GuildText, User]):
@@ -300,7 +303,8 @@ async def one_or_two(ctx: PrefixedContext, num: Literal[1, 2]):
 The `Greedy` class, included in this library, specifies `interactions.py` to keep converting as many arguments as it can until it fails to do so. For example:
 
 ```python
-from interactions.ext.prefixed_commands import Greedy
+from flux.ext.prefixed_commands import Greedy
+
 
 @prefixed_command()
 async def slap(ctx: PrefixedContext, members: Greedy[Member]):
@@ -320,7 +324,7 @@ async def slap(ctx: PrefixedContext, members: Greedy[Member]):
 There is no automatically added help command in `interactions.py`. However, you can use `PrefixedHelpCommand` to create one with ease. Using it looks like so:
 
 ```python
-from interactions.ext.prefixed_command.help import PrefixedHelpCommand
+from flux.ext.prefixed_command.help import PrefixedHelpCommand
 
 # There are a variety of options - adjust them to your liking!
 help_cmd = PrefixedHelpCommand(bot, ...)

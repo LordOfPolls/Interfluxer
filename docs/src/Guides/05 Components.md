@@ -97,8 +97,9 @@ There are a bunch of colours and styles you can choose from.
 The colours correspond to the styles found in `ButtonStyle`. Click [here](/interactions.py/API Reference/API Reference/models/Discord/enums/#interactions.models.discord.enums.ButtonStyle) for more information.
 
 If you use `ButtonStyle.URL`, you can pass a URL to the button with the `url` argument. Users who click the button will get redirected to your URL.
+
 ```python
-from interactions import ButtonStyle
+from flux import ButtonStyle
 
 components = Button(
     style=ButtonStyle.URL,
@@ -122,7 +123,7 @@ If you want to use string options, then you use the `StringSelectMenu`. Simply p
 You can also define how many options users can choose by setting `min_values` and `max_values`.
 
 ```python
-from interactions import StringSelectMenu
+from flux import StringSelectMenu
 
 components = StringSelectMenu(
     "Pizza", "Pasta", "Burger", "Salad",

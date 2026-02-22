@@ -66,14 +66,17 @@ Integrates Sentry.io error tracking into your bot with a single line
 Getting started with interactions.py is easy! Simply install it via `pip` and start building your Discord application in Python:
 
 `pip install -U discord-py-interactions`
+
 ```python
-import interactions
+import flux
 
-bot = interactions.Client()
+bot = flux.Client()
 
-@interactions.listen()
+
+@flux.listen()
 async def on_startup():
     print("Bot is ready!")
+
 
 bot.start("token")
 ```

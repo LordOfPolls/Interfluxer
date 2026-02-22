@@ -167,7 +167,8 @@ inside this extension.
 For example, this is a valid extension file:
 
 ```python
-from interactions import Extension
+from flux import Extension
+
 
 class MyExtension(Extension):
     pass
@@ -198,7 +199,8 @@ You probably want extensions to do a little bit more than just exist though. Mos
 in here. Thankfully, they're relatively simple to do. Expanding on the example a bit, a slash command looks like this:
 
 ```python
-from interactions import Extension, slash_command, SlashContext
+from flux import Extension, slash_command, SlashContext
+
 
 class MyExtension(Extension):
     @slash_command()
@@ -229,11 +231,12 @@ This also allows you to share data between extensions and the main bot itself. `
 so you can do something like this:
 
 ```python
-from interactions import Client
+from flux import Client
 
 # main.py
 bot = Client(...)
 bot.my_data = "Hello world"
+
 
 # extension.py
 class MyExtension(Extension):
@@ -249,7 +252,8 @@ Now that you've got your extension, you need to load it.
 Let's pretend the extension is in a file called `extension.py`, and it looks like the command example:
 
 ```python
-from interactions import Extension, slash_command, SlashContext
+from flux import Extension, slash_command, SlashContext
+
 
 class MyExtension(Extension):
     @slash_command()
@@ -534,7 +538,8 @@ class MyExtension(CustomExtension):
 Pre- and post-run events are similar to checks. They run before and after a command is invoked, respectively:
 
 ```python
-from interactions import BaseContext
+from flux import BaseContext
+
 
 class MyExtension(Extension):
     def __init__(self, bot: Client):

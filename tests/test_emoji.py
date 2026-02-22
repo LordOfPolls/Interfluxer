@@ -2,7 +2,7 @@ import string
 
 import emoji
 
-from interactions.models.discord.emoji import PartialEmoji, process_emoji, process_emoji_req_format
+from flux.models.discord.emoji import PartialEmoji, process_emoji, process_emoji_req_format
 
 __all__ = ()
 

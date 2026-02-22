@@ -1,7 +1,7 @@
-import interactions
-from interactions.client.client import Client
-from interactions.models.discord.application import Application
-from interactions.models.discord.guild import Guild
+import flux
+from flux.client.client import Client
+from flux.models.discord.application import Application
+from flux.models.discord.guild import Guild
 from tests.consts import SAMPLE_APPLICATION_DATA, SAMPLE_CHANNEL_DATA, SAMPLE_GUILD_DATA, SAMPLE_USER_DATA
 from tests.utils import generate_dummy_context
 
@@ -38,19 +38,19 @@ async def test_checks(bot: Client, guild: Guild) -> None:
     assert bot.owner is not None
     assert user_id != bot.owner.id
 
-    is_owner = interactions.is_owner()
+    is_owner = flux.is_owner()
     assert await is_owner(generate_dummy_context(user_id=bot.owner.id, client=bot)) is True
     assert await is_owner(generate_dummy_context(user_id=user_id, client=bot)) is False
 
-    has_id = interactions.has_id(user_id)
+    has_id = flux.has_id(user_id)
     assert await has_id(generate_dummy_context(user_id=user_id, client=bot)) is True
     assert await has_id(generate_dummy_context(user_id=bot.owner.id, client=bot)) is False
 
-    guild_only = interactions.guild_only()
+    guild_only = flux.guild_only()
     bot.cache.place_channel_data(SAMPLE_CHANNEL_DATA(guild_id=guild.id))
     assert await guild_only(generate_dummy_context(guild_id=guild.id, client=bot)) is True
     assert await guild_only(generate_dummy_context(dm=True)) is False
 
-    dm_only = interactions.dm_only()
+    dm_only = flux.dm_only()
     assert await dm_only(generate_dummy_context(guild_id=guild.id, client=bot)) is False
     assert await dm_only(generate_dummy_context(dm=True)) is True

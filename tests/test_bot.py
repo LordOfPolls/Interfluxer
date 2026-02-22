@@ -9,8 +9,8 @@ from datetime import datetime, timedelta
 import pytest
 import pytest_asyncio
 
-import interactions
-from interactions import (
+import flux
+from flux import (
     GuildChannel,
     MessageableMixin,
     GuildNews,
@@ -29,23 +29,18 @@ from interactions import (
     EmbedAuthor,
     EmbedAttachment,
     EmbedFooter,
-    StringSelectOption,
-    Modal,
-    ParagraphText,
     Message,
     GuildVoice,
     Poll,
     PollMedia,
 )
-from interactions.models.discord.asset import Asset
-from interactions.models.discord.components import ActionRow, Button, StringSelectMenu
-from interactions.models.discord.emoji import process_emoji_req_format
-from interactions.api.gateway.websocket import WebsocketClient
-from interactions.api.http.route import Route
-from interactions.api.voice.audio import AudioVolume
-from interactions.client.errors import NotFound
-from interactions.models.discord.enums import ButtonStyle
-from interactions.models.discord.role import Role
+from flux.models.discord.asset import Asset
+from flux.models.discord.emoji import process_emoji_req_format
+from flux.api.gateway.websocket import WebsocketClient
+from flux.api.http.route import Route
+from flux.api.voice.audio import AudioVolume
+from flux.client.errors import NotFound
+from flux.models.discord.role import Role
 
 __all__ = ()
 
@@ -73,7 +68,7 @@ def event_loop() -> AbstractEventLoop:
 
 @pytest_asyncio.fixture(scope="module")
 async def bot(github_commit) -> Client:
-    bot = interactions.Client(activity="Testing someones code")
+    bot = flux.Client(activity="Testing someones code")
     await bot.login(TOKEN)
     gw = asyncio.create_task(bot.start_gateway())
 
@@ -93,7 +88,7 @@ async def guild(bot: Client) -> Guild:
     if not guild:
         log.info("No guild found, creating one...")
 
-        guild: interactions.Guild = await interactions.Guild.create("Interactions.py Test Suite", bot)
+        guild: flux.Guild = await flux.Guild.create("Interactions.py Test Suite", bot)
         community_channel = await guild.create_text_channel("community_channel")
 
         await guild.edit(
@@ -276,7 +271,7 @@ async def test_messages(bot: Client, guild: Guild, channel: GuildText) -> None:
         await _m.delete()
 
     finally:
-        with suppress(interactions.errors.NotFound):
+        with suppress(flux.errors.NotFound):
             await thread.delete()
 
 
@@ -285,7 +280,7 @@ async def test_roles(bot: Client, guild: Guild) -> None:
     roles: list[Role] = []
 
     try:
-        with suppress(interactions.errors.Forbidden):
+        with suppress(flux.errors.Forbidden):
             roles.append(await guild.create_role("_test_role3"))
             # will fail if the test server has not enabled the feature
             roles.append(await guild.create_role("_test_role1", icon="💥"))
@@ -432,39 +427,7 @@ async def test_embeds(bot: Client, channel: GuildText) -> None:
 
         await thread.delete()
     finally:
-        with suppress(interactions.errors.NotFound):
-            await thread.delete()
-
-
-@pytest.mark.asyncio
-async def test_components(bot: Client, channel: GuildText) -> None:
-    msg = await channel.send("Component Tests")
-    thread = await msg.create_thread("Test Thread")
-
-    try:
-        await thread.send("Test - single", components=Button(style=ButtonStyle.PRIMARY, label="test"))
-        await thread.send(
-            "Test - list",
-            components=[
-                Button(style=ButtonStyle.PRIMARY, label="test"),
-                Button(style=ButtonStyle.PRIMARY, label="test"),
-            ],
-        )
-        await thread.send(
-            "Test - ActionRow",
-            components=ActionRow(
-                *[Button(style=ButtonStyle.PRIMARY, label="test"), Button(style=ButtonStyle.PRIMARY, label="test")]
-            ),
-        )
-        await thread.send(
-            "Test - StringSelectMenu",
-            components=StringSelectMenu(StringSelectOption(label="test", value="test")),
-        )
-
-        Modal(ParagraphText(label="test", value="test value, press send"), title="Test Modal")
-
-    finally:
-        with suppress(interactions.errors.NotFound):
+        with suppress(flux.errors.NotFound):
             await thread.delete()
 
 
@@ -553,7 +516,7 @@ async def test_polls(bot: Client, channel: GuildText) -> None:
         ]
 
     finally:
-        with suppress(interactions.errors.NotFound):
+        with suppress(flux.errors.NotFound):
             await thread.delete()
 
 

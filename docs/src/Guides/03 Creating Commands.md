@@ -14,12 +14,15 @@ To create an interaction, simply define an asynchronous function and use the `@s
 
 Interactions need to be responded to within 3 seconds. To do this, use `await ctx.send()`.
 If your code needs more time, don't worry. You can use `await ctx.defer()` to increase the time until you need to respond to the command to 15 minutes.
+
 ```python
-from interactions import slash_command, SlashContext
+from flux import slash_command, SlashContext
+
 
 @slash_command(name="my_command", description="My first command :)")
 async def my_command_function(ctx: SlashContext):
     await ctx.send("Hello World")
+
 
 @slash_command(name="my_long_command", description="My second command :)")
 async def my_long_command_function(ctx: SlashContext):
@@ -134,8 +137,10 @@ Interactions can also have options. There are a bunch of different [types of opt
 Now that you know all the options you have for options, you can opt into adding options to your interaction.
 
 You do that by using the `@slash_option()` decorator and passing the option name as a function parameter:
+
 ```python
-from interactions import OptionType, slash_option
+from flux import OptionType, slash_option
+
 
 @slash_command(name="my_command", ...)
 @slash_option(
@@ -179,8 +184,10 @@ For more information, please visit the API reference [here](/interactions.py/API
 ### Restricting Options
 
 If you are using an `OptionType.CHANNEL` option, you can restrict the channel a user can choose by setting `channel_types`:
+
 ```python
-from interactions import ChannelType, GuildText, OptionType, SlashContext, slash_command, slash_option
+from flux import ChannelType, GuildText, OptionType, SlashContext, slash_command, slash_option
+
 
 @slash_command(name="my_command")
 @slash_option(
@@ -233,8 +240,10 @@ If your users ~~are dumb~~ constantly misspell specific strings, it might be wis
 With choices, the user can no longer freely input whatever they want, instead, they must choose from a pre-defined list.
 
 To create a choice, simply fill `choices` in `@slash_option()`. An option can have up to 25 choices. The name of a choice is what will be shown in the Discord client of the user, while the value is what the bot will receive in its callback. Both can be the same.
+
 ```python
-from interactions import SlashCommandChoice
+from flux import SlashCommandChoice
+
 
 @slash_command(name="my_command", ...)
 @slash_option(
@@ -275,8 +284,10 @@ async def my_command_function(ctx: SlashContext, string_option: str):
 Then you need to register the autocomplete callback, aka the function Discord calls when users fill in the option.
 
 In there, you have three seconds to return whatever choices you want to the user. In this example we will simply return their input with "a", "b" or "c" appended:
+
 ```python
-from interactions import AutocompleteContext
+from flux import AutocompleteContext
+
 
 @my_command_function.autocomplete("string_option")
 async def autocomplete(ctx: AutocompleteContext):
@@ -608,9 +619,11 @@ If you want error handling for all commands, you can override the default error 
 Any error from any command will trigger `CommandError` - note that this includes errors from context menus and (if enabled) prefixed commands.
 
 In this example, we are logging the error and responding to the interaction if not done so yet:
+
 ```python
 import traceback
-from interactions.api.events import CommandError
+from flux.api.events import CommandError
+
 
 @listen(CommandError, disable_default_listeners=True)
 async def on_command_error(event: CommandError):
@@ -642,11 +655,11 @@ Hybrid commands are are slash commands that also get converted to an equivalent 
 Your setup should look similar to this:
 
 ```python
-import interactions
-from interactions.ext import prefixed_commands as prefixed
-from interactions.ext import hybrid_commands as hybrid
+import flux
+from flux.ext import prefixed_commands as prefixed
+from flux.ext import hybrid_commands as hybrid
 
-bot = interactions.Client(...)  # may want to enable the message content intent
+bot = flux.Client(...)  # may want to enable the message content intent
 prefixed.setup(bot)  # normal step for prefixed commands
 hybrid.setup(bot)  # note its usage AFTER prefixed commands have been set up
 ```
@@ -654,7 +667,8 @@ hybrid.setup(bot)  # note its usage AFTER prefixed commands have been set up
 To actually make slash commands, simply replace `@slash_command` with `@hybrid_slash_command`, and `SlashContext` with `HybridContext`, like so:
 
 ```python
-from interactions.ext.hybrid_commands import hybrid_slash_command, HybridContext
+from flux.ext.hybrid_commands import hybrid_slash_command, HybridContext
+
 
 @hybrid_slash_command(name="my_command", description="My hybrid command!")
 async def my_command_function(ctx: HybridContext):

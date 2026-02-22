@@ -1,6 +1,6 @@
 <div align="center">
 
-   # Interactions.py
+   # flux.py
    <br>
 
    ![](https://img.shields.io/pypi/v/discord-py-interactions.svg?label=Version&logo=pypi)
@@ -16,20 +16,21 @@
 
 </div>
 
-## A Feature-rich Discord Bot Framework for Python
+## A Feature-rich Fluxer Bot Framework for Python
 
-A highly extensible, easy to use, and feature complete framework for Discord.
+A highly extensible, easy to use, and feature complete framework for Fluxer.
 
-`interactions.py` is the culmination of years of experience with Discord's APIs and bot development. This framework has been built from the ground up with community feedback and suggestions in mind. Our framework provides a modern and intuitive set of language bindings for easy interaction with Discord.
+This project started from the `interactions.py` codebase and was reworked to target Fluxer’s API and ecosystem, with anything Discord-specific removed.
+It is the culmination of years of experience with bot development. 
+This framework has been built from the ground up with community feedback and suggestions in mind. 
+Our framework provides a modern and intuitive set of language bindings for easy interaction with Discord.
 
 ## Key Features
 interactions.py offers a wide range of features for building Python-powered Discord bots and web applications alike:
-- ✅ 100% coverage of the Discord API
 - ✅ Dynamic cache with TTL support
-- ✅ Modern and Pythonic API for easy interaction with Discord
+- ✅ Modern and Pythonic API for easy interaction with Fluxer
 - ✅ Proper rate-limit handling
-- ✅ Feature parity with most other Discord API wrappers
-- ✅ Fully automated command synchronisation
+- ✅ Feature parity with most other Fluxer API wrappers
 
 In addition to core functionality, `interactions.py` provides a range of optional extensions, allowing you to further customize your bot and add new features with ease.
 
@@ -41,14 +42,6 @@ Just type `bot.load_extension("extension")`
 
 <details>
     <summary>Extensions</summary>
-
-   ### Prefixed Commands
-
-   Prefixed commands, message commands, or legacy commands.
-   Whatever you want to call them, by default the `interactions.py` library will not handle these. But rest assured this extension will get you going
-
-  - ✅ Automatic command registration
-  - ✅ Annotation support
 
   ### Debug Extension
 
@@ -66,27 +59,24 @@ Just type `bot.load_extension("extension")`
 
   Adds `aiomonitor` support with enables cli commands over a web interface
 
-  ### Paginators
-
-  Easily create multi-page embeds without having to implement the UX
-
 </details>
 
 ## Where do I start?
 
-Getting started with `interactions.py` is easy! Simply install it via `pip` and start building your Discord application in Python:
+Getting started with `flux.py` is easy! Simply install it via `pip` and start building your Discord application in Python:
 
-`pip install -U discord-py-interactions`
 ```python
-import interactions
+import flux
 
-bot = interactions.Client()
+bot = flux.Client()
 
-@interactions.listen()
+
+@flux.listen()
 async def on_startup():
     print("Bot is ready!")
+
 
 bot.start("token")
 ```
 
-With `interactions.py`, you can quickly and easily build complex Discord applications with Python. Check out our [guides](https://interactions-py.github.io/interactions.py/Guides/01%20Getting%20Started) for more information. Or join our [discord](https://discord.gg/interactions).
+With `interactions.py`, you can quickly and easily build complex Fluxer applications with Python. 

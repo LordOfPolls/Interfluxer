@@ -1,7 +1,6 @@
-from interactions import Snowflake_Type, Client, Message
-from interactions.models.internal.context import InteractionContext
+from flux import Snowflake_Type, Client, Message
 from tests.consts import SAMPLE_MESSAGE_DATA
-from interactions.ext.prefixed_commands import PrefixedContext
+from flux.ext.prefixed_commands import PrefixedContext
 
 __all__ = ("generate_dummy_context",)
 
@@ -13,7 +12,7 @@ def generate_dummy_context(
     message_id: Snowflake_Type | None = None,
     dm: bool = False,
     client: Client | None = None,
-) -> InteractionContext:
+) -> PrefixedContext:
     """Generates a dummy context for testing."""
     client = Client() if client is None else client
 
