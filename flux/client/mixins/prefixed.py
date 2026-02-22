@@ -60,6 +60,7 @@ class PrefixedCommandsMixin:
             ]
         ] = None,
         prefixed_context: type[PrefixedContext] = PrefixedContext,
+        help_command: bool = True,
     ) -> None:
         self.prefixed_commands: dict[str, PrefixedCommand] = {}
         self._prefixed_default_prefix = default_prefix
@@ -82,6 +83,11 @@ class PrefixedCommandsMixin:
             self._prefixed_generate_prefixes = generate_prefixes
         else:
             self._prefixed_generate_prefixes = self._prefixed_default_generate_prefixes
+
+        if help_command:
+            from flux.models.internal.prefixed.help import PrefixedHelpCommand
+
+            PrefixedHelpCommand(self).register()  # type: ignore[arg-type]
 
         # Create and register listeners manually (not via decorators) to avoid
         # _gather_callbacks discovering them and registering duplicates.

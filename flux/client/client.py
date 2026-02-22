@@ -209,6 +209,7 @@ class Client(
         activity: The activity the bot should log in "playing"
 
         fetch_members: Should the client fetch members from guilds upon startup (this will delay the client being ready)
+        help_command: Should the default help command be enabled
         send_command_tracebacks: Automatically send uncaught tracebacks if a command throws an exception
 
         total_shards: The total number of shards in use
@@ -249,6 +250,7 @@ class Client(
         ] = None,
         global_post_run_callback: Absent[Callable[..., Coroutine]] = MISSING,
         global_pre_run_callback: Absent[Callable[..., Coroutine]] = MISSING,
+        help_command: bool = True,
         intents: Union[int, Intents] = Intents.DEFAULT,
         logger: logging.Logger = MISSING,
         logging_level: int = logging.INFO,
@@ -366,6 +368,7 @@ class Client(
             default_prefix=default_prefix,
             generate_prefixes=generate_prefixes,
             prefixed_context=prefixed_context,
+            help_command=help_command,
         )
 
     async def __aenter__(self) -> "Client":
