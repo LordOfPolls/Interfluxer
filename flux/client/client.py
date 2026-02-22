@@ -566,6 +566,25 @@ class Client(
         """
         self.default_error_handler(event.source, event.error)
 
+    @Listener.create(is_default_listener=True)
+    async def on_command_error(self, event: events.CommandError) -> None:
+        """
+        Catches all errors dispatched by prefixed commands.
+
+        By default it will format and print them to console.
+
+        Listen to the `CommandError` event to overwrite this behaviour.
+
+        """
+        self.default_error_handler(f"command `{event.ctx.command.name}`", event.error)
+
+        if self.send_command_tracebacks:
+            out = "".join(traceback.format_exception(event.error))
+            if len(out) > 1950:
+                out = out[:1950] + "\n..."
+            with contextlib.suppress(Exception):
+                await event.ctx.send(f"An error occurred in command `{event.ctx.command.name}`:\n```py\n{out}```")
+
     @Listener.create()
     async def on_resume(self) -> None:
         self._ready.set()
