@@ -43,7 +43,10 @@ class Timestamp(datetime):
     @classmethod
     def utcfromtimestamp(cls, t: float) -> "Timestamp":
         """Construct a timezone-aware UTC datetime from a POSIX timestamp."""
-        return super().utcfromtimestamp(t).replace(tzinfo=timezone.utc)
+        try:
+            return super().utcfromtimestamp(t).replace(tzinfo=timezone.utc)
+        except (ValueError, OSError, OverflowError):
+            return super().utcfromtimestamp(t / 1000).replace(tzinfo=timezone.utc)
 
     @classmethod
     def fromisoformat(cls, date_string: str) -> "Timestamp":
