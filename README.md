@@ -7,6 +7,10 @@
 
 </div>
 
+# This project is very new and is not ready for production yet.
+You are welcome to try it out or contribute, but do not expect it to be stable.
+Documentation is coming soon.
+
 ## A Feature-rich Fluxer Bot Framework for Python
 
 A highly extensible, easy to use, and feature complete framework for Fluxer.
