@@ -20,7 +20,7 @@ from flux.models.external.file import UPLOADABLE_TYPE
 from flux.models.external.role import Role
 from flux.models.external.snowflake import Snowflake_Type
 from flux.models.external.snowflake import to_snowflake
-from .base import DiscordObject
+from .base import DiscordObject, ClientObject
 
 if TYPE_CHECKING:
     from aiohttp import FormData
@@ -30,7 +30,7 @@ if TYPE_CHECKING:
     from flux.models.external.channel import DM, TYPE_GUILD_CHANNEL
     from flux.models.external.voice_state import VoiceState
 
-__all__ = ("BaseUser", "ClientUser", "Member", "User")
+__all__ = ("BaseUser", "ClientUser", "ConnectedAccount", "Member", "Profile", "User")
 
 
 class _SendDMMixin(SendMixin):
@@ -41,6 +41,52 @@ class _SendDMMixin(SendMixin):
     ) -> dict:
         dm_id = await self._client.cache.fetch_dm_channel_id(self.id)
         return await self._client.http.create_message(message_payload, dm_id, files=files)
+
+
+@attrs.define(eq=False, order=False, hash=False, kw_only=True)
+class ConnectedAccount(ClientObject):
+    id: str = attrs.field(repr=True, metadata=docs("The ID of the connected account"))
+    name: str = attrs.field(repr=True, metadata=docs("The name of the connected account"))
+    type: str = attrs.field(repr=True, metadata=docs("The type of the connected account (e.g. twitch, youtube)"))
+    verified: bool = attrs.field(repr=True, default=False, metadata=docs("Whether the account is verified"))
+    friend_sync: bool = attrs.field(repr=False, default=False, metadata=docs("Whether friend sync is enabled"))
+    show_activity: bool = attrs.field(
+        repr=False, default=False, metadata=docs("Whether to show activity on the profile")
+    )
+    two_way_link: bool = attrs.field(repr=False, default=False, metadata=docs("Whether two-way link is enabled"))
+    visibility: int = attrs.field(repr=False, default=0, metadata=docs("The visibility of the account"))
+
+
+@attrs.define(eq=False, order=False, hash=False, kw_only=True)
+class Profile(ClientObject):
+    user: "User" = attrs.field(repr=True, metadata=docs("The user object"))
+    connected_accounts: List[ConnectedAccount] = attrs.field(
+        factory=list, metadata=docs("A list of connected accounts")
+    )
+
+    _user_ref: frozenset = MISSING
+    """A lookup reference to the user object"""
+
+    def __str__(self) -> str:
+        return str(self.user)
+
+    def __getattr__(self, name: str) -> Any:
+        if not hasattr(self.__class__._user_ref, "__iter__"):
+            self.__class__._user_ref = frozenset(dir(User))
+
+        if name in self.__class__._user_ref:
+            return getattr(self.user, name)
+        raise AttributeError(f"Neither `User` or `Profile` have attribute {name}")
+
+    @classmethod
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
+        user_data = data.pop("user")
+        if "user_profile" in data:
+            user_data.update(data.pop("user_profile"))
+
+        data["user"] = User.from_dict(user_data, client)
+        data["connected_accounts"] = ConnectedAccount.from_list(data.get("connected_accounts", []), client)
+        return data
 
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
@@ -153,6 +199,13 @@ class User(BaseUser):
         converter=optional_c(Color),
         metadata=docs("The user's banner color"),
     )
+    banner_color: Optional["Color"] = attrs.field(
+        default=None,
+        converter=optional_c(Color),
+        metadata=docs("The user's banner color"),
+    )
+    bio: Optional[str] = attrs.field(repr=False, default=None, metadata=docs("The user's bio"))
+    pronouns: Optional[str] = attrs.field(repr=True, default=None, metadata=docs("The user's pronouns"))
     activities: list[Activity] = attrs.field(
         factory=list,
         converter=list_converter(optional(Activity.from_dict)),
@@ -197,6 +250,17 @@ class User(BaseUser):
         ]
         return [member for member in member_objs if member]
 
+    async def fetch_profile(self) -> Profile:
+        """
+        Fetch the user's profile.
+
+        Returns:
+            The user's profile.
+
+        """
+        data = await self._client.http.get_user_profile(self.id)
+        return Profile.from_dict(data, self._client)
+
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class ClientUser(User):
@@ -212,7 +276,6 @@ class ClientUser(User):
     locale: Optional[str] = attrs.field(
         repr=False, default=None, metadata={"docs": "the user's chosen language option"}
     )
-    bio: Optional[str] = attrs.field(repr=False, default=None, metadata={"docs": ""})
     flags: "UserFlags" = attrs.field(
         repr=False,
         default=0,

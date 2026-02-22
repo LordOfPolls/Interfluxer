@@ -1,4 +1,4 @@
-from .base import DiscordObject
+from .base import DiscordObject, ClientObject
 from aiohttp import FormData
 from datetime import datetime
 from typing import type_check_only
@@ -25,6 +25,17 @@ class _SendDMMixin(SendMixin):
     async def _send_http_request(
         self, message_payload: Union[dict, "FormData"], files: Union[list["UPLOADABLE_TYPE"], None] = ...
     ) -> dict: ...
+
+@attrs.define(eq=False, order=False, hash=False, kw_only=True)
+class ConnectedAccount(ClientObject):
+    id: str
+    name: str
+    type: str
+    verified: bool
+    friend_sync: bool
+    show_activity: bool
+    two_way_link: bool
+    visibility: int
 
 # note: what we're trying to achieve here is making isinstance checks as accurate as possible when typehinting
 # Member, while "having" the attributes of User (because of __getattr__), is not actually a subclass of either
@@ -72,6 +83,9 @@ class FakeUserMixin(FakeBaseUserMixin):
     banner: Optional["Asset"]
     avatar_decoration: Optional["Asset"]
     accent_color: Optional["Color"]
+    banner_color: Optional["Color"]
+    bio: Optional[str]
+    pronouns: Optional[str]
     activities: list[Activity]
     status: Absent[Status]
     _fetched: bool
@@ -79,9 +93,17 @@ class FakeUserMixin(FakeBaseUserMixin):
     def _process_dict(cls, data: Dict[str, Any], client: Client) -> Dict[str, Any]: ...
     @property
     def member_instances(self) -> List["Member"]: ...
+    async def fetch_profile(self) -> "Profile": ...
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class User(FakeUserMixin, BaseUser): ...
+
+@attrs.define(eq=False, order=False, hash=False, kw_only=True)
+class Profile(FakeUserMixin, ClientObject):
+    user: User
+    connected_accounts: List[ConnectedAccount]
+    _user_ref: frozenset
+    def __str__(self) -> str: ...
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class ClientUser(User):
@@ -89,7 +111,6 @@ class ClientUser(User):
     mfa_enabled: bool
     email: Optional[str]
     locale: Optional[str]
-    bio: Optional[str]
     flags: UserFlags
     _guild_ids: Set["Snowflake_Type"]
     def _add_guilds(self, guild_ids: Set["Snowflake_Type"]) -> None: ...

@@ -130,6 +130,19 @@ class UserRequests:
             Route("DELETE", "/channels/{channel_id}/recipients/{user_id}", channel_id=channel_id, user_id=user_id)
         )
 
+    async def get_user_profile(self, user_id: "Snowflake_Type") -> dict:
+        """
+        Get a user's full profile.
+
+        Args:
+            user_id: The user to get the profile for.
+
+        Returns:
+            The user profile object.
+
+        """
+        return await self.request(Route("GET", "/users/{user_id}/profile", user_id=user_id))
+
     async def modify_current_user_nick(self, guild_id: "Snowflake_Type", nickname: str | None = None) -> None:
         """
         Modifies the nickname of the current user in a guild.
