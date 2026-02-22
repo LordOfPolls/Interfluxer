@@ -28,8 +28,8 @@ search:
      - For more details, read [the Events guide](/Interfluxer/Guides/10 Events).
 
 5. Migrating your commands
-     - If you were already using dpy's command extension, migrating to slash commands is fairly simple.  You just need to convert the decorators as per the [Slash Commands guide](/Interfluxer/Guides/03 Creating Commands/)
-     - If you wish to keep using prefixed commands (sometimes called message or text-based commands), you can use our prefixed command extension, which has an [extensive guide for them](/Interfluxer/Guides/07 Creating Prefixed Commands). The syntax should be very similar to discord.py with a few exceptions.
+     - Migrating to Interfluxer commands is fairly simple. You just need to convert the decorators as per the [Creating Commands guide](/Interfluxer/Guides/03 Creating Commands/)
+     - Our prefixed command system has an [extensive guide here](/Interfluxer/Guides/03 Creating Commands). The syntax should be very similar to discord.py with a few exceptions.
      - If you were manually handling commands with `on_message`, you'll probably need to figure it out yourself, as this guide doesn't know how you wrote your parser.  Consider using the provided command handlers.
 
 ???+ Note

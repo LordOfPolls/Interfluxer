@@ -56,7 +56,7 @@ watch:
 
 extra:
   social:
-    - icon: fontawesome/brands/external
+    - icon: material/chat
       link: https://fluxer.gg/4plfWFhS
       name: Fluxer Server
     - icon: fontawesome/brands/github

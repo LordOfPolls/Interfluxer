@@ -61,12 +61,15 @@ Now let's get the library installed.
 Now let's get a basic bot going, for your code, you'll want something like this:
 
 ```python
-from Interfluxer import Client, Intents, listen
+from Interfluxer import Client, Intents, listen, prefixed_command, PrefixedContext
 
-bot = Client(intents=Intents.DEFAULT)
-
+bot = Client(
+    default_prefix="!",
+    intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT,
+)
 
 # intents are what events we want to receive from external, `DEFAULT` is usually fine
+# but we need `MESSAGE_CONTENT` to see what people are typing for prefixed commands!
 
 @listen()  # this decorator tells the client that it needs to listen for the corresponding event, and run this coroutine
 async def on_ready():
@@ -75,10 +78,10 @@ async def on_ready():
     print(f"This bot is owned by {bot.owner}")
 
 
-@listen()
-async def on_message_create(event):
-    # This event is called when a message is sent in a channel the bot can see
-    print(f"message received: {event.message.jump_url}")
+@prefixed_command()
+async def ping(ctx: PrefixedContext):
+    # This command is called when a user types `!ping`
+    await ctx.reply("Pong!")
 
 
 bot.start("Put your token here")

@@ -5,7 +5,7 @@ search:
 
 # Converters
 
-If your bot is complex enough, you might find yourself wanting to use custom models in your commands. Converters are classes that allow you to do just that, and can be used in both slash and prefixed commands.
+If your bot is complex enough, you might find yourself wanting to use custom models in your commands. Converters are classes that allow you to convert user input into complex objects, and can be used in prefixed commands.
 
 This can be useful if you frequently find yourself starting commands with `thing = lookup(thing_name)`.
 
@@ -24,20 +24,9 @@ class DatabaseEntry():
         """This is where the magic happens"""
         return cls(hypothetical_database.lookup(ctx.guild.id, value))
 
-# Slash Command:
-@slash_command(name="lookup", description="Gives info about a thing from the db")
-@slash_option(
-    name="thing",
-    description="The user enters a string",
-    required=True,
-    opt_type=OptionType.STRING
-)
-async def my_command_function(ctx: SlashContext, thing: DatabaseEntry):
-    await ctx.send(f"***{thing.name}***\n{thing.description}\nScore: {thing.score}/10")
-
 # Prefixed Command:
 @prefixed_command()
-async def my_command_function(ctx: SlashContext, thing: DatabaseEntry):
+async def my_command_function(ctx: PrefixedContext, thing: DatabaseEntry):
     await ctx.reply(f"***{thing.name}***\n{thing.description}\nScore: {thing.score}/10")
 ```
 
@@ -54,18 +43,6 @@ from Interfluxer import Converter
 class UpperConverter(Converter):
     async def convert(ctx: BaseContext, argument: str):
         return argument.upper()
-
-
-# Slash Command:
-@slash_command(name="upper", description="Sends back the input in all caps.")
-@slash_option(
-    name="to_upper",
-    description="The thing to make all caps.",
-    required=True,
-    opt_type=OptionType.STRING
-)
-async def upper(ctx: SlashContext, to_upper: UpperConverter):
-    await ctx.send(to_upper)
 
 
 # Prefixed Command:
@@ -118,22 +95,10 @@ class UpperConverter(Converter):
     async def convert(ctx: BaseContext, argument: str):
         return argument.upper()
 
-# Slash Command:
-@slash_command(name="upper", description="Sends back the input in all caps.")
-@slash_option(
-    name="to_upper",
-    description="The thing to make all caps.",
-    required=True,
-    opt_type=OptionType.STRING
-)
-async def upper(ctx: SlashContext, to_upper: Annotated[str, UpperConverter]):
-    await ctx.send(to_upper)
-
 # Prefixed Command:
 @prefixed_command()
 async def upper(ctx: PrefixedContext, to_upper: Annotated[str, UpperConverter]):
     await ctx.reply(to_upper)
 ```
 
-For slash commands, `Interfluxer` will find the first argument in `Annotated` (besides for the first argument) that are like the converters in this guide and use that.
-For prefixed commands, `Interfluxer` will always use the second parameter in `Annotated` as the actual converter/parameter to process.
+For prefixed commands, Interfluxer will use the second parameter in `Annotated` as the actual converter/parameter to process.

@@ -11,7 +11,7 @@ So you want to start playing some 🎵tunes🎶 in voice channels? Well let's ge
 
     First you're going to want to get the voice dependencies installed:
     ```
-    pip install discord.py-Interfluxer[voice]
+    pip install Interfluxer[voice]
     ```
 
     Then you'll need to download [FFmpeg](https://ffmpeg.org) and place it in your project directory or PATH.
@@ -22,7 +22,7 @@ So you want to start playing some 🎵tunes🎶 in voice channels? Well let's ge
 
     First you're going to want to get the voice dependencies installed:
     ```
-    pip install discord.py-Interfluxer[voice]
+    pip install Interfluxer[voice]
     ```
 
     Then you'll need to install the following packages:
@@ -47,13 +47,12 @@ So you want to start playing some 🎵tunes🎶 in voice channels? Well let's ge
     Now you've got those; let's make a simple play command to get you started.
 
 ```python
-import Interfluxer
+from Interfluxer import prefixed_command, PrefixedContext
 from Interfluxer.api.voice.audio import AudioVolume
 
 
-@Interfluxer.slash_command("play", "play a song!")
-@Interfluxer.slash_option("song", "The song to play", 3, True)
-async def play(self, ctx: Interfluxer.SlashContext, song: str):
+@prefixed_command()
+async def play(ctx: PrefixedContext, *, song: str):
     if not ctx.voice_state:
         # if we haven't already joined a voice channel
         # join the authors vc
@@ -61,12 +60,12 @@ async def play(self, ctx: Interfluxer.SlashContext, song: str):
 
     # Get the audio using YTDL
     audio = await AudioVolume(song)
-    await ctx.send(f"Now Playing: **{song}**")
+    await ctx.reply(f"Now Playing: **{song}**")
     # Play the audio
     await ctx.voice_state.play(audio)
 ```
 
-Now just join a voice channel, and type run the "play" slash command with a song of your choice.
+Now just join a voice channel, and type `!play` followed by a song of your choice.
 
 Congratulations! You've got a music-bot.
 
@@ -78,13 +77,13 @@ If you want to play your own files, you can do that too! Create an `AudioVolume`
     If your audio is already encoded, use the standard `Audio` object instead. You'll lose volume manipulation, however.
 
 ```python
-import Interfluxer
+from Interfluxer import prefixed_command, PrefixedContext
 from Interfluxer.api.voice.audio import AudioVolume
 
 
-@Interfluxer.slash_command("play", "play a song!")
-async def play_file(ctx: Interfluxer.SlashContext):
-    audio = AudioVolume("some_file.wav")
+@prefixed_command()
+async def play_file(ctx: PrefixedContext, filename: str):
+    audio = AudioVolume(filename)
     await ctx.voice_state.play(audio)
 ```
 
@@ -98,20 +97,20 @@ Let's start with a simple example:
 
 ```python
 import asyncio
-import Interfluxer
+from Interfluxer import prefixed_command, PrefixedContext, File
 
 
-@Interfluxer.slash_command("record", "record some audio")
-async def record(ctx: Interfluxer.SlashContext):
+@prefixed_command()
+async def record(ctx: PrefixedContext):
     voice_state = await ctx.author.voice.channel.connect()
 
     # Start recording
     await voice_state.start_recording()
     await asyncio.sleep(10)
     await voice_state.stop_recording()
-    await ctx.send(
-        files=[Interfluxer.File(file, file_name="user_id.mp3") for user_id, file in
-               voice_state.recorder.output.items()])
+
+    files = [File(file, file_name=f"{user_id}.mp3") for user_id, file in voice_state.recorder.output.items()]
+    await ctx.reply(files=files)
 ```
 This code will connect to the author's voice channel, start recording, wait 10 seconds, stop recording, and send a file for each user that was recorded.
 
@@ -121,7 +120,7 @@ But what if you didn't want to use `mp3` files? Well, you can change that too! J
 await voice_state.start_recording(encoding="wav")
 ```
 
-For a list of available encodings, check out Recorder's [documentation](/Interfluxer/API Reference/API_Communication/voice/recorder.md)
+For a list of available encodings, check out Recorder's [documentation](/Interfluxer/API Reference/API Reference/api/voice/recorder/)
 
 Are you going to be recording for a long time? You are going to want to write the files to disk instead of keeping them in memory. You can do that too!
 

@@ -55,14 +55,22 @@ Getting started with Interfluxer is easy! Simply install it via `pip` and start 
 `pip install Interfluxer`
 
 ```python
-import Interfluxer
+from Interfluxer import Client, Intents, listen, prefixed_command, PrefixedContext
 
-bot = Interfluxer.Client()
+bot = Client(
+    default_prefix="!",
+    intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT,
+)
 
 
-@Interfluxer.listen()
-async def on_startup():
-    print("Bot is ready!")
+@listen()
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+
+@prefixed_command()
+async def ping(ctx: PrefixedContext):
+    await ctx.reply("Pong!")
 
 
 bot.start("token")

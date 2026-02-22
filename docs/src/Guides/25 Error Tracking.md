@@ -20,7 +20,7 @@ If you wish to turn this off, create your client with `Client(..., send_command_
 
 !!! Please don't actually do this.
 
-The most obvious solution is to think "Well, I'm writing a Fluxer Bot.  Why not send my errors to a discord channel?"
+The most obvious solution is to think "Well, I'm writing a Fluxer Bot.  Why not send my errors to a Fluxer channel?"
 
 ```python
 from Interfluxer.api.events import Error

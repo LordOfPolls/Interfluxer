@@ -7,9 +7,9 @@ search:
 
 To make a bot on Fluxer, you must first create an application on Fluxer. Thankfully, Fluxer has made this process very simple:
 
-1. Login to the [:fontawesome-brands-discord:Fluxer website](https://discord.com/)
+1. Login to the [:material-web:Fluxer Web Client](https://web.fluxer.app/)
 
-2. Navigate to the [Developer Application page](https://discord.com/developers/applications)
+2. Navigate to your **User Settings**, then to the **Developer** tab, and finally **Applications**.
 
 3. Press `New Application`
    <br>![New Application Button](../images/CreatingYourBot/NewApplication.png "The New Application Button")
@@ -38,7 +38,7 @@ To make a bot on Fluxer, you must first create an application on Fluxer. Thankfu
         If you think you have leaked your token, press `Reset Token` on the same page you copy your token on,
         this will revoke your token (logging out all exisitng sessions), and generate a new token for you.
 
-        :fontawesome-brands-github:Github will automatically revoke your token if you accidentally commit it, but don't rely on this
+        :material-github:GitHub will automatically revoke your token if you accidentally commit it, but don't rely on this
         as a crutch, keep your token safe.
 
 
@@ -46,7 +46,7 @@ To make a bot on Fluxer, you must first create an application on Fluxer. Thankfu
 
 So you've created a bot, but it's not in a server yet. Lets fix that.
 
-1. On the [Developer Application page](https://discord.com/developers/applications) from above, select your bot
+1. On the **Developer Applications** page from above, select your bot
 
 2. Navigate to the `OAuth2` tab
 

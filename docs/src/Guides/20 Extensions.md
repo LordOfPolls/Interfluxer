@@ -18,10 +18,13 @@ For example, you can see the difference of a bot with and without extensions:
 ??? Hint "Examples:"
     === "Without Extensions"
         ```python
-        from Interfluxer import ActionRow, Button, ButtonStyle, Client, Intents, listen, slash_command
-        from Interfluxer.api.events import Component, GuildJoin, MessageCreate, Startup
+        from Interfluxer import Client, Intents, listen, prefixed_command, PrefixedContext
+        from Interfluxer.api.events import GuildJoin, MessageCreate, Startup
 
-        bot = Client(intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT)
+        bot = Client(
+            default_prefix="!",
+            intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT
+        )
 
 
         @listen(Startup)
@@ -36,46 +39,12 @@ For example, you can see the difference of a bot with and without extensions:
 
         @listen(MessageCreate)
         async def on_message_create(event: MessageCreate):
-            print(f"message received: {event.message}")
+            print(f"message received: {event.message.content}")
 
 
-        @listen()
-        async def on_component(event: Component):
-            ctx = event.ctx
-            await ctx.edit_origin(content="test")
-
-
-        @slash_command()
-        async def multiple_buttons(ctx):
-            await ctx.send(
-                "2 buttons in a row",
-                components=[
-                    Button(style=ButtonStyle.BLURPLE, label="A blurple button"),
-                    Button(style=ButtonStyle.RED, label="A red button"),
-                ],
-            )
-
-
-        @slash_command()
-        async def action_rows(ctx):
-            await ctx.send(
-                "2 buttons in 2 rows, using nested lists",
-                components=[
-                    [Button(style=ButtonStyle.BLURPLE, label="A blurple button")],
-                    [Button(style=ButtonStyle.RED, label="A red button")],
-                ],
-            )
-
-
-        @slash_command()
-        async def action_rows_more(ctx):
-            await ctx.send(
-                "2 buttons in 2 rows, using explicit action_rows lists",
-                components=[
-                    ActionRow(Button(style=ButtonStyle.BLURPLE, label="A blurple button")),
-                    ActionRow(Button(style=ButtonStyle.RED, label="A red button")),
-                ],
-            )
+        @prefixed_command()
+        async def ping(ctx: PrefixedContext):
+            await ctx.reply("Pong!")
 
 
         bot.start("token")
@@ -85,9 +54,12 @@ For example, you can see the difference of a bot with and without extensions:
         ```python
         # File: `main.py`
         from Interfluxer import Client, Intents, listen
-        from Interfluxer.api.events import Component, GuildJoin, MessageCreate, Startup
+        from Interfluxer.api.events import GuildJoin, MessageCreate, Startup
 
-        bot = Client(intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT)
+        bot = Client(
+            default_prefix="!",
+            intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT
+        )
 
 
         @listen(Startup)
@@ -102,57 +74,23 @@ For example, you can see the difference of a bot with and without extensions:
 
         @listen(MessageCreate)
         async def on_message_create(event: MessageCreate):
-            print(f"message received: {event.message}")
+            print(f"message received: {event.message.content}")
 
 
-        @listen()
-        async def on_component(event: Component):
-            ctx = event.ctx
-            await ctx.edit_origin(content="test")
-
-
-        bot.load_extension("test_components")
+        bot.load_extension("my_extension")
         bot.start("token")
         ```
         ```python
 
-        # File: `test_components.py`
+        # File: `my_extension.py`
 
-        from Interfluxer import ActionRow, Button, ButtonStyle, Extension, slash_command
-
-
-        class ButtonExampleSkin(Extension):
-            @slash_command()
-            async def multiple_buttons(self, ctx):
-                await ctx.send(
-                    "2 buttons in a row",
-                    components=[
-                        Button(style=ButtonStyle.BLURPLE, label="A blurple button"),
-                        Button(style=ButtonStyle.RED, label="A red button"),
-                    ],
-                )
+        from Interfluxer import Extension, prefixed_command, PrefixedContext
 
 
-            @slash_command()
-            async def action_rows(self, ctx):
-                await ctx.send(
-                    "2 buttons in 2 rows, using nested lists",
-                    components=[
-                        [Button(style=ButtonStyle.BLURPLE, label="A blurple button")],
-                        [Button(style=ButtonStyle.RED, label="A red button")],
-                    ],
-                )
-
-
-            @slash_command()
-            async def action_rows_more(self, ctx):
-                await ctx.send(
-                    "2 buttons in 2 rows, using explicit action_rows lists",
-                    components=[
-                        ActionRow(Button(style=ButtonStyle.BLURPLE, label="A blurple button")),
-                        ActionRow(Button(style=ButtonStyle.RED, label="A red button")),
-                    ],
-                )
+        class MyExtension(Extension):
+            @prefixed_command()
+            async def ping(self, ctx: PrefixedContext):
+                await ctx.reply("Pong!")
         ```
 
 Sounds pretty good right? Well, let's go over how you can use them:

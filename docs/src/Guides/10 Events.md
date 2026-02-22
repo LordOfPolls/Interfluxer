@@ -117,15 +117,15 @@ If you forget, the library will just pass an empty object to avoid errors.
 
 ### Disabling Default Listeners
 
-Some internal events, like `ModalCompletion`, have default listeners that perform niceties like logging the command/interaction logged. You may not want this, however, and may want to completely override this behavior without subclassing `Client`. If so, you can achieve it through `disable_default_listeners`:
+Some internal events, like `CommandError`, have default listeners that perform niceties like logging the command. You may not want this, however, and may want to completely override this behavior without subclassing `Client`. If so, you can achieve it through `disable_default_listeners`:
 
 ```python
-from Interfluxer.api.events import ModalCompletion
+from Interfluxer.api.events import CommandError
 
 
-@listen(ModalCompletion, disable_default_listeners=True)
-async def my_modal_completion(event: ModalCompletion):
-    print("I now control ModalCompletion!")
+@listen(CommandError, disable_default_listeners=True)
+async def my_command_error(event: CommandError):
+    print("I now control CommandError!")
 ```
 
 A lot of times, this behavior is used for custom error tracking. If so, [take a look at the error tracking guide](../25 Error Tracking) for a guide on that.
@@ -141,6 +141,5 @@ There are a plethora of events that you can listen to. You can find a list of ev
 
 - [Startup](/Interfluxer/API Reference/API Reference/events/internal/#Interfluxer.api.events.internal.Startup) is an event, as its name implies, that runs when the bot is first started up - more specifically, it runs when the bot is first ready to do actions. This is a good place to set up tools or libraries that require an asynchronous function.
 - [Error](/Interfluxer/API Reference/API Reference/events/internal/#Interfluxer.api.events.internal.Error) and its many, *many* subclasses about specific types of errors trigger whenever an error occurs while the bot is running. If you want error *tracking* (IE just logging the errors you get to fix them later on), then [take a look at the error tracking guide](../25 Error Tracking). Otherwise, you can do specific error handling using these events (ideally with `disable_default_listeners` turned on) to provide custom messages for command errors.
-- [Component](/Interfluxer/API Reference/API Reference/events/internal/#Interfluxer.api.events.internal.Component), [ButtonPressed](/Interfluxer/API Reference/API Reference/events/internal/#Interfluxer.api.events.internal.ButtonPressed), [Select](/Interfluxer/API Reference/API Reference/events/internal/#Interfluxer.api.events.internal.Select), and [ModalCompletion](/Interfluxer/API Reference/API Reference/events/internal/#Interfluxer.api.events.internal.ModalCompletion) may be useful for you if you're trying to respond to component or modal Interfluxer - take a look at the [component guide](../05 Components) or the [modal guide](../06 Modals) for more information.
-- [MessageCreate](/Interfluxer/API Reference/API Reference/events/fluxer/#Interfluxer.api.events.fluxer.MessageCreate) is used whenever anyone sends a message to a channel the bot can see. This can be useful for automoderation, though note *message content is a privileged intent*, as talked about above. For prefixed/text commands in particular, we already have our own implementation - take a look at them [at this page](../26 Prefixed Commands).
+- [MessageCreate](/Interfluxer/API Reference/API Reference/events/fluxer/#Interfluxer.api.events.fluxer.MessageCreate) is used whenever anyone sends a message to a channel the bot can see. This can be useful for automoderation, though note *message content is a privileged intent*, as talked about above. For prefixed commands in particular, we already have our own implementation - take a look at them [at this page](03 Creating Commands).
 - [GuildJoin](/Interfluxer/API Reference/API Reference/events/fluxer/#Interfluxer.api.events.fluxer.GuildJoin) and [GuildLeft](/Interfluxer/API Reference/API Reference/events/fluxer/#Interfluxer.api.events.fluxer.GuildLeft) are, as you can expect, events that are sent whenever the bot joins and leaves a guild. Note that for `GuildJoin`, the event triggers for *every guild on startup* - it's best to have a check to see if the bot is ready through `bot.is_ready` and ignore this event if it isn't.

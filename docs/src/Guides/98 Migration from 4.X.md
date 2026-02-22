@@ -26,20 +26,11 @@ For Linux and MacOS, we recommend using [pyenv](https://github.com/pyenv/pyenv);
 
 If you prefer not to use pyenv, there are many guides available that can help you safely install a newer version of Python alongside your existing version.
 
-## Slash Commands
+## Commands
 
-Slash commands function differently from v4's commands - it's worth taking a good look at the guide to see [how they work in the library now](../03 Creating Commands).
+Commands function differently from v4's commands - it's worth taking a good look at the guide to see [how they work in the library now](../03 Creating Commands).
 
-Big changes include the fact that `@bot.command` (we'll get to extensions later) is now `@Interfluxer.slash_command`, and `CommandContext` is now `SlashContext`. There may be some slight renamings elsewhere too in the decorators itself - it's suggested you look over the options for the new decorator and appropriately adapt your code.
-
-Arguably the biggest change involves how v5 handles slash options. v5's primary method relies heavily on decorators to do the heavy lifting, though there are other methods you may prefer - again, consult the guide, as that will tell you every method. A general rule of thumb is that if you did not use the "define options as a list right in the slash command decorator" choice, you will have to make some changes to adjust to the new codebase.
-Subcommands also cannot be defined as an option in a command. We encourage you to use a subcommand decorator instead, as seen in the guide.
-
-If you were using some of the more complex features of slash commands in v4, it's important to note: *v5 only runs the subcommand, not the base-command-then-subcommands that you could do with v4.* This was mostly due to the logic being too complex to maintain - it is encouraged that you use checks to either add onto base commands or the subcommands you want to add them to, as will be talked about in an upcoming section. `StopIteration` also doesn't exist in v5 due to this change.
-
-Autocomplete *is* different. v5 encourages you to tie autocompletes to specific commands in a different manner than v4 and uses a special context, [like seen in the guide](../03 Creating Commands/#i-need-more-than-25-choices). There is `Interfluxer.global_autocomplete` too.
-
-Autodeferring is also pretty similar, although there's more control, with options to allow for global autodefers and extension-wide ones.
+Big changes include the fact that `@bot.command` (we'll get to extensions later) is now `@Interfluxer.prefixed_command`, and `CommandContext` is now `PrefixedContext`. There may be some slight renamings elsewhere too in the decorators itself - it's suggested you look over the options for the new decorator and appropriately adapt your code.
 
 ## Events
 
@@ -69,56 +60,11 @@ async def on_member_update(event: MemberUpdate):
     event.after  # after update
 ```
 
-## Other Types of Interactions (Context Menus, Components, Modals)
-
-These should be a lot more familiar to you - many Interfluxer in v5 that aren't slash commands are similar to v4, minus name changes (largely to the decorators and classes you use). They should still *function* similarly though, but it's never a bad idea to consult the various guides that are on the sidebar to gain a better picture of how they work.
-
-[If you're using context menus](../04 Context Menus) (previously `@bot.user_command` or `@bot.message_command`), the decorators have changed to `@user_context_menu` and `@message_context_menu`, or you can also use the more general `@context_menu` decorator and specify the type of context menu through `context_type` - otherwise, it's mostly the same.
-
-There also is no "one decorator for every type of command" - there is no equivalent to `bot.command`, and you will need to use the specialized decorators instead.
-
-For example:
-```python
-@slash_command(...)  # for slash commands
-@subcommand(...)  # for slash subcommands
-@context_menu(...)  # for context menus
-@component_callback(...)  # for component callbacks
-@modal_callback(...)  # for modal callbacks
-```
-
-[For components](../05 Components) and [modals](../06 Modals): you no longer need to use `ActionRow.new(...)` to make an ActionRow now - you can just use `ActionRow(...)` directly. You also send modals via `ctx.send_modal` now. Finally, text inputs in components (the options for string select menus, and the components for modals) are also `*args` now, instead of being a typical parameter:
-
-```python
-import Interfluxer
-
-# in v4:
-
-components = [Interfluxer.TextInput(...), Interfluxer.TextInput(...)]
-
-modal = Interfluxer.Modal(
-    title="Application Form",
-    custom_id="mod_app_form",
-    components=components,
-)
-
-# in v5:
-
-components = [Interfluxer.InputText(...), Interfluxer.InputText(...)]
-
-modal = Interfluxer.Modal(
-    *components,
-    title="Application Form",
-    custom_id="mod_app_form",
-)
-```
-
-Otherwise, beyond renamings, components are largely the same.
-
 ## Extensions (cogs)
 
 Extensions have not been changed too much. `await teardown(...)` is now just `drop(...)` (note how drop is *not* async), and you use `bot.load_extension`/`bot.unload_extension` instead of `bot.load`/`bot.unload`.
 
-There is one major difference though that isn't fully related to extensions themselves: *you use the same decorator for both commands/events in your main file and commands/events in extensions in v5.* Basically, instead of having `bot.command` and `Interfluxer.extension_command`, you *just* have `Interfluxer.slash_command` (and so on for context menus, events, etc.), which functions seemlessly in both contexts.
+There is one major difference though that isn't fully related to extensions themselves: *you use the same decorator for both commands/events in your main file and commands/events in extensions in v5.* Basically, instead of having `bot.command` and `Interfluxer.extension_command`, you *just* have `Interfluxer.prefixed_command` (and so on for events, etc.), which functions seemlessly in both contexts.
 
 Also, you no longer require a `setup` function. They can still be used, but if you have no need for them other than just loading the extension, you can get rid of them if you want.
 
@@ -132,7 +78,7 @@ On the other hand, `fetch` is an asynchronous function that will request the Flu
 
 ## Library extensions
 
-In v4, many extensions could be separately added to your bot to add external functionalities (molter, paginator, tasks, etc...). Many of those extensions were merged in the main library for v5, therefore you will NOT need to download additional packages for functionalities such as prefixed commands, pagination, tasks or sharding.
+In v4, many extensions could be separately added to your bot to add external functionalities (molter, paginator, tasks, etc...). Many of those extensions were merged in the main library for v5, therefore you will NOT need to download additional packages for functionalities such as sharding or tasks.
 
 ## asyncio Changes
 

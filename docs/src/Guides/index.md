@@ -25,29 +25,11 @@ These guides are meant to help you get started with the library and offer a poin
 
     Want to create your own bot but don't know where to start? This guide has you covered from bot-tom to top!
 
--   [__:material-slash-forward-box: Slash Commands__](03 Creating Commands.md)
+-   [__:material-text: Creating Commands__](03 Creating Commands.md)
 
     ---
 
-    Slash commands are a cut above the rest - this guide will show you how to create your very own slash commands.
-
--   [__:material-menu-open: Context Menus__](04 Context Menus.md)
-
-    ---
-
-    Create menus that are so good, they'll have your users right-clicking for more.
-
--   [__:material-button-cursor: Components__](05 Components.md)
-
-    ---
-
-    While Interfluxer are cool and all, they are still missing a vital component. Introducing components, aka Buttons, Selects, soon Text Input Fields
-
--   [__:material-dock-window: Modals__](06 Modals.md)
-
-    ---
-
-    Ready to pop-up your user interface game? This guide will show you how to create modals.
+    Ready to start making commands? This guide will show you how to create your very own prefixed commands.
 
 -   [__:material-account-convert: Converters__](08 Converters.md)
 
@@ -73,25 +55,6 @@ These guides are meant to help you get started with the library and offer a poin
 
     So you want to start playing some 🎵tunes🎶 in voice channels? Well let's get that going for you.
 
-
--   [__:material-earth-plus: Localisation__](24 Localisation.md)
-
-    ---
-
-    So your bot has grown, and now you need to ~~localize~~ localise your bot. Well thank god we support localisation then, huh?
-
--   [__:material-text: Prefixed Commands__](26 Prefixed Commands.md)
-
-    ---
-
-    Going old-school with prefixed-commands? No problem. Let's get your message commands up and running.
-
--   [__:material-book-open-page-variant: Pagination__](30 Pagination.md)
-
-    ---
-
-    We've all hit that point where Fluxer won't let you send enough characters, at that point you can either flood the channel with multiple messages, or you can start paginating your messages.
-
 -   [__:octicons-clock-24: Tasks__](40 Tasks.md)
 
     ---
@@ -114,7 +77,7 @@ These guides are meant to help you get started with the library and offer a poin
 
     ---
 
-    How do I migrate from Interfluxer v4 to v5?
+    How do I migrate from Interfluxer v4 to Interfluxer v5?
 
 -   [__:material-package-up: Migration from NAFF__](99 2.x Migration_NAFF.md)
 
