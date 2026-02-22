@@ -74,13 +74,16 @@ from flux.models.discord.enums import (
     Status,
 )
 from flux.models.discord.file import UPLOADABLE_TYPE
+from flux.client.mixins.prefixed import PrefixedCommandsMixin
 from flux.models.internal.active_voice_state import ActiveVoiceState
 from flux.models.internal.callback import CallbackObject
 from flux.models.internal.listener import Listener
+from flux.models.internal.prefixed.context import PrefixedContext
 from flux.models.internal.tasks import Task
 
 if TYPE_CHECKING:
     from flux.models import Snowflake_Type, TYPE_ALL_CHANNEL
+    from flux.models.discord.message import Message
 
 EventT = TypeVar("EventT", bound=BaseEvent)
 
@@ -193,6 +196,7 @@ class Client(
     processors.ThreadEvents,
     processors.UserEvents,
     processors.VoiceEvents,
+    PrefixedCommandsMixin,
 ):
     """
 
@@ -235,13 +239,21 @@ class Client(
         *,
         activity: Union[Activity, str] = None,
         basic_logging: bool = False,
+        default_prefix: Optional[str | list[str]] = None,
         fetch_members: bool = False,
+        generate_prefixes: Optional[
+            Callable[
+                ["Client", "Message"],
+                Coroutine[Any, Any, str | list[str]],
+            ]
+        ] = None,
         global_post_run_callback: Absent[Callable[..., Coroutine]] = MISSING,
         global_pre_run_callback: Absent[Callable[..., Coroutine]] = MISSING,
         intents: Union[int, Intents] = Intents.DEFAULT,
         logger: logging.Logger = MISSING,
         logging_level: int = logging.INFO,
         owner_ids: Iterable["Snowflake_Type"] = (),
+        prefixed_context: type[PrefixedContext] = PrefixedContext,
         send_command_tracebacks: bool = True,
         shard_id: int = 0,
         show_ratelimit_tracebacks: bool = False,
@@ -348,6 +360,12 @@ class Client(
 
         super().__init__()
         self._sanity_check()
+
+        self._init_prefixed_commands(
+            default_prefix=default_prefix,
+            generate_prefixes=generate_prefixes,
+            prefixed_context=prefixed_context,
+        )
 
     async def __aenter__(self) -> "Client":
         if not self.token:

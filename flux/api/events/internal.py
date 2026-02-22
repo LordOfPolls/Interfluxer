@@ -34,6 +34,8 @@ if typing.TYPE_CHECKING:
 
 __all__ = (
     "CallbackAdded",
+    "CommandCompletion",
+    "CommandError",
     "Connect",
     "Disconnect",
     "Error",
@@ -175,3 +177,17 @@ class CallbackAdded(BaseEvent):
     """The callback that was added"""
     extension: "Extension | None" = attrs.field(repr=False, default=None)
     """The extension that the command was added from, if any"""
+
+
+@attrs.define(eq=False, order=False, hash=False, kw_only=True)
+class CommandError(_Error):
+    """Dispatched when a prefixed command encounters an error."""
+
+    ctx: "BaseContext" = attrs.field(repr=False, metadata=docs("The context of the command"))
+
+
+@attrs.define(eq=False, order=False, hash=False, kw_only=True)
+class CommandCompletion(BaseEvent):
+    """Dispatched when a prefixed command has finished running."""
+
+    ctx: "BaseContext" = attrs.field(repr=False, metadata=docs("The context of the command"))

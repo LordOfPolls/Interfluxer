@@ -1,13 +1,17 @@
 import functools
 from logging import Logger
+from typing import TYPE_CHECKING
 
 import attrs
 
-from flux import Embed, get_logger
+from flux.client.const import get_logger
 from flux.models.discord.color import BrandColors, Color
+from flux.models.discord.embed import Embed
 from .command import prefixed_command, PrefixedCommand
 from .context import PrefixedContext
-from .manager import PrefixedInjectedClient
+
+if TYPE_CHECKING:
+    from flux.client.client import Client
 
 __all__ = ("PrefixedHelpCommand",)
 
@@ -16,7 +20,7 @@ __all__ = ("PrefixedHelpCommand",)
 class PrefixedHelpCommand:
     """A help command for all prefixed commands in a bot."""
 
-    client: "PrefixedInjectedClient" = attrs.field()
+    client: "Client" = attrs.field()
     """The client to use for the help command."""
 
     show_hidden: bool = attrs.field(default=False, kw_only=True)

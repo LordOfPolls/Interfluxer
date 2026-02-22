@@ -1,8 +1,6 @@
-from .command import prefixed_command, PrefixedCommand, PrefixedCommandParameter
+from .command import PrefixedCommand, PrefixedCommandParameter, prefixed_command
 from .context import PrefixedContext
-
 from .help import PrefixedHelpCommand
-from .manager import PrefixedInjectedClient, PrefixedManager, setup
 from .utils import when_mentioned, when_mentioned_or
 
 __all__ = (
@@ -10,10 +8,7 @@ __all__ = (
     "PrefixedCommandParameter",
     "PrefixedContext",
     "PrefixedHelpCommand",
-    "PrefixedInjectedClient",
-    "PrefixedManager",
     "prefixed_command",
-    "setup",
     "when_mentioned",
     "when_mentioned_or",
 )

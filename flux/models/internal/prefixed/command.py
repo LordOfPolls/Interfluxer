@@ -31,7 +31,7 @@ from flux.models.internal.converters import (
     MODEL_TO_CONVERTER,
 )
 from flux.models.internal.protocols import Converter
-from ...client.utils.attr_utils import docs
+from flux.client.utils.attr_utils import docs
 
 if TYPE_CHECKING:
     from .context import PrefixedContext

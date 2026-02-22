@@ -51,6 +51,15 @@ from .listener import listen, Listener
 from .protocols import Converter
 from .extension import Extension
 from .wait import Wait
+from .prefixed import (
+    PrefixedCommand,
+    PrefixedCommandParameter,
+    PrefixedContext,
+    PrefixedHelpCommand,
+    prefixed_command,
+    when_mentioned,
+    when_mentioned_or,
+)
 from .tasks import BaseTrigger, DateTrigger, IntervalTrigger, OrTrigger, Task, TimeTrigger, CronTrigger
 
 __all__ = (
@@ -97,6 +106,10 @@ __all__ = (
     "NoArgumentConverter",
     "OrTrigger",
     "PartialEmojiConverter",
+    "PrefixedCommand",
+    "PrefixedCommandParameter",
+    "PrefixedContext",
+    "PrefixedHelpCommand",
     "RoleConverter",
     "SlidingWindowSystem",
     "SnowflakeConverter",
@@ -117,4 +130,7 @@ __all__ = (
     "is_owner",
     "listen",
     "max_concurrency",
+    "prefixed_command",
+    "when_mentioned",
+    "when_mentioned_or",
 )

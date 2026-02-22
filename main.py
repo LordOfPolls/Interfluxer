@@ -1,37 +1,56 @@
-import asyncio
 import logging
 import os
 import time
-import uuid
 
-from interactions.models.internal.context import SlashContext
-
-import interactions
-from interactions import (
-    Client,
-    listen,
-    slash_command,
-    BrandColours,
-    slash_option,
-    File,
-    global_autocomplete,
-    FlatUIColours,
-    MaterialColours,
-    ButtonStyle,
-)
+from flux import Client, Intents, listen, prefixed_command, PrefixedContext
 
 logging.basicConfig()
-logging.getLogger("interactions").setLevel(logging.DEBUG)
+logging.getLogger("flux").setLevel(logging.DEBUG)
 
-bot = Client()
+bot = Client(
+    default_prefix="!",
+    intents=Intents.DEFAULT | Intents.MESSAGE_CONTENT,
+)
+
 
 @listen()
 async def on_ready():
     print(f"Logged in as {bot.user} ({bot.user.id})")
 
-    channel = await bot.fetch_channel(1475048024970936473)
 
-    await channel.send("Hello World from interactions.py")
+@prefixed_command()
+async def ping(ctx: PrefixedContext):
+    """Responds with pong and the bot's latency."""
+    await ctx.reply(f"Pong! `{bot.latency * 1000:.0f}ms`")
+
+
+@prefixed_command()
+async def echo(ctx: PrefixedContext, *, message: str):
+    """Repeats back whatever you say."""
+    await ctx.reply(message)
+
+
+@prefixed_command()
+async def say(ctx: PrefixedContext, channel_id: int, *, message: str):
+    """Sends a message to a specified channel."""
+    channel = await bot.fetch_channel(channel_id)
+    if channel:
+        await channel.send(message)
+        await ctx.reply(f"Message sent to <#{channel_id}>")
+    else:
+        await ctx.reply("Channel not found.")
+
+
+@prefixed_command(name="info")
+async def info_cmd(ctx: PrefixedContext):
+    """Shows basic bot info."""
+    await ctx.reply(
+        f"**Bot:** {bot.user.username}\n"
+        f"**Guilds:** {bot.guild_count}\n"
+        f"**Latency:** {bot.latency * 1000:.0f}ms\n"
+        f"**Prefix:** `!`"
+    )
+
 
 while True:
     backoff = 1
@@ -46,5 +65,3 @@ while True:
         if backoff > 30:
             break
         time.sleep(backoff)
-
-

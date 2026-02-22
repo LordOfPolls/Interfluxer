@@ -1,12 +1,13 @@
-from typing import Callable, Any, Coroutine
+from typing import TYPE_CHECKING, Callable, Any, Coroutine
 
-from flux.client.client import Client
-from flux.models.discord.message import Message
+if TYPE_CHECKING:
+    from flux.client.client import Client
+    from flux.models.discord.message import Message
 
 __all__ = ("when_mentioned", "when_mentioned_or")
 
 
-async def when_mentioned(bot: Client, _) -> list[str]:
+async def when_mentioned(bot: "Client", _) -> list[str]:
     """
     Returns a list of the bot's mentions.
 
@@ -19,7 +20,7 @@ async def when_mentioned(bot: Client, _) -> list[str]:
 
 def when_mentioned_or(
     *prefixes: str,
-) -> Callable[[Client, Message], Coroutine[Any, Any, list[str]]]:
+) -> Callable[["Client", "Message"], Coroutine[Any, Any, list[str]]]:
     """
     Returns a list of the bot's mentions plus whatever prefixes are provided.
 
@@ -35,7 +36,7 @@ def when_mentioned_or(
 
     """
 
-    async def _new_mention(bot: Client, _) -> list[str]:
+    async def _new_mention(bot: "Client", _) -> list[str]:
         return (await when_mentioned(bot, _)) + list(prefixes)
 
     return _new_mention

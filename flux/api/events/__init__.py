@@ -71,6 +71,8 @@ from .discord import (
 )
 from .internal import (
     CallbackAdded,
+    CommandCompletion,
+    CommandError,
     Connect,
     Disconnect,
     Error,
@@ -101,6 +103,8 @@ __all__ = (
     "ChannelDelete",
     "ChannelPinsUpdate",
     "ChannelUpdate",
+    "CommandCompletion",
+    "CommandError",
     "Connect",
     "Disconnect",
     "EntitlementCreate",

@@ -235,6 +235,11 @@ from .internal import (
     NoArgumentConverter,
     OrTrigger,
     PartialEmojiConverter,
+    PrefixedCommand,
+    PrefixedCommandParameter,
+    PrefixedContext,
+    PrefixedHelpCommand,
+    prefixed_command,
     RoleConverter,
     SnowflakeConverter,
     Task,
@@ -243,6 +248,8 @@ from .internal import (
     UserConverter,
     VoiceChannelConverter,
     Wait,
+    when_mentioned,
+    when_mentioned_or,
 )
 from .misc import AsyncIterator, Typing
 
@@ -412,6 +419,10 @@ __all__ = (
     "PollLayoutType",
     "PollMedia",
     "PollResults",
+    "PrefixedCommand",
+    "PrefixedCommandParameter",
+    "PrefixedContext",
+    "PrefixedHelpCommand",
     "PremiumTier",
     "PremiumType",
     "Reaction",
@@ -477,6 +488,7 @@ __all__ = (
     "listen",
     "max_concurrency",
     "open_file",
+    "prefixed_command",
     "process_allowed_mentions",
     "process_color",
     "process_colour",
@@ -491,4 +503,6 @@ __all__ = (
     "to_optional_snowflake",
     "to_snowflake",
     "to_snowflake_list",
+    "when_mentioned",
+    "when_mentioned_or",
 )
