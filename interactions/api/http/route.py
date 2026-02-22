@@ -12,7 +12,7 @@ PAYLOAD_TYPE = dict[str, int | str | bool | list | None]
 
 
 class Route:
-    BASE: ClassVar[str] = f"https://discord.com/api/v{__api_version__}"
+    BASE: ClassVar[str] = f"https://api.fluxer.app/v{__api_version__}"
     path: str
     params: dict[str, str | int]
 

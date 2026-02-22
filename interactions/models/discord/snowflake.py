@@ -30,6 +30,9 @@ def to_snowflake(snowflake: Snowflake_Type) -> "Snowflake":
     For Discord-API - facing code, just int() is sufficient
 
     """
+    if snowflake is MISSING:
+        return MISSING
+
     try:
         snowflake = Snowflake(snowflake)
     except TypeError as e:

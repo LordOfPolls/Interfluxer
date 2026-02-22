@@ -103,7 +103,7 @@ for repo_name in repo_names:
 
 __repo_url__ = "https://github.com/interactions-py/interactions.py"
 __py_version__ = f"{_ver_info[0]}.{_ver_info[1]}"
-__api_version__ = 10
+__api_version__ = 1
 logger_name = "interactions"
 _logger = logging.getLogger(logger_name)
 

@@ -580,7 +580,7 @@ class HTTPClient(
 
         """
         try:
-            result = await self.request(Route("GET", "/gateway"))
+            result = await self.request(Route("GET", "/gateway/bot"))
             result = cast(dict[str, Any], result)
         except HTTPException as exc:
             raise GatewayNotFound from exc

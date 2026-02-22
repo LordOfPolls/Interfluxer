@@ -211,9 +211,13 @@ class GatewayClient(WebsocketClient):
                 self._trace = data.get("_trace", [])
                 self.sequence = seq
                 self.session_id = data["session_id"]
-                self.ws_resume_url = (
-                    f"{data['resume_gateway_url']}?encoding=json&v={__api_version__}&compress=zlib-stream"
-                )
+
+                if resume_url := data.get("resume_gateway_url"):
+                    self.ws_resume_url = (
+                        f"{resume_url}?encoding=json&v={__api_version__}&compress=zlib-stream"
+                    )
+                else:
+                    self.ws_resume_url = self.ws_url
                 self.state.wrapped_logger(logging.INFO, "Gateway connection established")
                 self.state.wrapped_logger(logging.DEBUG, f"Session ID: {self.session_id} Trace: {self._trace}")
                 return self.state.client.dispatch(events.WebsocketReady(data))

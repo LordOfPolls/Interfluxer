@@ -116,7 +116,7 @@ class BulkBanResponse(ClientObject):
 
 @attrs.define(eq=False, order=False, hash=False, kw_only=True)
 class BaseGuild(DiscordObject):
-    name: str = attrs.field(repr=True)
+    name: str = attrs.field(repr=True, default=MISSING)
     """Name of guild. (2-100 characters, excluding trailing and leading whitespace)"""
     description: Optional[str] = attrs.field(repr=True, default=None)
     """The description for the guild, if the guild is discoverable"""
@@ -245,7 +245,7 @@ class Guild(BaseGuild):
     premium_subscription_count: int = attrs.field(repr=False, default=0)
     """The number of boosts this guild currently has."""
     preferred_locale: str = attrs.field(
-        repr=False,
+        repr=False, default=None
     )
     """The preferred locale of a Community guild. Used in server discovery and notices from Discord. Defaults to \"en-US\""""
     public_updates_channel_id: Optional[Snowflake_Type] = attrs.field(repr=False, default=None)
@@ -269,7 +269,7 @@ class Guild(BaseGuild):
     safety_alerts_channel_id: Optional[Snowflake_Type] = attrs.field(repr=False, default=None)
     """The id of the channel where admins and moderators of Community guilds receive safety alerts from Discord."""
 
-    _owner_id: Snowflake_Type = attrs.field(repr=False, converter=to_snowflake)
+    _owner_id: Snowflake_Type = attrs.field(repr=False, converter=to_snowflake, default=MISSING)
     _channel_ids: Set[Snowflake_Type] = attrs.field(repr=False, factory=set)
     _thread_ids: Set[Snowflake_Type] = attrs.field(repr=False, factory=set)
     _member_ids: Set[Snowflake_Type] = attrs.field(repr=False, factory=set)
