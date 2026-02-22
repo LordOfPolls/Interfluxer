@@ -21,8 +21,8 @@
 A highly extensible, easy to use, and feature complete framework for Fluxer.
 
 This project started from the `interactions.py` codebase and was reworked to target Fluxer’s API and ecosystem, with anything Discord-specific removed.
-It is the culmination of years of experience with bot development. 
-This framework has been built from the ground up with community feedback and suggestions in mind. 
+It is the culmination of years of experience with bot development.
+This framework has been built from the ground up with community feedback and suggestions in mind.
 Our framework provides a modern and intuitive set of language bindings for easy interaction with Discord.
 
 ## Key Features
@@ -79,4 +79,4 @@ async def on_startup():
 bot.start("token")
 ```
 
-With `interactions.py`, you can quickly and easily build complex Fluxer applications with Python. 
+With `interactions.py`, you can quickly and easily build complex Fluxer applications with Python.

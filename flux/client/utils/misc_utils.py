@@ -6,7 +6,6 @@ from typing import Callable, Iterable, List, Optional, Any, Union
 import flux.api.events as events
 from flux.client.const import T
 
-
 __all__ = (
     "escape_mentions",
     "find",

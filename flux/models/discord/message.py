@@ -534,7 +534,8 @@ class Message(BaseMessage):
                 return f"{self.author.mention} just boosted the server! {self.guild.name} has achieved **Level 3!**"
             case MessageType.GUILD_MEMBER_JOIN:
                 return GUILD_WELCOME_MESSAGES[
-                    int(self.timestamp.timestamp() * 1000) % len(GUILD_WELCOME_MESSAGES)
+                    int(self.timestamp.timestamp() * 1000)
+                    % len(GUILD_WELCOME_MESSAGES)
                     # This is how Discord calculates the welcome message.
                 ].format(self.author.mention)
             case MessageType.THREAD_CREATED:
