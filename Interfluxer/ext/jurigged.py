@@ -3,7 +3,7 @@ from pathlib import Path
 from types import ModuleType
 from typing import Callable, Dict
 
-from Interfluxer import Extension, SlashCommand, Client
+from Interfluxer import Extension, BaseCommand, Client
 from Interfluxer.client.errors import ExtensionLoadException, ExtensionNotFound
 from Interfluxer.client.utils.misc_utils import find
 from Interfluxer.client.const import get_logger
@@ -19,7 +19,7 @@ try:
     )
 except ModuleNotFoundError:
     get_logger().error(
-        "jurigged not installed, cannot enable jurigged integration.  Install with `pip install external-py-Interfluxer[jurigged]`"
+        "jurigged not installed, cannot enable jurigged integration. Install with `pip install Interfluxer[jurigged]`"
     )
     raise
 
@@ -29,7 +29,7 @@ __all__ = ("Jurigged", "setup")
 
 def get_all_commands(module: ModuleType) -> Dict[str, Callable]:
     """
-    Get all SlashCommands from a specified module.
+    Get all BaseCommands from a specified module.
 
     Args:
         module: Module to extract commands from
@@ -41,12 +41,12 @@ def get_all_commands(module: ModuleType) -> Dict[str, Callable]:
         """Check that an object is an extension."""
         return inspect.isclass(e) and issubclass(e, Extension) and e is not Extension
 
-    def is_slashcommand(e) -> bool:
-        """Check that an object is a slash command."""
-        return isinstance(e, SlashCommand)
+    def is_command(e) -> bool:
+        """Check that an object is a command."""
+        return isinstance(e, BaseCommand)
 
     for _name, item in inspect.getmembers(module, is_extension):
-        inspect_result = inspect.getmembers(item, is_slashcommand)
+        inspect_result = inspect.getmembers(item, is_command)
         exts = []
         for _, val in inspect_result:
             exts.append(val)
@@ -170,14 +170,14 @@ class Jurigged(Extension):
                     )
 
                     # Extract useful info
-                    old_args = old_cmd.options
+                    old_args = old_cmd.parameters
                     old_arg_names = []
                     new_arg_names = []
                     if old_args:
-                        old_arg_names = [x.name.default for x in old_args]
-                    new_args = cmd.options
+                        old_arg_names = [x.name for x in old_args]
+                    new_args = cmd.parameters
                     if new_args:
-                        new_arg_names = [x.name.default for x in new_args]
+                        new_arg_names = [x.name for x in new_args]
 
                     # No changes
                     if not old_args and not new_args:
