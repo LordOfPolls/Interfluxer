@@ -300,6 +300,7 @@ class Client(
         self._ready = asyncio.Event()
         self._closed = False
         self._startup = False
+        self._callbacks_gathered = False
 
         self._guild_event = asyncio.Event()
         self.guild_event_timeout = 3
@@ -949,6 +950,8 @@ class Client(
 
     def _gather_callbacks(self) -> None:
         """Gathers callbacks from __main__ and self."""
+        if self._callbacks_gathered:
+            return
 
         def process(callables, location: str) -> None:
             added = 0
@@ -972,6 +975,7 @@ class Client(
         process(client_commands, self.__class__.__name__)
 
         [wrap_partial(obj, self) for _, obj in inspect.getmembers(self) if isinstance(obj, Task)]
+        self._callbacks_gathered = True
 
     async def _disconnect(self) -> None:
         self._ready.clear()

@@ -6,6 +6,7 @@ from logging import Logger
 from typing import TYPE_CHECKING, Optional, Union
 
 import attrs
+from aiohttp import WSServerHandshakeError
 
 import flux
 from flux.api import events
@@ -86,7 +87,7 @@ class ConnectionState:
     async def stop(self) -> None:
         """Disconnect from the Discord Gateway."""
         self.wrapped_logger(logging.INFO, "Stopping Shard")
-        if self.gateway is not None:
+        if self.gateway:
             self.gateway.close()
             self.gateway = None
 
@@ -103,32 +104,44 @@ class ConnectionState:
 
     async def _ws_connect(self) -> None:
         """Connect to the Discord Gateway."""
-        self.wrapped_logger(logging.INFO, "Shard is attempting to connect to gateway...")
-        try:
-            async with GatewayClient(self, (self.shard_id, self.client.total_shards)) as self.gateway:
-                try:
-                    await self.gateway.run()
-                finally:
-                    self._shard_ready.clear()
-                    if self.client.total_shards == 1:
-                        self.client.dispatch(events.Disconnect())
-                    else:
-                        self.client.dispatch(events.ShardDisconnect(self.shard_id))
+        backoff = 0.1
+        while True:
+            self.wrapped_logger(logging.INFO, "Shard is attempting to connect to gateway...")
+            try:
+                async with GatewayClient(self, (self.shard_id, self.client.total_shards)) as self.gateway:
+                    try:
+                        await self.gateway.run()
+                    finally:
+                        self._shard_ready.clear()
+                        if self.client.total_shards == 1:
+                            self.client.dispatch(events.Disconnect())
+                        else:
+                            self.client.dispatch(events.ShardDisconnect(self.shard_id))
+                return
 
-        except WebSocketClosed as ex:
-            if ex.code == 4011:
-                raise LibraryException("Your bot is too large, you must use shards") from None
-            if ex.code == 4013:
-                raise LibraryException(f"Invalid Intents have been passed: {self.intents}") from None
-            if ex.code == 4014:
-                raise LibraryException(
-                    "You have requested privileged intents that have not been enabled or approved. Check the developer dashboard"
-                ) from None
-            raise
+            except WSServerHandshakeError as ex:
+                if ex.status >= 500:
+                    self.wrapped_logger(logging.WARNING, f"Gateway returned {ex.status}. Retrying in {backoff}s...")
+                    await asyncio.sleep(backoff)
+                    backoff = min(backoff * 2, 60)
+                    continue
+                raise
 
-        except Exception as e:
-            self.client.dispatch(events.Disconnect())
-            self.wrapped_logger(logging.ERROR, "".join(traceback.format_exception(type(e), e, e.__traceback__)))
+            except WebSocketClosed as ex:
+                if ex.code == 4011:
+                    raise LibraryException("Your bot is too large, you must use shards") from None
+                if ex.code == 4013:
+                    raise LibraryException(f"Invalid Intents have been passed: {self.intents}") from None
+                if ex.code == 4014:
+                    raise LibraryException(
+                        "You have requested privileged intents that have not been enabled or approved. Check the developer dashboard"
+                    ) from None
+                raise
+
+            except Exception as e:
+                self.client.dispatch(events.Disconnect())
+                self.wrapped_logger(logging.ERROR, "".join(traceback.format_exception(type(e), e, e.__traceback__)))
+                break
 
     def wrapped_logger(self, level: int, message: str, **kwargs) -> None:
         """
