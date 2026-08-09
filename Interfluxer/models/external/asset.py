@@ -25,7 +25,7 @@ class Asset:
 
     """
 
-    BASE = "https://cdn.discordapp.com"
+    BASE = "https://cdn.fluxer.com"
 
     _client: "Client" = attrs.field(repr=False, metadata=no_export_meta)
     _url: str = attrs.field(repr=True)
